@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+/*page 2*/
+*{
+    --primary: #136c72;
+}
+footer{
+    /* bottom: 0; */
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(10vmax, 1fr));
+    grid-gap: 50px;
+    padding: 10px;
+}
+.box{
+    background: var(--primary);
+    padding: min(8vmax, 80px) 0;
+    font-size: 22px;
+    color: white;
+    opacity: .8;
+    border-radius: 10px;
+}
+.box--icon{
+    font-size: 54px;
+    margin-bottom: 20px;
+}
+
+.section2{
+    /* padding: 50px 0; */
+    text-align: left;
+}
+
+.content__section--grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 10px;
+
+    & .panel{
+        height: 15vmax;
+        background: var(--primary);
+        opacity: .7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        & h3{
+            font-size: 1.7rem;
+            color: white;
+        }
+    }
+    & .panel__content{
+        & label{
+            font-size: 1rem;
+            text-transform: capitalize;
+            color: var(--primary);
+        }
+        & .panel__filter{
+            display: flex;
+            justify-content: center;
+
+            & * + *{
+                margin-left: 10px;
+            }
+            & .panel__filter__component{
+                text-align: center;
+                display: grid;
+                grid-template-rows: 1fr;
+            }
+        }
+    }
+}
+/*end page 2*/
+</style>
+<body>
+    <header>
+        <div class="container row">
+            <button class="nav-toggle" aria-label="open navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a class="logo" href="#">
+                <img src="img/logo.svg" alt="logo aplikasi">
+            </a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Family Guide</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link nav__link--button">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="section2">
+        <div class="content__section--grid">
+            <div class="panel">
+                <h3>Family Guide</h3>
+            </div>
+            <div class="container panel__content">
+                <div class="panel__filter">
+                    <div class="panel__filter__component">
+                        <label for="ordo">ordo</label>
+                        <select name="ordo" id="ordo">
+                            <option value="">--pilih--</option>
+                        </select>
+                    </div>
+                    <div class="panel__filter__component">
+                        <label for="familia">familia</label>
+                        <select name="familia" id="familia">
+                            <option value="">--pilih--</option>
+                        </select>
+                    </div>
+                    <div class="panel__filter__component">
+                        <label for="genus">genus</label>
+                        <select name="genus" id="genus">
+                            <option value="">--pilih--</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer__container">
+            <div class="footer__contact">
+                Contact Us
+                Email: aaaa@gmail.com
+                Telp: 0800000000000
+            </div>
+            <div class="footer__repository">
+                Quick Link
+                Acknowledgements
+            </div>
+            <div class="footer__copyright">
+                <p>copyright &copy; 2024</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        const navToggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('.nav');
+
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('nav--visible');
+        })
+    });
+</script>
+</html>

@@ -1,0 +1,138 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+*{
+    margin: 0;
+    padding: 0;
+
+    --primary: #136c72;
+    --height-input: 3rem;
+}
+
+header, footer{
+    background: var(--primary);
+    padding: 1em 0;
+    text-align: center;
+}
+footer{
+    width: 100%;
+    position: absolute;
+    clear: both;
+}
+img{
+    max-width: 100%;
+}
+.container{
+    width: 80%;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.nav-toggle{
+    cursor: pointer;
+    border: 0;
+    width: 3em;
+    height: 3em;
+    padding: 0;
+    border-radius: 50%;
+    background: #072A2D;
+    color: white;
+    transition: opacity 250ms ease;
+    position: absolute;
+    left: 0;
+
+    & i{
+        font-size: 1rem;
+    }
+}
+.logo{
+    height: 30px;
+}
+
+.nav{
+    width: 100%;
+    visibility: hidden;
+    height: 0;
+    position: absolute;
+    font-size: 1rem;
+}
+.nav--visible{
+    width: 100%;
+    visibility: visible;
+    height: auto;
+    position: relative;
+}
+.nav__list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.nav__item{
+    margin-top: .8rem;
+}
+.nav__link{
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.nav__link:hover{
+    opacity: .6;
+}
+.nav__link--button{
+    padding: .25rem .75rem;
+    background: white;
+    color: #23424A;
+    border-radius: 100px;
+}
+.nav__link--button:hover{
+    opacity: .6;
+}
+
+@media (min-width: 800px){
+    .row{
+        display: flex;
+        justify-content: space-between;
+    }
+    .nav-toggle{
+        display: none;
+    }
+    .nav{
+        visibility: visible;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: auto;
+        position: relative;
+    }
+    .nav__list{
+        display: flex;
+        margin: 0;
+    }
+    .nav__item{
+        margin: 0 0 0 1.5rem;
+    }
+}
+
+.footer__container{
+    padding: 10px 100px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 100px 50px;
+    grid-template-areas:
+    "contact repo ."
+    "copyright copyright copyright";
+    gap: 10px;
+}
+.footer__contact{
+    background: red;
+    grid-area: "contact";
+}
+.footer__repository{
+    background: green;
+    grid-area: "repo";
+}
+.footer__copyright{
+    background: blue;
+    grid-area: "copyright";
+}
