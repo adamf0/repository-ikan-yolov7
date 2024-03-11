@@ -138,9 +138,9 @@ a{
     }
 
     .footer__container{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        grid-template-rows: 100px auto;
+        /* display: grid; */
+        grid-template-columns: repeat(3,1fr) !important;
+        /* grid-template-rows: 100px auto; */
     }
     
     .footer__copyright{
