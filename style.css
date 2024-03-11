@@ -12,7 +12,6 @@
 header, footer{
     background: var(--primary);
     padding: 1em 0;
-    text-align: center;
 }
 footer{
     width: 100%;
@@ -21,6 +20,13 @@ footer{
 }
 img{
     max-width: 100%;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.text-center{
+    text-align: center;
 }
 .container{
     width: 80%;
@@ -112,27 +118,57 @@ img{
     .nav__item{
         margin: 0 0 0 1.5rem;
     }
+
+    .footer__container{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: 100px auto;
+    }
+    
+    .footer__copyright{
+        grid-column: span 3;
+    }
 }
 
 .footer__container{
     padding: 10px 100px;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: 100px 50px;
-    grid-template-areas:
-    "contact repo ."
-    "copyright copyright copyright";
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: 100px auto;
     gap: 10px;
 }
+
 .footer__contact{
-    background: red;
-    grid-area: "contact";
+    display: grid;
+    color: white;
+
+    & h3{
+        color: black;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+    
+    & table{
+        & tr{
+            & td:nth-child(1){
+                width: 10px;
+            }
+            & td:nth-child(2)::before{
+                content: ': ';
+            }
+        }
+    }
 }
 .footer__repository{
-    background: green;
-    grid-area: "repo";
+    display: grid;
+
+    & ul{
+        list-style: none;
+        margin: 0 0 0 15px;
+    }
 }
 .footer__copyright{
-    background: blue;
-    grid-area: "copyright";
+    grid-column: span 2;
+    text-align: center;
+    color: white;
 }
