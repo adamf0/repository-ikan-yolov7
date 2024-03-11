@@ -104,7 +104,7 @@
                         <a href="family_guide.html" class="nav__link">Family Guide</a>
                     </li>
                     <li class="nav__item">
-                        <a href="about.html" class="nav__link nav__link--button">About</a>
+                        <a href="about.html" class="nav__link">About</a>
                     </li>
                 </ul>
             </nav>
@@ -115,10 +115,11 @@
             <div class="section1__wrapper section1__content--vertical">
                 <h2 class="section1__content--heading">Cari Nama Ikan</h2>
                 <div class="section1__content--horizontal">
-                    <input type="text" class="form-input" placeholder="Masukkan nama ikan yang dicari">
-                    <a href="search.html" class="section1__content--vertical section1__content--box">
-                            <i class="fas fa-camera"></i>
+                    <input type="text" id="nameInput" class="form-input" placeholder="Masukkan nama ikan yang dicari">
+                    <a href="#" id="selectFile" class="section1__content--vertical section1__content--box">
+                        <i class="fas fa-camera"></i>
                     </a>
+                    <input type="file" id="fileInput" style="display:none;">
                 </div>
             </div>
         </div>
@@ -173,10 +174,26 @@
         const navToggle = document.querySelector('.nav-toggle');
         const nav = document.querySelector('.nav');
 
-
         navToggle.addEventListener('click', () => {
             nav.classList.toggle('nav--visible');
-        })
+        });
+
+        var nameInput = document.getElementById('nameInput');
+        var selectFile = document.getElementById('selectFile');
+        var fileInput = document.getElementById('fileInput');
+        selectFile.addEventListener('click', function (e) {
+            e.preventDefault();
+            fileInput.click();
+        });
+        fileInput.addEventListener('change', function () {
+            console.log('File selected:', fileInput.files[0].name);
+        });
+        nameInput.addEventListener('keydown', function (event) {
+            if (event.keyCode === 13) {
+                var inputValue = nameInput.value;
+                console.log('Input value on Enter:', inputValue);
+            }
+        });
     });
 </script>
 </html>
