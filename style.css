@@ -154,17 +154,17 @@ a{
     grid-template-columns: repeat(2,1fr);
     grid-template-rows: 100px auto;
     gap: 10px;
+
+    & h3{
+        color: #dee9ea;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
 }
 
 .footer__contact{
     display: grid;
     color: white;
-
-    & h3{
-        color: black;
-        font-weight: bold;
-        text-transform: capitalize;
-    }
     
     & table{
         & tr{
