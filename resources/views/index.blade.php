@@ -123,13 +123,42 @@
         var nameInput = document.getElementById('nameInput');
         var selectFile = document.getElementById('selectFile');
         var fileInput = document.getElementById('fileInput');
+
         selectFile.addEventListener('click', function (e) {
             e.preventDefault();
             fileInput.click();
         });
+
         fileInput.addEventListener('change', function () {
-            console.log('File selected:', fileInput.files[0].name);
+            // console.log('File selected:', fileInput.files[0].name);
+            let dataForm = new FormData();
+            if(fileInput.files.length){
+                dataForm.append("image",fileInput.files[0]);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: `{{route('api.klasifikasi.index')}}`,
+                data: dataForm,
+                dataType: 'json',
+                accepts: 'json',
+                processData: false,
+                contentType: false,
+                // type: 'POST',
+                success: function (response) {
+                    const data = response?.data??null;
+                    console.log(data);
+                    let url = `{{route('searchv2',['klasifikasi'=>'?'])}}`;
+
+                    window.location.replace(url.replace('?',data));
+                },
+                error: function(xhr, status, error) {
+                    handleAjaxError(xhr, status, error, true);
+                    listIkan.html(content);
+                }
+            });
         });
+
         nameInput.addEventListener('keydown', function (event) {
             if (event.keyCode === 13) {
                 var inputValue = nameInput.value;

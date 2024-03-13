@@ -308,36 +308,39 @@
 
         listIkan.empty();
         listIkan.html(loading);
-        let content = '';
-        $.ajax({
-            type: "GET",
-            url: `{{route('api.familyguide.list')}}`,
-            data: dataForm,
-            dataType: 'json',
-            accepts: 'json',
-            processData: false,
-            contentType: false,
-            // type: 'POST',
-            success: function (response) {
-                listIkan.empty();
-                const datas = (response?.data??[]);
-                console.log(datas);
-                
-                if(datas.length){
-                    $.each(datas, function(i, data) {
-                        content += generateCard(data);
-                    });
-                } else{
+
+        setTimeout(function() {
+            let content = '';
+            $.ajax({
+                type: "GET",
+                url: `{{route('api.familyguide.list')}}`,
+                data: dataForm,
+                dataType: 'json',
+                accepts: 'json',
+                processData: false,
+                contentType: false,
+                // type: 'POST',
+                success: function (response) {
+                    listIkan.empty();
+                    const datas = (response?.data??[]);
+                    console.log(datas);
+                    
+                    if(datas.length){
+                        $.each(datas, function(i, data) {
+                            content += generateCard(data);
+                        });
+                    } else{
+                        content = not_found;
+                    }
+                    listIkan.html(content);
+                },
+                error: function(xhr, status, error) {
+                    handleAjaxError(xhr, status, error, true);
                     content = not_found;
+                    listIkan.html(content);
                 }
-                listIkan.html(content);
-            },
-            error: function(xhr, status, error) {
-                handleAjaxError(xhr, status, error, true);
-                content = not_found;
-                listIkan.html(content);
-            }
-        });
+            });
+        }, 2000);
     }
     $(document).ready(function(){
         const navToggle = document.querySelector('.nav-toggle');

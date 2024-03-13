@@ -109,7 +109,7 @@
     width: -webkit-fill-available;
     max-height: 500px;
     /* height: 40vmax; */
-    object-fit: cover;
+    object-fit: fill;
 }
 .content--image{
     width: 70%;
@@ -208,11 +208,13 @@
 @section('content')
 <section class="section2">
         <div class="container">
-            <img src="{{ \App\Helper\Utility::loadAsset('img/hero-img.jpg') }}" class="content--image" alt="hasil prediksi"/>
+            <img src="{{ \App\Helper\Utility::loadAssetbase64($image) }}" class="content--image" alt="hasil prediksi"/>
+            
+            @foreach ($classification as $klasifikasi => $item)
             <div class="card content__section--grid">
                 <div data-area="klasifikasi">
-                    <h3>Tille trevally</h3>
-                    <img src="{{ \App\Helper\Utility::loadAsset('img/hero-img.jpg') }}" class="klasifikasi" alt="gambar ikan">
+                    <h3>{{$klasifikasi}}</h3>
+                    <img src='{{$item["foto"]}}' class="klasifikasi" alt="gambar ikan">
                 </div>
 
                 <div data-area="taksonomi">
@@ -220,31 +222,31 @@
                     <table>
                         <tr>
                             <td>Kingdom</td>
-                            <td class="ucfirst text-break">Animalia (Hewan)</td>
+                            <td class="ucfirst text-break">{{$item["kerajaan"]}}</td>
                         </tr>
                         <tr>
                             <td>Phylum</td>
-                            <td class="ucfirst text-break">Chordata (Kordata)</td>
+                            <td class="ucfirst text-break">{{$item["filum"]}}</td>
                         </tr>
                         <tr>
                             <td>Class</td>
-                            <td class="ucfirst text-break">Actinopterygii (Ikan bertulang sejati)</td>
+                            <td class="ucfirst text-break">{{$item["kelas"]}}</td>
                         </tr>
                         <tr>
                             <td>Order</td>
-                            <td class="ucfirst text-break">Perciformes (Ikan bersirip duri)</td>
+                            <td class="ucfirst text-break">{{$item["ordo"]}}</td>
                         </tr>
                         <tr>
                             <td>Family</td>
-                            <td class="ucfirst text-break">Carangidae (Ikan seragam)</td>
+                            <td class="ucfirst text-break">{{$item["famili"]}}</td>
                         </tr>
                         <tr>
                             <td>Genus</td>
-                            <td class="ucfirst text-break">Carangoides</td>
+                            <td class="ucfirst text-break">{{$item["genus"]}}</td>
                         </tr>
                         <tr>
                             <td>Species</td>
-                            <td class="ucfirst text-break highlight">fulvoguttatus</td>
+                            <td class="ucfirst text-break highlight">{{$item["spesies"]}}</td>
                         </tr>
                     </table>
                 </div>
@@ -252,20 +254,20 @@
                 <div data-area="karakteristik">
                     <h5>Karakteristik</h5>
                     <ol class="circle">
-                        <li class="ucfirst text-break">Sisik besar pada tangkai ekor</li>
-                        <li class="ucfirst text-break">Profil kepala melengkung hingga tumpul</li>
-                        <li class="ucfirst text-break">20-22 jari lunak sirip punggung</li>
+                        @foreach ($item["karakteristik"] as $karakteristik)
+                        <li class="ucfirst text-break">{{$karakteristik}}</li>
+                        @endforeach
                     </ol>
                 </div>
 
                 <div data-area="genom">
                     <h5>Data Genom</h5>
-                    <p highlight="true">AUG UCU GAC UGA</p>
+                    <p highlight="true">{{$item["genom"]}}</p>
                 </div>
 
                 <div data-area="status">
                     <h5>Status Konservasi</h5>
-                    <p><span class="bullet__point" data-point="EX">EX</span> Tidak ada individu yang diketahui hidup</p>
+                    <p><span class="bullet__point" data-point='{{$item["status_konservasi"]}}'>{{$item["status_konservasi"]}}</span> {{\App\Helper\Utility::deskripsiStatus($item["status_konservasi"])}}</p>
                 </div>
 
                 <div data-area="filogenetik">
@@ -275,9 +277,10 @@
 
                 <div data-area="upaya">
                     <h5>Upaya Konservasi</h5>
-                    <p>dalam upaya kloning dengan sisa genetik yang telah terselamatkan sebelumnya</p>
+                    <p>{{$item["upaya_konservasi"]}}</p>
                 </div>
             </div>
+            @endforeach
         </div>
     </section>
 @stop
@@ -286,7 +289,7 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/treemap.js"></script>
 <script src="https://code.highcharts.com/modules/treegraph.js"></script>
-<script src="data-filogenetik.js"></script>
+<script src="{{ \App\Helper\Utility::loadAsset('data-filogenetik.js') }}"></script>
 <script>
     $(document).ready(function(){
         const navToggle = document.querySelector('.nav-toggle');

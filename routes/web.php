@@ -11,5 +11,5 @@ Route::get('/', [HomeController::class,"index"])->name('home');
 Route::get('/about',[AboutController::class,"index"])->name('about');
 Route::get('/family_guide',[FamilyGuideController::class,"index"])->name('familyguide');
 Route::get('/search/{id}',[SearchController::class,"index"])->name('search');
-Route::get('/searchv2',[SearchController::class,"indexv2"])->name('searchv2');
+Route::get('/searchv2/{klasifikasi}',[SearchController::class,"indexv2"])->name('searchv2');
 Route::get('/acknowledgements',[AcknowledgementsController::class,"index"])->name('acknowledgements');

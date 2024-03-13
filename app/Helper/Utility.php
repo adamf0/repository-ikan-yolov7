@@ -15,6 +15,9 @@ trait Utility{
     public static function loadAsset($path){
         return env('DEPLOY','dev')=='dev'? asset($path):secure_asset($path);
     }
+    public static function loadAssetbase64($value){
+        return "data:image/png;base64,$value";
+    }
     public static function deskripsiStatus($status){
         return match(strtolower($status)){
             "ex"=>"Tidak ada individu yang diketahui hidup",
