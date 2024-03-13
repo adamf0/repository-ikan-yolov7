@@ -126,6 +126,8 @@
 
         selectFile.addEventListener('click', function (e) {
             e.preventDefault();
+            const file = document.querySelector('#fileInput');
+            file.value = '';
             fileInput.click();
         });
 
@@ -146,11 +148,14 @@
                 contentType: false,
                 // type: 'POST',
                 success: function (response) {
-                    const data = response?.data??null;
-                    console.log(data);
-                    let url = `{{route('searchv2',['klasifikasi'=>'?'])}}`;
-
-                    window.location.replace(url.replace('?',data));
+                    console.log(response);
+                    if(response?.status!=="ok"){
+                        alert(response.message);
+                    } else{
+                        const data = response?.data??null;
+                        let url = `{{route('searchv2',['klasifikasi'=>'?'])}}`;
+                        window.location.replace(url.replace('?',data));
+                    }
                 },
                 error: function(xhr, status, error) {
                     handleAjaxError(xhr, status, error, true);
