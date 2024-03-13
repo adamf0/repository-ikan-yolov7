@@ -132,7 +132,8 @@
             grid-template-columns: repeat(4, minmax(45vmin, 1fr));
         }
         :is(.not_found, .loading){
-            grid-column: span 3;
+            grid-column: span 4;
+            place-items: center;
         }
     }
 }
@@ -143,6 +144,9 @@
 .select2.select2-container.select2-container--bootstrap-5.select2-container--below.select2-container--focus{
     width: 100% !important;
     min-width: 25vmin;
+}
+.selection{
+    display: none;
 }
 /*end page 2*/
 </style>
@@ -173,7 +177,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container listview__card">
+            <div class="container listview__card" id="listIkan">
                 <!-- <a href="search.html" class="list__item">
                     <img src="{{ \App\Helper\Utility::loadAsset('img/hero-img.jpg') }}" alt="gambar ikan">
                     <h3>nama ikan</h3>
@@ -208,10 +212,10 @@
                     <h3>Sedang Mencari Ikan...</h3>
                 </div> -->
 
-                <div class="not_found">
+                <!-- <div class="not_found">
                     <img src="{{ \App\Helper\Utility::loadAsset('img/fish_not_foundv2.png') }}" alt="data empty" width="500">
                     <h3>Tidak ditemukan ikan sesuai kriteria</h3>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -259,14 +263,92 @@
             });
         }
     }
+    const errorHandlers = {
+        0: () => 'Tidak ada koneksi atau terjadi kesalahan jaringan.',
+        400: () => 'Permintaan tidak valid.',
+        401: () => 'Akses tidak diizinkan.',
+        403: () => 'Akses ditolak.',
+        404: () => 'Halaman tidak ditemukan.',
+        500: () => 'Kesalahan server internal.',
+        502: () => 'Gateway atau proxy bermasalah.',
+        503: () => 'Layanan tidak tersedia.',
+        504: () => 'Waktu koneksi habis.',
+        timeout: () => 'Request timeout.',
+        parsererror: () => 'Kesalahan parsing permintaan JSON.',
+        abort: () => 'Permintaan Ajax dibatalkan.',
+        default: (error) => 'Kesalahan tidak teridentifikasi: ' + error,
+    };
 
+    function handleAjaxError(xhr, status, error, displayConsole = true, url=null) {
+        const errorHandler = errorHandlers[xhr.status] || errorHandlers[status] || errorHandlers.default;
+        if(displayConsole) console.log(errorHandler(error));
+        else return `${errorHandler(error)} pada url ${url}`;
+    }
+
+    const loading =`<div class="not_found">
+                        <img src="{{ \App\Helper\Utility::loadAsset('img/search_fish.jpeg') }}" alt="search fish" width="500">
+                        <h3>Sedang Mencari Ikan...</h3>
+                    </div>`;
+    const not_found=`<div class="not_found">
+                        <img src="{{ \App\Helper\Utility::loadAsset('img/fish_not_foundv2.png') }}" alt="data empty" width="500">
+                        <h3>Tidak ditemukan ikan sesuai kriteria</h3>
+                    </div>`;
+    function generateCard(data){
+        let url = `{{route('search',['id'=>'?'])}}`;
+        return `<a href="${url.replace('?',data.id)}" class="list__item">
+                    <img src="${data.foto}" alt="gambar ikan">
+                    <h3>${data.klasifikasi}</h3>
+                </a>`;
+    }
+    function load(ordo,familia,genus){
+        let dataForm = new FormData();
+        dataForm.append("ordo",ordo??null);
+        dataForm.append("familia",familia??null);
+        dataForm.append("genus",genus??null);
+
+        listIkan.empty();
+        listIkan.html(loading);
+        let content = '';
+        $.ajax({
+            type: "GET",
+            url: `{{route('api.familyguide.list')}}`,
+            data: dataForm,
+            dataType: 'json',
+            accepts: 'json',
+            processData: false,
+            contentType: false,
+            // type: 'POST',
+            success: function (response) {
+                listIkan.empty();
+                const datas = (response?.data??[]);
+                console.log(datas);
+                
+                if(datas.length){
+                    $.each(datas, function(i, data) {
+                        content += generateCard(data);
+                    });
+                } else{
+                    content = not_found;
+                }
+                listIkan.html(content);
+            },
+            error: function(xhr, status, error) {
+                handleAjaxError(xhr, status, error, true);
+                content = not_found;
+                listIkan.html(content);
+            }
+        });
+    }
     $(document).ready(function(){
         const navToggle = document.querySelector('.nav-toggle');
-        const nav = document.querySelector('.nav');
+        const nav       = document.querySelector('.nav');
+        listIkan    = $("#listIkan");
 
         navToggle.addEventListener('click', () => {
             nav.classList.toggle('nav--visible');
         })
+
+        load();
 
         load_dropdown(
             '#ordo', 

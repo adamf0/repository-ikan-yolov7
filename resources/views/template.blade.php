@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('style.css') }}">
 </head>
 @yield('css')
 <body>
@@ -59,7 +59,7 @@
         </div>
     </footer>
 </body>
-<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
     $(document).ready(function(){
         const navToggle = document.querySelector('.nav-toggle');

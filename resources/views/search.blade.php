@@ -103,7 +103,7 @@
     width: -webkit-fill-available;
     max-height: 500px;
     /* height: 40vmax; */
-    object-fit: cover;
+    object-fit: fill;
 }
 @media (min-width: 750px){
     .content__section--grid{
@@ -194,8 +194,8 @@
 <section class="section2">
         <div class="container content__section--grid">
             <div data-area="klasifikasi">
-                <h3>Tille trevally</h3>
-                <img src="{{ \App\Helper\Utility::loadAsset('img/hero-img.jpg') }}" class="klasifikasi" alt="gambar ikan">
+                <h3>{{$ikan->klasifikasi}}</h3>
+                <img src="{{$ikan->foto}}" class="klasifikasi" alt="gambar ikan">
             </div>
 
             <div data-area="taksonomi">
@@ -203,31 +203,31 @@
                 <table>
                     <tr>
                         <td>Kingdom</td>
-                        <td class="ucfirst text-break">Animalia (Hewan)</td>
+                        <td class="ucfirst text-break">{{$ikan->kerajaan}}</td>
                     </tr>
                     <tr>
                         <td>Phylum</td>
-                        <td class="ucfirst text-break">Chordata (Kordata)</td>
+                        <td class="ucfirst text-break">{{$ikan->filum}}</td>
                     </tr>
                     <tr>
                         <td>Class</td>
-                        <td class="ucfirst text-break">Actinopterygii (Ikan bertulang sejati)</td>
+                        <td class="ucfirst text-break">{{$ikan->kelas}}</td>
                     </tr>
                     <tr>
                         <td>Order</td>
-                        <td class="ucfirst text-break">Perciformes (Ikan bersirip duri)</td>
+                        <td class="ucfirst text-break">{{$ikan->ordo}}</td>
                     </tr>
                     <tr>
                         <td>Family</td>
-                        <td class="ucfirst text-break">Carangidae (Ikan seragam)</td>
+                        <td class="ucfirst text-break">{{$ikan->famili}}</td>
                     </tr>
                     <tr>
                         <td>Genus</td>
-                        <td class="ucfirst text-break">Carangoides</td>
+                        <td class="ucfirst text-break">{{$ikan->genus}}</td>
                     </tr>
                     <tr>
                         <td>Species</td>
-                        <td class="ucfirst text-break highlight">fulvoguttatus</td>
+                        <td class="ucfirst text-break highlight">{{$ikan->spesies}}</td>
                     </tr>
                 </table>
             </div>
@@ -235,20 +235,20 @@
             <div data-area="karakteristik">
                 <h5>Karakteristik</h5>
                 <ol class="circle">
-                    <li class="ucfirst text-break">Sisik besar pada tangkai ekor</li>
-                    <li class="ucfirst text-break">Profil kepala melengkung hingga tumpul</li>
-                    <li class="ucfirst text-break">20-22 jari lunak sirip punggung</li>
+                    @foreach ($ikan->karakteristik as $karakter)
+                        <li class="ucfirst text-break">{{$karakter}}</li>
+                    @endforeach
                 </ol>
             </div>
 
             <div data-area="genom">
                 <h5>Data Genom</h5>
-                <p highlight="true">AUG UCU GAC UGA</p>
+                <p highlight="true">{{$ikan->genom}}</p>
             </div>
 
             <div data-area="status">
                 <h5>Status Konservasi</h5>
-                <p><span class="bullet__point" data-point="EX">EX</span> Tidak ada individu yang diketahui hidup</p>
+                <p><span class="bullet__point" data-point="{{$ikan->status_konservasi}}">{{$ikan->status_konservasi}}</span> {{\App\Helper\Utility::deskripsiStatus($ikan->status_konservasi)}}</p>
             </div>
 
             <div data-area="filogenetik">
@@ -258,7 +258,7 @@
 
             <div data-area="upaya">
                 <h5>Upaya Konservasi</h5>
-                <p>dalam upaya kloning dengan sisa genetik yang telah terselamatkan sebelumnya</p>
+                <p>{{$ikan->upaya_konservasi}}</p>
             </div>
         </div>
     </section>
@@ -268,7 +268,7 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/treemap.js"></script>
 <script src="https://code.highcharts.com/modules/treegraph.js"></script>
-<script src="data-filogenetik.js"></script>
+<script src="{{ \App\Helper\Utility::loadAsset('data-filogenetik.js') }}"></script>
 <script>
     $(document).ready(function(){
         const navToggle = document.querySelector('.nav-toggle');
