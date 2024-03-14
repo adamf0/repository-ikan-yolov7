@@ -167,7 +167,9 @@
         nameInput.addEventListener('keydown', function (event) {
             if (event.keyCode === 13) {
                 var inputValue = nameInput.value;
-                console.log('Input value on Enter:', inputValue);
+                let url = `{{route('search',['id'=>'?'])}}`;
+                window.location.replace(url.replace('?',inputValue));
+                // console.log('Input value on Enter:', inputValue);
             }
         });
     });
