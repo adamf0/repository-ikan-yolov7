@@ -9,4 +9,25 @@ class Ikan extends Model
 {
     use HasFactory;
     protected $table = 'ikan';
+    protected $fillable = [
+        "kategori",
+        "fillum",
+        "super_kelas",
+        "kelas",
+        "ordo",
+        "famili",
+        "genus",
+        "spesies",
+        "nama_daerah",
+        "pengarang",
+        "karakteristik_morfologi",
+        "kemunculan",
+        "panjang_maksimal",
+        "status_konservasi",
+        "id_genom",
+        "upaya_konservasi",
+        "distribusi",
+        "kometar",
+        "foto",
+    ];
 }

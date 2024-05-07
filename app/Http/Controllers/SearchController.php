@@ -11,13 +11,11 @@ class SearchController extends Controller
     public function index($id){
         $ikan = Ikan::find($id);
         if($ikan == null){
-            $ikan = Ikan::where('klasifikasi',$id)->first();
+            $ikan = Ikan::where('spesies',$id)->first();
             if($ikan==null){
                 return redirect()->route("home");
             }
         }
-        $ikan->karakteristik = json_decode($ikan->karakteristik, true);
-        
         return view('search',['ikan'=>$ikan]);
     }
 

@@ -49,6 +49,10 @@
         }
     }
     & .panel__content{
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+
         & .panel__filter{
             display: flex;
             flex-wrap: wrap;
@@ -63,6 +67,7 @@
                 margin-left: 10px;
             }
             & .panel__filter__component{
+                /* flex-grow: 1; */
                 text-align: center;
                 display: grid;
                 grid-template-rows: 1fr;
@@ -158,21 +163,41 @@
             <div class="panel">
                 <h3>Family Guide</h3>
             </div>
-            <div class="container panel__content">
+            <div class="panel__content">
                 <div class="panel__filter">
+                    <div class="panel__filter__component">
+                        <label for="fillum">fillum</label>
+                        <select name="fillum" id="fillum" class="form-control">
+                        </select>
+                    </div>
+                    <div class="panel__filter__component">
+                        <label for="super_kelas">super_kelas</label>
+                        <select name="super_kelas" id="super_kelas" class="form-control">
+                        </select>
+                    </div>
+                    <div class="panel__filter__component">
+                        <label for="kelas">kelas</label>
+                        <select name="kelas" id="kelas" class="form-control">
+                        </select>
+                    </div>
                     <div class="panel__filter__component">
                         <label for="ordo">ordo</label>
                         <select name="ordo" id="ordo" class="form-control">
                         </select>
                     </div>
                     <div class="panel__filter__component">
-                        <label for="familia">familia</label>
-                        <select name="familia" id="familia" class="form-control">
+                        <label for="famili">famili</label>
+                        <select name="famili" id="famili" class="form-control">
                         </select>
                     </div>
                     <div class="panel__filter__component">
                         <label for="genus">genus</label>
                         <select name="genus" id="genus" class="form-control">
+                        </select>
+                    </div>
+                    <div class="panel__filter__component">
+                        <label for="spesies">spesies</label>
+                        <select name="spesies" id="spesies" class="form-control">
                         </select>
                     </div>
                 </div>
@@ -313,7 +338,7 @@
             let content = '';
             $.ajax({
                 type: "GET",
-                url: `{{route('api.familyguide.list')}}`,
+                url: ``,
                 data: dataForm,
                 dataType: 'json',
                 accepts: 'json',
@@ -351,44 +376,76 @@
             nav.classList.toggle('nav--visible');
         })
 
-        load();
+        // load();
+        const listDropdown = [
+            {
+                "id":"#fillum",
+                "next_id":"#super_kelas",
+                "source":`{{route('api.familyguide.listDropdown')}}`,
+                "placeholder":"-- Pilih Fillum --",
+            },
+            {
+                "id":"#super_kelas",
+                "next_id":"#kelas",
+                "source":[],
+                "placeholder":"-- Pilih Super Kelas --",
+            },
+            {
+                "id":"#kelas",
+                "next_id":"#ordo",
+                "source":[],
+                "placeholder":"-- Pilih Kelas --",
+            },
+            {
+                "id":"#ordo",
+                "next_id":"#famili",
+                "source":[],
+                "placeholder":"-- Pilih Ordo --",
+            },
+            {
+                "id":"#famili",
+                "next_id":"#genus",
+                "source":[],
+                "placeholder":"-- Pilih Famili --",
+            },
+            {
+                "id":"#genus",
+                "next_id":"#spesies",
+                "source":[],
+                "placeholder":"-- Pilih Genus --",
+            },
+            {
+                "id":"#spesies",
+                "next_id":null,
+                "source":[],
+                "placeholder":"-- Pilih Spesies --",
+            },
+        ];
+        listDropdown.forEach(dropdown => {
+            console.log(dropdown.id, dropdown.source)
+            load_dropdown(
+                dropdown.id, 
+                dropdown.source instanceof Array? dropdown.source:null, 
+                dropdown.source instanceof Array? null:`{{route('api.familyguide.listDropdown')}}`, 
+                null, 
+                dropdown.placeholder
+            );
 
-        load_dropdown(
-            '#ordo', 
-            [
-                {
-                    id: "1",
-                    text: "tes"
-                }
-            ], 
-            null, 
-            null, 
-            '-- Pilih Ordo --'
-        );
-        load_dropdown(
-            '#familia', 
-            [
-                {
-                    id: "1",
-                    text: "tes"
-                }
-            ], 
-            null, 
-            null, 
-            '-- Pilih Familia --'
-        );
-        load_dropdown(
-            '#genus', 
-            [
-                {
-                    id: "1",
-                    text: "tes"
-                }
-            ], 
-            null, 
-            null, 
-            '-- Pilih Genus --'
-        );
+            $(dropdown.id).on('select2:select', function(e) {
+                let id = $(this).val();
+                let selectedData = e.params.data;
+                console.log(id)
+                
+                // $(dropdown.next_id).empty();
+                // load_dropdown(
+                //     dropdown.next_id, 
+                //     dropdown.source instanceof array? dropdown.source:null, 
+                //     dropdown.source instanceof array? null:`{{route('api.familyguide.listDropdown')}}`, 
+                //     null, 
+                //     dropdown.placeholder
+                // );
+            });
+        })
     });
 </script>
 @stop

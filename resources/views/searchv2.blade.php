@@ -37,6 +37,7 @@
 }
 
 .content__section--grid{
+    width: 90%;
     display: grid;
     grid-template-columns: repeat(1, minmax(10vmax, 1fr));
     /* grid-auto-rows: 1fr; */
@@ -60,8 +61,9 @@
         text-transform: uppercase;
     }
     & * > p{
-        font-size: .9rem;
+        font-size: .8rem;
         color: #3b3b3b;
+        overflow-wrap: break-word;
     }
 
     & * > table{
@@ -210,74 +212,112 @@
         <div class="container">
             <img src="{{ \App\Helper\Utility::loadAssetbase64($image) }}" class="content--image" alt="hasil prediksi"/>
             
-            @foreach ($classification as $klasifikasi => $item)
+            @foreach ($classification??[] as $klasifikasi => $ikan)
+            @php
+                $ikan = (object) $ikan;
+                dd($ikan);
+            @endphp
             <div class="card content__section--grid">
                 <div data-area="klasifikasi">
                     <h3>{{$klasifikasi}}</h3>
-                    <img src='{{$item["foto"]}}' class="klasifikasi" alt="gambar ikan">
+                    <img src='{{$ikan->foto}}' class="klasifikasi" alt="gambar ikan">
                 </div>
 
                 <div data-area="taksonomi">
                     <h5>Taksonomi</h5>
                     <table>
                         <tr>
-                            <td>Kingdom</td>
-                            <td class="ucfirst text-break">{{$item["kerajaan"]}}</td>
+                            <td>Kategori</td>
+                            <td class="ucfirst text-break">{{$ikan->kategori}}</td>
                         </tr>
                         <tr>
-                            <td>Phylum</td>
-                            <td class="ucfirst text-break">{{$item["filum"]}}</td>
+                            <td>Fillum</td>
+                            <td class="ucfirst text-break">{{$ikan->fillum}}</td>
                         </tr>
                         <tr>
-                            <td>Class</td>
-                            <td class="ucfirst text-break">{{$item["kelas"]}}</td>
+                            <td>Super Kelas</td>
+                            <td class="ucfirst text-break">{{$ikan->super_kelas}}</td>
                         </tr>
                         <tr>
-                            <td>Order</td>
-                            <td class="ucfirst text-break">{{$item["ordo"]}}</td>
+                            <td>Kelas</td>
+                            <td class="ucfirst text-break">{{$ikan->kelas}}</td>
                         </tr>
                         <tr>
-                            <td>Family</td>
-                            <td class="ucfirst text-break">{{$item["famili"]}}</td>
+                            <td>Ordo</td>
+                            <td class="ucfirst text-break">{{$ikan->ordo}}</td>
+                        </tr>
+                        <tr>
+                            <td>Familia</td>
+                            <td class="ucfirst text-break">{{$ikan->famili}}</td>
                         </tr>
                         <tr>
                             <td>Genus</td>
-                            <td class="ucfirst text-break">{{$item["genus"]}}</td>
+                            <td class="ucfirst text-break highlight">{{$ikan->genus}}</td>
                         </tr>
                         <tr>
-                            <td>Species</td>
-                            <td class="ucfirst text-break highlight">{{$item["spesies"]}}</td>
+                            <td>Nama Daerah</td>
+                            <td class="ucfirst text-break highlight">{{$ikan->nama_daerah}}</td>
+                        </tr>
+                        <tr>
+                            <td>Pengarang</td>
+                            <td class="ucfirst text-break highlight">{{$ikan->pengarang}}</td>
                         </tr>
                     </table>
                 </div>
                 
-                <div data-area="karakteristik">
-                    <h5>Karakteristik</h5>
-                    <ol class="circle">
-                        @foreach ($item["karakteristik"] as $karakteristik)
-                        <li class="ucfirst text-break">{{$karakteristik}}</li>
-                        @endforeach
-                    </ol>
+                <div data-area="id_genom">
+                    <h5>ID Genom</h5>
+                    <p highlight="true">{{$ikan->id_genom}}</p>
                 </div>
 
-                <div data-area="genom">
-                    <h5>Data Genom</h5>
-                    <p highlight="true">{{$item["genom"]}}</p>
+                <div data-area="info_ikan">
+                    <h5>Informasi Lengkap</h5>
+                    <table>
+                        <tr>
+                            <td>Karakteristik Morfologi</td>
+                            <td class="ucfirst text-break">
+                                @php
+                                    $list_karakteristik = explode(';',$ikan->karakteristik_morfologi);
+                                @endphp
+                                <ol class="circle">
+                                    @foreach ($list_karakteristik as $karakteristik)
+                                        <li class="ucfirst text-break">{{ $karakteristik }}</li>
+                                    @endforeach
+                                </ol>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Kemunculan</td>
+                            <td class="ucfirst text-break">{{$ikan->kemunculan}}</td>
+                        </tr>
+                        <tr>
+                            <td>Panjang Maksimal</td>
+                            <td class="ucfirst text-break">{{$ikan->panjang_maksimal}}</td>
+                        </tr>
+                        <tr>
+                            <td>Distribusi</td>
+                            <td class="ucfirst text-break">{{$ikan->distribusi}}</td>
+                        </tr>
+                        <tr>
+                            <td>Kometar</td>
+                            <td class="ucfirst text-break">{{$ikan->kometar}}</td>
+                        </tr>
+                    </table>
                 </div>
 
-                <div data-area="status">
+                <!-- <div data-area="upaya_konservasi">
+                    <h5>Upaya Konservasi</h5>
+                    <p highlight="true">{{$ikan->upaya_konservasi}}</p>
+                </div>
+
+                <div data-area="status_konservasi">
                     <h5>Status Konservasi</h5>
-                    <p><span class="bullet__point" data-point='{{$item["status_konservasi"]}}'>{{$item["status_konservasi"]}}</span> {{\App\Helper\Utility::deskripsiStatus($item["status_konservasi"])}}</p>
-                </div>
-
+                    {{ $ikan->status_konservasi }}
+                    <!-- <p><span class="bullet__point" data-point="{{$ikan->status_konservasi}}">{{$ikan->status_konservasi}}</span> {{\App\Helper\Utility::deskripsiStatus($ikan->status_konservasi)}}</p> -->
+                <!-- </div> -->
                 <div data-area="filogenetik">
                     <h5>Pohon Filogenetik</h5>
                     <div id="filogenetik"></div>
-                </div>
-
-                <div data-area="upaya">
-                    <h5>Upaya Konservasi</h5>
-                    <p>{{$item["upaya_konservasi"]}}</p>
                 </div>
             </div>
             @endforeach

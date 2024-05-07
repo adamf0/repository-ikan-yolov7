@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ikan;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
 class KlasifikasiApiController extends Controller
@@ -29,35 +31,41 @@ class KlasifikasiApiController extends Controller
                 $responseData = $response->json()["body"];
                 $datas = [];
                 foreach($responseData["annotation"] as $item){
-                    $dataPredic = [
-                        "confidence"=>$item["confidence"],
-                        "xmax"=>$item["xmax"],
-                        "xmin"=>$item["xmin"],
-                        "ymax"=>$item["ymax"],
-                        "ymin"=>$item["ymin"],
-                    ];
-
                     if(!array_key_exists($item["name"],$datas)){
+                        $ikan = Ikan::where('spesies','like', '%'.$item["name"].'%')->fisrtOrFail();
+                        $directoryPath = 'public/Acanthocybium solandri';
+                        $files = Storage::files($directoryPath);
+                        $randomFile = count($files)>0? asset('storage/' . $files[array_rand($files)]):"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Oreochromis_mossambicus_by_NPS.jpg/500px-Oreochromis_mossambicus_by_NPS.jpg";
+                        
                         $datas[$item["name"]] = [
-                            "foto"=>"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Oreochromis_mossambicus_by_NPS.jpg/500px-Oreochromis_mossambicus_by_NPS.jpg",
-                            "kerajaan"          =>"Animalia",
-                            "filum"             =>"Chordata",
-                            "kelas"             =>"Actinopterygii",
-                            "ordo"              =>"Perciformes",
-                            "famili"            =>"Cichlidae",
-                            "genus"             =>"Oreochromis",
-                            "spesies"           =>"O. Mossambicus",
-                            "karakteristik"     =>[
-                                "Ikan Berukuran Sedang, Panjang Total Maksimum Yang Dapat Dicapai Ikan Mujair Adalah Sekitar 40 Cm. Bentuk Badannya Pipih Dengan Warna Hitam, Keabu-Abuan, Kecokelatan Atau Kuning.",
-                                "Sirip Punggungnya (Dorsal) Memiliki 15–17 Duri (Tajam) Dan 10–13 Jari-Jari (Duri Berujung Lunak); Dan Sirip Dubur (Anal) Dengan 3 Duri Dan 9–12 Jari-Jari."
-                            ],
-                            "genom"             =>"AUG UCU GAC UGA",
-                            "status_konservasi" =>"VU",
-                            "upaya_konservasi"  =>"dalam upaya kloning dengan sisa genetik yang telah terselamatkan sebelumnya",
-                            "kotak_prediksi"    =>[]
+                            "foto"                      => $randomFile,
+                            "kategori"                  => $ikan->kategori,
+                            "fillum"                    => $ikan->fillum,
+                            "super_kelas"               => $ikan->super_kelas,
+                            "kelas"                     => $ikan->kelas,
+                            "ordo"                      => $ikan->ordo,
+                            "famili"                    => $ikan->famili,
+                            "genus"                     => $ikan->genus,
+                            "spesies"                   => $ikan->spesies,
+                            "nama_daerah"               => $ikan->nama_daerah,
+                            "pengarang"                 => $ikan->pengarang,
+                            "karakteristik_morfologi"   => $ikan->karakteristik_morfologi,
+                            "kemunculan"                => $ikan->kemunculan,
+                            "panjang_maksimal"          => $ikan->panjang_maksimal,
+                            "status_konservasi"         => $ikan->status_konservasi,
+                            "id_genom"                  => $ikan->id_genom,
+                            "upaya_konservasi"          => $ikan->upaya_konservasi,
+                            "distribusi"                => $ikan->distribusi,
+                            "kometar"                   => $ikan->kometar,
+                            "kotak_prediksi"            =>[
+                                "confidence"=>$item["confidence"],
+                                "xmax"=>$item["xmax"],
+                                "xmin"=>$item["xmin"],
+                                "ymax"=>$item["ymax"],
+                                "ymin"=>$item["ymin"],
+                            ]
                         ];
                     }
-                    $datas[$item["name"]]["kotak_prediksi"][] = $dataPredic;
                 };
                 $datas["image"] = $responseData["img_result"];
 

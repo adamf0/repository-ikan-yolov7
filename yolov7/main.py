@@ -17,7 +17,7 @@ from schemas import InferenceRequest, ResponseModel, SchemaResult
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     app.state.ml_models = {}
-    models = torch.hub.load("WongKinYiu/yolov7", "custom", "./model/fish_model.pt", "cpu")
+    models = torch.hub.load("WongKinYiu/yolov7", "custom", "./model/model_ikan_best.pt", "cpu")
     app.state.ml_models["yolo"] = models
     yield
     app.state.ml_models.clear()
