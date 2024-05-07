@@ -32,10 +32,10 @@ class KlasifikasiApiController extends Controller
                 $datas = [];
                 foreach($responseData["annotation"] as $item){
                     if(!array_key_exists($item["name"],$datas)){
-                        $ikan = Ikan::where('spesies','like', '%'.$item["name"].'%')->fisrtOrFail();
+                        $ikan = Ikan::where('spesies','like', '%'.$item["name"].'%')->firstOrFail();
                         $directoryPath = 'public/Acanthocybium solandri';
                         $files = Storage::files($directoryPath);
-                        $randomFile = count($files)>0? asset('storage/' . $files[array_rand($files)]):"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Oreochromis_mossambicus_by_NPS.jpg/500px-Oreochromis_mossambicus_by_NPS.jpg";
+                        $randomFile = count($files)>0? \App\Helper\Utility::loadAsset($files[array_rand($files)]) : \App\Helper\Utility::loadAsset('not_found.jpg');
                         
                         $datas[$item["name"]] = [
                             "foto"                      => $randomFile,

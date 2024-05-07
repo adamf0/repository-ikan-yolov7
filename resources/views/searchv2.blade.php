@@ -37,7 +37,7 @@
 }
 
 .content__section--grid{
-    width: 90%;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(1, minmax(10vmax, 1fr));
     /* grid-auto-rows: 1fr; */
@@ -210,12 +210,16 @@
 @section('content')
 <section class="section2">
         <div class="container">
-            <img src="{{ \App\Helper\Utility::loadAssetbase64($image) }}" class="content--image" alt="hasil prediksi"/>
+            @if (count($classification??[])>0)
+                <img src="{{ \App\Helper\Utility::loadAssetbase64($image) }}" class="content--image" alt="hasil prediksi"/>
+            @else
+                <img src="{{ \App\Helper\Utility::loadAsset('not_found.jpg') }}" class="content--image" style="box-shadow: none" alt="hasil prediksi"/>
+                <center><h2>Data ikan tidak ditemukan</h2></center>
+            @endif
             
             @foreach ($classification??[] as $klasifikasi => $ikan)
             @php
                 $ikan = (object) $ikan;
-                dd($ikan);
             @endphp
             <div class="card content__section--grid">
                 <div data-area="klasifikasi">
@@ -305,12 +309,12 @@
                     </table>
                 </div>
 
-                <!-- <div data-area="upaya_konservasi">
+                <div data-area="upaya_konservasi">
                     <h5>Upaya Konservasi</h5>
                     <p highlight="true">{{$ikan->upaya_konservasi}}</p>
                 </div>
 
-                <div data-area="status_konservasi">
+                <!--<div data-area="status_konservasi">
                     <h5>Status Konservasi</h5>
                     {{ $ikan->status_konservasi }}
                     <!-- <p><span class="bullet__point" data-point="{{$ikan->status_konservasi}}">{{$ikan->status_konservasi}}</span> {{\App\Helper\Utility::deskripsiStatus($ikan->status_konservasi)}}</p> -->

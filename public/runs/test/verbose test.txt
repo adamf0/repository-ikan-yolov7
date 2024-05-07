@@ -1,0 +1,266 @@
+Class      Images      Labels           P           R      mAP@.5  mAP@.5:.95: 100% 35/35 [00:06<00:00,  5.38it/s]
+                 all         559         792       0.678       0.691       0.769        0.67
+Amblycirrhites bimacula         559           2       0.764           1       0.995       0.921
+Amphiprion biaculeatus         559           1       0.685           1       0.995       0.896
+Amphiprion ocellaris         559           1       0.153           1       0.995       0.995
+  Amphiprion percula         559           5       0.752         0.8       0.921       0.531
+  Anabas testudineus         559           4       0.843         0.5        0.59       0.531
+    Anguilla bicolor         559           5           1           0       0.396       0.349
+  Anguilla marmorata         559           2           0           0      0.0434      0.0152
+   Aphareus rutilans         559           1       0.441           1       0.995       0.796
+ Aplocheilus panchax         559           3           1         0.6       0.995       0.929
+    Aprion virescens         559           2       0.805           1       0.995       0.821
+   Argyrops spinifer         559           2           1           0       0.399       0.371
+        Auxis rochei         559           3       0.302       0.333       0.135       0.121
+       Auxis thazard         559           2       0.537        0.61       0.829       0.796
+Bagrichthys macropterus         559           3       0.806       0.333       0.587       0.587
+Balantiocheilos melanopterus         559           2       0.542         0.5       0.495       0.495
+Balistoides conspicillum         559           2       0.766           1       0.996       0.896
+  Barbodes binotatus         559           1       0.641           1       0.995       0.995
+Barbodes lateristriga         559           4        0.67           1       0.945       0.683
+Barbonymus gonionotus         559           2       0.214         0.5       0.606        0.43
+Barbonymus schwanefeldii         559           2       0.457         0.5       0.562       0.562
+   Belontia hasselti         559           6       0.717       0.833       0.914       0.692
+     Betta akarensis         559           4        0.36         0.5       0.677       0.512
+   Betta anabatoides         559           1       0.371           1       0.995       0.796
+       Betta bellica         559           3       0.518           1       0.863       0.784
+       Betta edithae         559           5       0.605         0.4       0.529       0.467
+        Betta pugnax         559           8        0.68        0.75        0.85       0.692
+      Betta taeniata         559           4           1       0.892       0.995       0.783
+    Brevibora cheeya         559           4       0.646           1       0.995       0.808
+        Caesio teres         559           1       0.377           1       0.498       0.448
+Carangoides chrysophrys         559           1           1           0       0.332       0.332
+Carangoides fulvoguttatus         559           1       0.584           1       0.995       0.995
+Carangoides gymnostethus         559           2       0.297         0.5       0.695       0.695
+Carangoides malabaricus         559           1       0.629           1       0.995       0.995
+  Caranx bucculentus         559           2       0.623           1       0.995       0.995
+    Caranx ignobilis         559           1       0.745           1       0.995       0.995
+ Caranx sexfasciatus         559           4       0.236       0.118       0.302        0.24
+        Caranx tille         559           1       0.862           1       0.995       0.995
+Centropyge bispinosa         559           4        0.84        0.75       0.746       0.746
+    Centropyge eibli         559           4       0.877           1       0.997       0.939
+Centropyge ferrugata         559           2        0.78           1       0.995       0.995
+Centropyge flavissima         559           1       0.631           1       0.995       0.995
+  Centropyge heraldi         559           2       0.778           1       0.995       0.921
+ Centropyge loricula         559           2       0.785           1       0.996       0.921
+      Centropyge nox         559           1       0.637           1       0.995       0.995
+ Centropyge shepardi         559           1       0.689           1       0.995       0.995
+  Centropyge vroliki         559           2       0.766           1       0.995       0.995
+Cephalopholis formosa         559           2       0.795           1       0.995       0.921
+Cephalopholis igarashiensis         559           1           1           0       0.498       0.498
+Cephalopholis miniata         559           1       0.664           1       0.995       0.995
+Cephalopholis sonnerati         559           2        0.81           1       0.996       0.996
+Ceratoglanis scleronema         559           1       0.801           1       0.995       0.796
+   Chaetodon collare         559           1       0.677           1       0.995       0.896
+Chaetodon octofasciatus         559           2       0.784           1       0.996       0.946
+       Channa gachua         559           4       0.512         0.5       0.642       0.605
+       Channa lucius         559           2       0.726         0.5       0.523       0.465
+      Channa striata         559           1       0.169           1       0.249       0.249
+ Cheilinus undulatus         559           1           1           0       0.249       0.249
+Chilatherina bleheri         559           1        0.66           1       0.995       0.896
+ Chilatherina pricei         559           1           1           0      0.0434      0.0434
+Chilatherina sentaniensis         559           4       0.833        0.75       0.805       0.736
+       Chitala lopis         559           3       0.544       0.333       0.556       0.556
+Chromobotia macracanthus         559           1       0.667           1       0.995       0.896
+  Chrysiptera cyanea         559           2       0.763           1       0.995        0.92
+Cirrhitichthys falco         559           2       0.905           1       0.996       0.996
+Cirrhitichthys oxycephalus         559           1       0.638           1       0.995       0.995
+Cirrhitops fasciatus         559           1       0.535           1       0.995       0.896
+   Clarias batrachus         559           2           1           0     0.00989     0.00791
+ Clarias leiacanthus         559           1       0.392           1       0.995       0.896
+  Clarias teijsmanni         559           5       0.982         0.4       0.582        0.41
+ Cookeolus japonicus         559           1       0.635           1       0.995       0.995
+Cyclocheilichthys apogon         559           3       0.679           1       0.995       0.852
+Decapterus kurroides         559           2      0.0753         0.5       0.137       0.113
+Decapterus macrosoma         559          26           0           0     0.00734     0.00587
+ Decapterus russelli         559           1           1           0       0.199       0.179
+  Dermogenys pusilla         559           5           1       0.967       0.995        0.87
+Desmopuntius foerschi         559           2       0.593           1       0.996       0.921
+Desmopuntius gemellus         559           4        0.71       0.629       0.896       0.791
+     Eirmotus furvus         559           1       0.692           1       0.995       0.896
+Elagatis bipinnulata         559           1        0.66           1       0.995       0.995
+Epalzeorhynchos kalopterus         559          17           1        0.97       0.996       0.798
+Epinephellus amblycephalus         559           2       0.547           1       0.664       0.664
+Epinephelus areolatus         559           3       0.701       0.333       0.754        0.61
+Epinephelus bilobatus         559           3       0.531       0.395        0.83       0.747
+Epinephelus bleekeri         559           1       0.251           1       0.995       0.796
+Epinephelus chlorostigma         559           3       0.822           1       0.996       0.747
+Epinephelus coioides         559           1       0.353           1       0.995       0.896
+Epinephelus epistictus         559           1           1           0       0.125       0.125
+Epinephelus heniochus         559           2       0.774           1       0.995       0.821
+Epinephelus latifasciatus         559           2       0.791           1       0.996       0.946
+Epinephelus malabaricus         559           1       0.669           1       0.995       0.995
+Epinephelus miliaris         559           2           1           0       0.537       0.479
+Epinephelus multinotatus         559           1           0           0       0.166       0.166
+Epinephelus poecilonotus         559           3           1       0.494       0.913       0.739
+Epinephelus radiatus         559           2       0.645         0.5       0.829       0.796
+ Epinephelus retouti         559           1       0.428           1       0.995       0.896
+ Epinephelus stictus         559           1       0.431           1       0.995       0.995
+Epinephelus undulosus         559           2       0.659         0.5       0.496       0.496
+  Etelis carbunculus         559           2       0.902         0.5       0.695       0.536
+    Etelis coruscans         559          15       0.774       0.267       0.727        0.51
+     Etelis radiosus         559           1       0.869           1       0.995       0.299
+Eubleekeria splendens         559           2        0.85           1       0.996       0.597
+   Euthynnus affinis         559           1       0.674           1       0.995       0.199
+ Glaucosoma buergeri         559           2       0.108           1       0.586       0.473
+Glossogobius matanensis         559           1           1           0       0.995       0.896
+ Glossolepis incisus         559           8       0.836       0.875       0.859       0.732
+Glossolepis multisquamata         559           1           1           0       0.995       0.995
+       Gramma loreto         559           2       0.566           1       0.995       0.945
+Gymnocranius grandoculis         559           5       0.907         0.8       0.873       0.534
+Hampala macrolepidota         559           3       0.806       0.667       0.913       0.838
+Helostoma temminckii         559          18       0.644      0.0556       0.121       0.106
+ Hemibagrus hoevenii         559           2        0.81           1       0.995       0.821
+  Hemibagrus nemurus         559           9       0.718           1       0.996       0.716
+Hemibagrus planiceps         559           3       0.333           1       0.913       0.813
+Hirundichthys oxycephalus         559           3           1       0.559       0.727       0.603
+Hyporthodus octofasciatus         559           2       0.799           1       0.995       0.845
+ Iriatherina werneri         559           3       0.447           1       0.995       0.995
+  Katsuwonus pelamis         559          11       0.657      0.0909       0.163      0.0939
+   Kryptopterus lais         559           1        0.72           1       0.995       0.697
+Kryptopterus macrocephalus         559           8       0.598       0.875       0.869       0.621
+  Kryptopterus minor         559           1       0.756           1       0.995       0.896
+Kryptopterus palembangensis         559           3           1           0       0.142      0.0797
+Leiocassis micropogon         559           5       0.579         0.2       0.372       0.253
+Leptomelanosoma indicum         559           3           1       0.853       0.995       0.554
+Lethrinus amboinensis         559           4           1           0       0.413       0.348
+ Lethrinus atkinsoni         559           1       0.867           1       0.995       0.995
+ Lethrinus nebulosus         559           3       0.633           1       0.913        0.78
+ Lethrinus olivaceus         559           3       0.951       0.333       0.624       0.595
+Lethrinus rubrioperculatus         559           2       0.564           1       0.664        0.58
+Lipocheilus carnolabrum         559           3       0.822       0.667       0.731       0.652
+      Lutjanus bohar         559           1       0.646           1       0.995       0.995
+Lutjanus erythropterus         559           1           1           0       0.498       0.448
+     Lutjanus gibbus         559           1           0           0      0.0311       0.028
+Lutjanus malabaricus         559           1       0.613           1       0.995       0.995
+   Lutjanus russelli         559           3       0.841           1       0.996        0.83
+ Lutjanus timorensis         559           1           1           0       0.199       0.179
+      Lutjanus vitta         559           2           1       0.943       0.995       0.821
+Macrognathus aculeatus         559          10       0.853         0.4       0.441       0.363
+Manonichthys splendens         559           4       0.873           1       0.996       0.896
+Marosatherina ladigesi         559          12       0.831           1       0.983       0.735
+Melanotaenia ajamaruensis         559           7       0.607       0.666       0.769       0.626
+ Melanotaenia ammeri         559           1       0.609           1       0.995       0.896
+  Melanotaenia angfa         559           5       0.546           1       0.996       0.865
+Melanotaenia arfakensis         559           1       0.287           1       0.995       0.995
+Melanotaenia boesemani         559          16       0.931           1       0.996       0.758
+Melanotaenia catherinae         559           2       0.775           1       0.995       0.896
+Melanotaenia fredericki         559           2       0.797           1       0.995       0.821
+Melanotaenia goldiei         559           3           1       0.545       0.723       0.616
+Melanotaenia irianjaya         559           4           0           0       0.362       0.243
+ Melanotaenia kamaka         559           1        0.67           1       0.995       0.896
+Melanotaenia maylandi         559           1           1           0       0.498       0.498
+  Melanotaenia parva         559           2       0.826           1       0.995       0.921
+Melanotaenia praecox         559           5       0.371           1       0.995       0.851
+Melanotaenia rubrostriata         559           1           1           0       0.332       0.299
+Melanotaenia vanheurni         559           2        0.74           1       0.995       0.945
+Monodactylus argenteus         559           5       0.791         0.8        0.92       0.797
+  Mystus singaringan         559           4       0.621        0.75       0.683       0.552
+    Nandus nebulosus         559           2       0.962           1       0.995       0.646
+Neocirrhites armatus         559           1       0.658           1       0.995       0.896
+Neohomaloptera johorensis         559           1           1           0           0           0
+  Netuma thalassinus         559           1           1           0       0.142      0.0854
+Notopterus notopterus         559           3       0.704       0.667       0.717       0.536
+   Ompok bimaculatus         559           1           0           0       0.332       0.265
+Ophiocara porocephala         559           5       0.568         0.2       0.195       0.176
+Oreochromis mossambicus         559           1       0.382           1       0.995       0.896
+Oreochromis niloticus         559           4       0.217        0.75        0.62       0.553
+  Oryzias celebensis         559           1       0.315           1       0.995       0.796
+   Oryzias javanicus         559           1           0           0      0.0766      0.0536
+  Oryzias marmoratus         559           1           1           0       0.995       0.796
+  Oryzias matanensis         559           1       0.388           1       0.995       0.597
+  Osphronemus goramy         559           4       0.827           1       0.996       0.771
+Osteochilus spilurus         559           4           1       0.567       0.995       0.672
+Osteochilus vittatus         559           2           1       0.763       0.996       0.747
+Ostichthys japonicus         559           1       0.676           1       0.995       0.995
+  Oxycirrhites typus         559           2       0.814           1       0.995       0.696
+Oxyeleotris marmorata         559           3       0.786           1       0.995       0.775
+ Pangasius macronema         559           3       0.617       0.568       0.753       0.519
+ Pangasius pangasius         559           1       0.221       0.664       0.332       0.265
+Pangasius polyuranodon         559           6           0           0           0           0
+Paracaesio gonzalesi         559           2       0.781           1       0.995       0.921
+   Paracaesio stonei         559           1       0.642           1       0.995       0.995
+ Paracaesio xanthura         559           3           1       0.589       0.732       0.732
+Paracirrhitus arcuatus         559           3       0.836           1       0.996       0.753
+Parascolopsis eriomma         559           3        0.83           1       0.996       0.852
+Pictichromis diadema         559           1       0.677           1       0.995       0.896
+Pictichromis paccagnellorum         559           1           1           0       0.995       0.896
+Pictichromis porphyrea         559           1       0.476           1       0.995       0.896
+      Pinjalo lewisi         559          12       0.478       0.308       0.364       0.243
+     Pinjalo pinjalo         559           1       0.622           1       0.995       0.896
+Plectropomus leopardus         559           3       0.265       0.333       0.366       0.329
+Plectropomus maculatus         559           2       0.307         0.5       0.586       0.577
+Pristipomoides argyrogrammicus         559           1       0.569           1       0.995       0.896
+Pristipomoides filamentosus         559           2       0.402         0.5       0.745       0.609
+Pristipomoides flavipinnis         559           1           1           0       0.995       0.896
+Pristipomoides multidens         559           2        0.24         0.5       0.215       0.155
+Pristipomoides typus         559           1       0.197           1       0.249       0.199
+Pristipomoides zonatus         559           2       0.685           1       0.996       0.921
+ Pristolepis grootii         559           4       0.672           1       0.895       0.851
+Protonibea diacanthus         559           1           1           0       0.995       0.796
+Pseudochromis elongatus         559           3       0.817       0.667       0.709       0.625
+Pseudochromis fridmani         559           2       0.583           1       0.995       0.945
+Pseudolais micronemus         559           1           1           0       0.142       0.128
+Pseudomugil gertrudae         559           1           1           0       0.142       0.128
+Pseudomugil ivantsoffi         559           1           1           0           0           0
+Pseudomugil paludicola         559           3       0.581       0.333       0.387       0.311
+  Pseudomugil paskai         559           1       0.443           1       0.995       0.896
+Pseudomugil pellucidus         559           3           1       0.839       0.996       0.813
+Pseudomugil reticulatus         559           3       0.845           1       0.996       0.808
+Pseudomugil tenellus         559           4       0.841        0.75       0.871       0.711
+ Pterapogon kauderni         559           3       0.851           1       0.996       0.907
+Puntigrus anchisporus         559           5       0.806         0.8       0.796       0.688
+ Puntigrus tetrazona         559          10       0.939           1       0.996       0.772
+Rachycentron canadum         559           3       0.859           1       0.995       0.929
+Rasbora argyrotaenia         559           2       0.534           1       0.829       0.696
+Rasbora caudimaculata         559           3       0.511       0.667       0.701       0.562
+Rasbora cephalotaenia         559           4       0.935           1       0.995       0.759
+ Rasbora einthovenii         559           5       0.872         0.8       0.906       0.789
+  Rasbora trilineata         559           1       0.566           1       0.995       0.995
+Rastrelliger brachysoma         559           3           1       0.618       0.707       0.637
+Rastrelliger faughni         559           2       0.323         0.5       0.338       0.338
+Rastrelliger kanagurta         559           1           0           0       0.166       0.166
+Rhizoprionodon acutus         559           2       0.651         0.5       0.572       0.541
+    Saloptia powelli         559           2       0.789           1       0.996       0.896
+    Sarda orientalis         559           1       0.688           1       0.995       0.896
+Sardinella fimbriata         559           1           1           0       0.995       0.896
+   Sardinella lemuru         559           2       0.523           1       0.995       0.995
+   Scatophagus argus         559           6       0.843           1       0.996       0.977
+Scleropages formosus         559          10       0.873       0.691       0.731       0.632
+Scleropages jardinii         559           2       0.445       0.834       0.745       0.683
+Scomber australasicus         559           1        0.38           1       0.995       0.995
+Scomberomorus guttatus         559           2       0.877           1       0.995       0.995
+Scomberomorus lineolatus         559           1           1           0       0.995       0.995
+    Seriola dumerili         559           1           0           0      0.0475      0.0332
+   Seriola rivoliana         559           2           0           0       0.398       0.304
+Silurichthys indragiriensis         559           4       0.626        0.25        0.47       0.359
+Silurichthys phaiosoma         559           1           0           0      0.0232      0.0232
+Sphaerichthys osphromenoides         559           3       0.845           1       0.996        0.93
+ Sphyraena barracuda         559           1       0.758           1       0.995       0.995
+  Sphyraena forsteri         559          13        0.67           1       0.985       0.644
+  Sphyraena putnamae         559           1         0.3           1       0.995       0.597
+ Sundadanio axelrodi         559           2        0.45           1       0.995       0.896
+Symphorus nematophorus         559           4       0.719           1       0.845       0.746
+Synchiropus splendidus         559           2       0.784           1       0.996       0.946
+Syncrossus hymenophysa         559           2           1           0           0           0
+  Telmatherina bonti         559           2       0.517           1       0.995       0.945
+Telmatherina sarasinorum         559           3           1       0.507        0.83       0.709
+Thalassoma hebraicum         559           2       0.739           1       0.996       0.921
+   Thalassoma lunare         559           4       0.727        0.75       0.794       0.631
+    Thunnus maccoyii         559           4       0.997        0.75       0.945       0.708
+      Thunnus obesus         559           2           1           0       0.829       0.795
+     Thunnus tonggol         559           2       0.603         0.5       0.695       0.636
+Tominanga sanguicauda         559           1           1           0           0           0
+          Tor tambra         559           5       0.757           1       0.962        0.63
+  Toxotes jaculatrix         559           6       0.892           1       0.996       0.996
+ Trichiurus lepturus         559           1       0.449       0.898       0.498       0.448
+Trichopodus pectoralis         559           4       0.551        0.75       0.808       0.752
+Trichopodus trichopterus         559           4       0.824        0.75       0.746       0.621
+Trigonostigma heteromorpha         559          35           1       0.204       0.869       0.519
+Variola albimarginata         559           3       0.773       0.667       0.789       0.641
+      Wallago leerii         559           1           0           0      0.0475      0.0332
+  Wattsia mossambica         559           2       0.813           1       0.995       0.995
+Zebrasoma flavescens         559           2           1       0.958       0.996       0.996
+    Zebrasoma scopas         559           1       0.316           1       0.995       0.995
+Speed: 4.1/2.0/6.1 ms inference/NMS/total per 416x416 image at batch-size 16
+Results saved to runs/test/yolov7_testing3
