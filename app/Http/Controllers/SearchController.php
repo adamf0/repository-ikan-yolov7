@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function index($id){
-        $ikan = Ikan::find($id);
-        if($ikan == null){
-            $ikan = Ikan::where('spesies',$id)->first();
-            if($ikan==null){
-                return redirect()->route("home");
-            }
+    public function index($spesies){
+        $ikan = Ikan::where('spesies',$spesies)->first();
+        if($ikan==null){
+            return redirect()->route("home");
         }
+        $files = \App\Helper\Utility::scanFiles($ikan->spesies);
+        $randomFile = count($files)>0? \App\Helper\Utility::loadAsset($files[array_rand($files)]) : \App\Helper\Utility::loadAsset('not_found.jpg');
+        $ikan->foto = $randomFile;
         return view('search',['ikan'=>$ikan]);
     }
 

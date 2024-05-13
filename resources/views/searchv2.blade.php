@@ -115,7 +115,7 @@
 }
 .content--image{
     width: 70%;
-    max-height: 400px;
+    max-height: 500px;
     margin: 0 auto 20px auto;
 
     display: block;
@@ -136,11 +136,10 @@
         grid-column: span 2;
     }
 
-    .klasifikasi{
+    /* .klasifikasi{
         width: -webkit-fill-available;
-        max-height: 400px;
-        /* height: 40vmax; */
-    }
+        max-height: 500px;
+    } */
 }
 
 .bullet__point{
@@ -202,7 +201,25 @@
 .ucfirst{
     text-transform: capitalize;
 }
-
+.status_konservasi__container{
+    display:flex; 
+    gap: 0.5rem; 
+    margin-top: 0.5rem;
+}
+.status_konservasi__description{
+    display:flex; 
+    gap: 0.5rem; 
+    flex-direction:column;
+}
+.status_konservasi__title{
+    font-size: 1.3rem !important;
+}
+.status_konservasi__desc{
+    font-size: 1rem !important;
+}
+.id_genom{
+    line-height: 24px;
+}
 /*end page 2*/
 </style>
 @stop
@@ -248,11 +265,11 @@
                         </tr>
                         <tr>
                             <td>Ordo</td>
-                            <td class="ucfirst text-break">{{$ikan->ordo}}</td>
+                            <td class="ucfirst text-break highlight">{{$ikan->ordo}}</td>
                         </tr>
                         <tr>
                             <td>Familia</td>
-                            <td class="ucfirst text-break">{{$ikan->famili}}</td>
+                            <td class="ucfirst text-break highlight">{{$ikan->famili}}</td>
                         </tr>
                         <tr>
                             <td>Genus</td>
@@ -264,32 +281,19 @@
                         </tr>
                         <tr>
                             <td>Pengarang</td>
-                            <td class="ucfirst text-break highlight">{{$ikan->pengarang}}</td>
+                            <td class="ucfirst text-break">{{$ikan->pengarang}}</td>
                         </tr>
                     </table>
                 </div>
                 
                 <div data-area="id_genom">
                     <h5>ID Genom</h5>
-                    <p highlight="true">{{$ikan->id_genom}}</p>
+                    <p highlight="true" class="id_genom">{{$ikan->id_genom}}</p>
                 </div>
 
                 <div data-area="info_ikan">
-                    <h5>Informasi Lengkap</h5>
+                    <h5>Informasi Detail</h5>
                     <table>
-                        <tr>
-                            <td>Karakteristik Morfologi</td>
-                            <td class="ucfirst text-break">
-                                @php
-                                    $list_karakteristik = explode(';',$ikan->karakteristik_morfologi);
-                                @endphp
-                                <ol class="circle">
-                                    @foreach ($list_karakteristik as $karakteristik)
-                                        <li class="ucfirst text-break">{{ $karakteristik }}</li>
-                                    @endforeach
-                                </ol>
-                            </td>
-                        </tr>
                         <tr>
                             <td>Kemunculan</td>
                             <td class="ucfirst text-break">{{$ikan->kemunculan}}</td>
@@ -303,26 +307,41 @@
                             <td class="ucfirst text-break">{{$ikan->distribusi}}</td>
                         </tr>
                         <tr>
-                            <td>Kometar</td>
-                            <td class="ucfirst text-break">{{$ikan->kometar}}</td>
+                            <td>Komentar</td>
+                            <td class="ucfirst text-break">{{$ikan->komentar}}</td>
                         </tr>
                     </table>
                 </div>
 
                 <div data-area="upaya_konservasi">
-                    <h5>Upaya Konservasi</h5>
-                    <p highlight="true">{{$ikan->upaya_konservasi}}</p>
+                    <h5>Karakteristik Morfologi</h5>
+                    @php
+                        $list_karakteristik = explode(';',$ikan->karakteristik_morfologi);
+                    @endphp
+                    <ol class="circle">
+                        @foreach ($list_karakteristik as $karakteristik)
+                            <li class="ucfirst text-break">{{ $karakteristik }}</li>
+                        @endforeach
+                    </ol>
                 </div>
 
-                <!--<div data-area="status_konservasi">
+                <div data-area="status_konservasi">
                     <h5>Status Konservasi</h5>
-                    {{ $ikan->status_konservasi }}
-                    <!-- <p><span class="bullet__point" data-point="{{$ikan->status_konservasi}}">{{$ikan->status_konservasi}}</span> {{\App\Helper\Utility::deskripsiStatus($ikan->status_konservasi)}}</p> -->
-                <!-- </div> -->
-                <div data-area="filogenetik">
+                    @php
+                        $data = \App\Helper\Utility::deskripsiStatus($ikan->status_konservasi);
+                    @endphp
+                    <div class="status_konservasi__container">
+                        <span class="bullet__point" data-point="{{$ikan->status_konservasi}}">{{$ikan->status_konservasi}}</span> 
+                        <div class="status_konservasi__description">
+                            <p class="status_konservasi__title">{{$data["inggris"]}}</p>
+                            <p class="status_konservasi__desc">{{$data["deskripsi"]}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div data-area="filogenetik">
                     <h5>Pohon Filogenetik</h5>
                     <div id="filogenetik"></div>
-                </div>
+                </div> -->
             </div>
             @endforeach
         </div>

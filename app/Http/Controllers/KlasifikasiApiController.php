@@ -33,8 +33,9 @@ class KlasifikasiApiController extends Controller
                 foreach($responseData["annotation"] as $item){
                     if(!array_key_exists($item["name"],$datas)){
                         $ikan = Ikan::where('spesies','like', '%'.$item["name"].'%')->firstOrFail();
-                        $directoryPath = 'public/Acanthocybium solandri';
-                        $files = Storage::files($directoryPath);
+                        // $directoryPath = 'public/'.$item["name"];
+                        // $files = Storage::files($directoryPath);
+                        $files = \App\Helper\Utility::scanFiles($item["name"]);
                         $randomFile = count($files)>0? \App\Helper\Utility::loadAsset($files[array_rand($files)]) : \App\Helper\Utility::loadAsset('not_found.jpg');
                         
                         $datas[$item["name"]] = [
@@ -53,10 +54,11 @@ class KlasifikasiApiController extends Controller
                             "kemunculan"                => $ikan->kemunculan,
                             "panjang_maksimal"          => $ikan->panjang_maksimal,
                             "status_konservasi"         => $ikan->status_konservasi,
+                            "status_konservasi_tahun"   => $ikan->status_konservasi_tahun,
                             "id_genom"                  => $ikan->id_genom,
                             "upaya_konservasi"          => $ikan->upaya_konservasi,
                             "distribusi"                => $ikan->distribusi,
-                            "kometar"                   => $ikan->kometar,
+                            "komentar"                   => $ikan->komentar,
                             "kotak_prediksi"            =>[
                                 "confidence"=>$item["confidence"],
                                 "xmax"=>$item["xmax"],

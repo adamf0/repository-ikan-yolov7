@@ -166,37 +166,37 @@
             <div class="panel__content">
                 <div class="panel__filter">
                     <div class="panel__filter__component">
-                        <label for="fillum">fillum</label>
+                        <label for="fillum">Fillum</label>
                         <select name="fillum" id="fillum" class="form-control">
                         </select>
                     </div>
                     <div class="panel__filter__component">
-                        <label for="super_kelas">super_kelas</label>
+                        <label for="super_kelas">Super Kelas</label>
                         <select name="super_kelas" id="super_kelas" class="form-control">
                         </select>
                     </div>
                     <div class="panel__filter__component">
-                        <label for="kelas">kelas</label>
+                        <label for="kelas">Kelas</label>
                         <select name="kelas" id="kelas" class="form-control">
                         </select>
                     </div>
                     <div class="panel__filter__component">
-                        <label for="ordo">ordo</label>
+                        <label for="ordo">Ordo</label>
                         <select name="ordo" id="ordo" class="form-control">
                         </select>
                     </div>
                     <div class="panel__filter__component">
-                        <label for="famili">famili</label>
+                        <label for="famili">Famili</label>
                         <select name="famili" id="famili" class="form-control">
                         </select>
                     </div>
                     <div class="panel__filter__component">
-                        <label for="genus">genus</label>
+                        <label for="genus">Genus</label>
                         <select name="genus" id="genus" class="form-control">
                         </select>
                     </div>
                     <div class="panel__filter__component">
-                        <label for="spesies">spesies</label>
+                        <label for="spesies">Spesies</label>
                         <select name="spesies" id="spesies" class="form-control">
                         </select>
                     </div>
@@ -303,6 +303,7 @@
         abort: () => 'Permintaan Ajax dibatalkan.',
         default: (error) => 'Kesalahan tidak teridentifikasi: ' + error,
     };
+    let searchRequest = null;
 
     function handleAjaxError(xhr, status, error, displayConsole = true, url=null) {
         const errorHandler = errorHandlers[xhr.status] || errorHandlers[status] || errorHandlers.default;
@@ -319,133 +320,198 @@
                         <h3>Tidak ditemukan ikan sesuai kriteria</h3>
                     </div>`;
     function generateCard(data){
-        let url = `{{route('search',['id'=>'?'])}}`;
-        return `<a href="${url.replace('?',data.id)}" class="list__item">
+        let url = `{{route('search',['spesies'=>'?'])}}`;
+        return `<a href="${url.replace('?',data.spesies)}" class="list__item">
                     <img src="${data.foto}" alt="gambar ikan">
-                    <h3>${data.klasifikasi}</h3>
+                    <h3>${data.spesies}</h3>
                 </a>`;
     }
-    function load(ordo,familia,genus){
-        let dataForm = new FormData();
-        dataForm.append("ordo",ordo??null);
-        dataForm.append("familia",familia??null);
-        dataForm.append("genus",genus??null);
+    function load(dataForm = new FormData()){
+        if (searchRequest !== null) {
+            searchRequest.abort();
+        }
 
         listIkan.empty();
         listIkan.html(loading);
 
-        setTimeout(function() {
-            let content = '';
-            $.ajax({
-                type: "GET",
-                url: ``,
-                data: dataForm,
-                dataType: 'json',
-                accepts: 'json',
-                processData: false,
-                contentType: false,
-                // type: 'POST',
-                success: function (response) {
-                    listIkan.empty();
-                    const datas = (response?.data??[]);
-                    console.log(datas);
-                    
-                    if(datas.length){
-                        $.each(datas, function(i, data) {
-                            content += generateCard(data);
-                        });
-                    } else{
-                        content = not_found;
-                    }
-                    listIkan.html(content);
-                },
-                error: function(xhr, status, error) {
-                    handleAjaxError(xhr, status, error, true);
+        let content = '';
+        searchRequest = $.ajax({
+            type: "POST",
+            url: `{{route('api.familyguide.list')}}`,
+            data: dataForm,
+            dataType: 'json',
+            accepts: 'json',
+            processData: false,
+            contentType: false,
+            // type: 'POST',
+            success: function (response) {
+                listIkan.empty();
+                const datas = (response??[]);
+                console.log(datas);
+
+                if(datas.length){
+                    $.each(datas, function(i, data) {
+                        content += generateCard(data);
+                    });
+                } else{
                     content = not_found;
-                    listIkan.html(content);
                 }
-            });
-        }, 2000);
+                listIkan.html(content);
+            },
+            error: function(xhr, status, error) {
+                handleAjaxError(xhr, status, error, true);
+                content = not_found;
+                listIkan.html(content);
+            }
+        });
     }
+    function formDataToObject(formData) {
+        let object = {};
+        formData.forEach(function(value, key){
+            object[key] = value;
+        });
+        return object;
+    }
+
     $(document).ready(function(){
         const navToggle = document.querySelector('.nav-toggle');
         const nav       = document.querySelector('.nav');
-        listIkan    = $("#listIkan");
+        listIkan        = $("#listIkan");
 
         navToggle.addEventListener('click', () => {
             nav.classList.toggle('nav--visible');
         })
 
-        // load();
+        let dataForm = new FormData();
+        dataForm.append("fillum",null)
+        dataForm.append("super_kelas",null)
+        dataForm.append("kelas",null)
+        dataForm.append("ordo",null)
+        dataForm.append("famili",null)
+        dataForm.append("genus",null)
+        dataForm.append("spesies",null)
+        // load(dataForm)
+
         const listDropdown = [
             {
-                "id":"#fillum",
+            "id":"#fillum",
                 "next_id":"#super_kelas",
+                "reset":[
+                    "#super_kelas",
+                    "#kelas",
+                    "#ordo",
+                    "#famili",
+                    "#genus",
+                    "#spesies",
+                ],
                 "source":`{{route('api.familyguide.listDropdown')}}`,
-                "placeholder":"-- Pilih Fillum --",
+                "placeholder":"-- Pilih --",
             },
             {
                 "id":"#super_kelas",
                 "next_id":"#kelas",
+                "reset":[
+                    "#kelas",
+                    "#ordo",
+                    "#famili",
+                    "#genus",
+                    "#spesies",
+                ],
                 "source":[],
-                "placeholder":"-- Pilih Super Kelas --",
+                "placeholder":"-- Pilih --",
             },
             {
                 "id":"#kelas",
                 "next_id":"#ordo",
+                "reset":[
+                    "#ordo",
+                    "#famili",
+                    "#genus",
+                    "#spesies",
+                ],
                 "source":[],
-                "placeholder":"-- Pilih Kelas --",
+                "placeholder":"-- Pilih --",
             },
             {
                 "id":"#ordo",
                 "next_id":"#famili",
+                "reset":[
+                    "#famili",
+                    "#genus",
+                    "#spesies",
+                ],
                 "source":[],
-                "placeholder":"-- Pilih Ordo --",
+                "placeholder":"-- Pilih --",
             },
             {
                 "id":"#famili",
                 "next_id":"#genus",
+                "reset":[
+                    "#genus",
+                    "#spesies",
+                ],
                 "source":[],
-                "placeholder":"-- Pilih Famili --",
+                "placeholder":"-- Pilih --",
             },
             {
                 "id":"#genus",
                 "next_id":"#spesies",
+                "reset":[
+                    "#spesies",
+                ],
                 "source":[],
-                "placeholder":"-- Pilih Genus --",
+                "placeholder":"-- Pilih  --",
             },
             {
                 "id":"#spesies",
                 "next_id":null,
+                "reset":[],
                 "source":[],
-                "placeholder":"-- Pilih Spesies --",
+                "placeholder":"-- Pilih --",
             },
         ];
         listDropdown.forEach(dropdown => {
-            console.log(dropdown.id, dropdown.source)
+            // console.log(dropdown.id, dropdown.source)
+            const placeholder = dropdown.placeholder
             load_dropdown(
                 dropdown.id, 
                 dropdown.source instanceof Array? dropdown.source:null, 
                 dropdown.source instanceof Array? null:`{{route('api.familyguide.listDropdown')}}`, 
                 null, 
-                dropdown.placeholder
+                placeholder
             );
 
-            $(dropdown.id).on('select2:select', function(e) {
+            $(dropdown.id).on('change', function(e) {
                 let id = $(this).val();
-                let selectedData = e.params.data;
-                console.log(id)
+                let selectedData = $(this).select2('data');
+                selectedData = selectedData.length==0? null:selectedData[0]
                 
-                // $(dropdown.next_id).empty();
-                // load_dropdown(
-                //     dropdown.next_id, 
-                //     dropdown.source instanceof array? dropdown.source:null, 
-                //     dropdown.source instanceof array? null:`{{route('api.familyguide.listDropdown')}}`, 
-                //     null, 
-                //     dropdown.placeholder
-                // );
+                dropdown.reset.forEach(dropdownReset => {
+                    dataForm.set(dropdownReset.replace("#",""),null);
+                    $(dropdownReset).empty()
+                    load_dropdown(
+                        dropdownReset, 
+                        [], 
+                        null, 
+                        null, 
+                        placeholder
+                    );
+                })
+
+                const ref = dropdown.id.replace("#","")
+                dataForm.set(ref,id);
+                load_dropdown(
+                    dropdown.next_id, 
+                    selectedData?.list??[], 
+                    null, 
+                    null, 
+                    dropdown.placeholder
+                );
+
+                load(dataForm)
             });
         })
+        
     });
 </script>
 @stop

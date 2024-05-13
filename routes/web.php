@@ -4,12 +4,20 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AcknowledgementsController;
 use App\Http\Controllers\FamilyGuideController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KatalogIkanController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,"index"])->name('home');
 Route::get('/about',[AboutController::class,"index"])->name('about');
 Route::get('/family_guide',[FamilyGuideController::class,"index"])->name('familyguide');
-Route::get('/search/{id}',[SearchController::class,"index"])->name('search');
+Route::get('/search/{spesies}',[SearchController::class,"index"])->name('search');
 Route::get('/searchv2/{klasifikasi}',[SearchController::class,"indexv2"])->name('searchv2');
 Route::get('/acknowledgements',[AcknowledgementsController::class,"index"])->name('acknowledgements');
+
+Route::get('/katalog_ikan',[KatalogIkanController::class,"index"])->name('katalog_ikan.index');
+Route::get('/katalog_ikan/add',[KatalogIkanController::class,"add"])->name('katalog_ikan.add');
+Route::post('/katalog_ikan/store',[KatalogIkanController::class,"store"])->name('katalog_ikan.store');
+Route::get('/katalog_ikan/edit/{id}',[KatalogIkanController::class,"edit"])->name('katalog_ikan.edit');
+Route::post('/katalog_ikan/update',[KatalogIkanController::class,"update"])->name('katalog_ikan.update');
+Route::get('/katalog_ikan/delete/{id}',[KatalogIkanController::class,"delete"])->name('katalog_ikan.delete');
