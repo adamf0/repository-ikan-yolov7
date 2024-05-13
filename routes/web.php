@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AcknowledgementsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FamilyGuideController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KatalogIkanController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +17,9 @@ Route::get('/search/{spesies}',[SearchController::class,"index"])->name('search'
 Route::get('/searchv2/{klasifikasi}',[SearchController::class,"indexv2"])->name('searchv2');
 Route::get('/acknowledgements',[AcknowledgementsController::class,"index"])->name('acknowledgements');
 
+Route::get('/login', [LoginController::class,"index"])->name('login.index');
+Route::post('/login', [LoginController::class,"dologin"])->name('login.dologin');
+Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard.index');
 Route::get('/katalog_ikan',[KatalogIkanController::class,"index"])->name('katalog_ikan.index');
 Route::get('/katalog_ikan/add',[KatalogIkanController::class,"add"])->name('katalog_ikan.add');
 Route::post('/katalog_ikan/store',[KatalogIkanController::class,"store"])->name('katalog_ikan.store');
