@@ -40,6 +40,7 @@
                                     <th>Panjang Maksimal</th>
                                     <th>ID Genus</th>
                                     <th>Status</th>
+                                    <th>Tahun Konservasi</th>
                                     <th>Upaya Konservasi</th>
                                     <th>Foto</th>
                                     <th>Komentar</th>
@@ -64,7 +65,8 @@
                                     <td>{{ $item->kemunculan }}</td>
                                     <td>{{ $item->panjang_maksimal }}</td>
                                     <td>{{ $item->id_genom }}</td>
-                                    <td>{{ $item->status }}</td>
+                                    <td>{{ strtolower($item->status_konservasi) }}</td>
+                                    <td>{{ $item->status_konservasi_tahun }}</td>
                                     <td>{{ $item->upaya_konservasi }}</td>
                                     <td></td>
                                     <td>{{ $item->komentar }}</td>

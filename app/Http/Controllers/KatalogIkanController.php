@@ -70,6 +70,7 @@ class KatalogIkanController extends Controller
             $ikan->panjang_maksimal         = $request->panjang_maksimal??""; 
             $ikan->id_genom                 = $request->id_genom??""; 
             $ikan->status_konservasi        = $request->status_konservasi??""; 
+            $ikan->status_konservasi_tahun  = $request->status_konservasi_tahun??""; 
             $ikan->upaya_konservasi         = $request->upaya_konservasi??""; 
             $ikan->komentar                 = $request->komentar??""; 
             $ikan->foto                     = ""; 
@@ -129,7 +130,8 @@ class KatalogIkanController extends Controller
             $ikan->kemunculan               = $request->kemunculan??""; 
             $ikan->panjang_maksimal         = $request->panjang_maksimal??""; 
             $ikan->id_genom                 = $request->id_genom??""; 
-            $ikan->status_konservasi        = $request->status_konservasi??""; 
+            $ikan->status_konservasi        = $request->status_konservasi??"";
+            $ikan->status_konservasi_tahun  = $request->status_konservasi_tahun??""; 
             $ikan->upaya_konservasi         = $request->upaya_konservasi??""; 
             $ikan->komentar                 = $request->komentar??""; 
             $ikan->foto                     = ""; 

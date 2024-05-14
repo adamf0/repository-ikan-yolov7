@@ -118,6 +118,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label>Tahun Konservasi</label>
+                                <input type="text" class="form-control" name="status_konservasi_tahun" placeholder="Masukkan tahun konservasi...">
+                            </div>
+                            <div class="form-group">
                                 <label>Upaya konservasi</label>
                                 <textarea class="form-control" name="upaya_konservasi" placeholder="Masukkan upaya konservasi..."></textarea>
                             </div>
