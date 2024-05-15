@@ -39,6 +39,7 @@ class KlasifikasiApiController extends Controller
                         $randomFile = count($files)>0? \App\Helper\Utility::loadAsset($files[array_rand($files)]) : \App\Helper\Utility::loadAsset('not_found.jpg');
                         
                         $datas[$item["name"]] = [
+                            "habitat"                   => $ikan->habitat,
                             "foto"                      => $randomFile,
                             "kategori"                  => $ikan->kategori,
                             "fillum"                    => $ikan->fillum,

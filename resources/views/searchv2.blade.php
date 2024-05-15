@@ -307,6 +307,14 @@
                             <td class="ucfirst text-break">{{$ikan->distribusi}}</td>
                         </tr>
                         <tr>
+                            <td>Habitat</td>
+                            <td class="ucfirst text-break">{{$ikan->habitat}}</td>
+                        </tr>
+                        <tr>
+                            <td>Tahun Konservasi</td>
+                            <td class="ucfirst text-break">{{$ikan->status_konservasi_tahun}}</td>
+                        </tr>
+                        <tr>
                             <td>Komentar</td>
                             <td class="ucfirst text-break">{{$ikan->komentar}}</td>
                         </tr>

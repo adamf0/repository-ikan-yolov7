@@ -96,6 +96,7 @@ class FamilyGuideApiController extends Controller
                 // $randomFile = \App\Helper\Utility::loadAsset('not_found.jpg');
 
                 return [
+                    "habitat"                   => $item->habitat,
                     "foto"                      => $randomFile,
                     "kategori"                  => $item->kategori,
                     "fillum"                    => $item->fillum,
