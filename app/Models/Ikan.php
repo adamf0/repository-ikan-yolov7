@@ -10,6 +10,7 @@ class Ikan extends Model
     use HasFactory;
     protected $table = 'ikan';
     protected $fillable = [
+        "habitat",
         "kategori",
         "fillum",
         "super_kelas",
@@ -24,6 +25,7 @@ class Ikan extends Model
         "kemunculan",
         "panjang_maksimal",
         "status_konservasi",
+        "status_konservasi_tahun",
         "id_genom",
         "upaya_konservasi",
         "distribusi",
