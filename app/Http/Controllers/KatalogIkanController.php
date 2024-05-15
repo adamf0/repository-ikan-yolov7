@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ikan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class KatalogIkanController extends Controller
@@ -46,13 +47,18 @@ class KatalogIkanController extends Controller
             //     'file' => 'required|file|max:10240',
             // ]);
 
-            // if ($request->hasFile('file')) {
-            //     $file = $request->file('file');
-            //     if (!Storage::exists($request->spesies)) {
-            //         Storage::makeDirectory($request->spesies);
-            //     }
-            //     $file->store($request->spesies, 'public');
-            // }
+            $folderName = $request->spesies??"NA";
+            $path = public_path($folderName);
+            if(file_exists($path)){
+                File::deleteDirectory($path);
+            }
+            mkdir($path, 0777, true);
+            if($request->has('foto')){
+                $file = $request->file('foto');
+                $fileName = $file->getClientOriginalName();
+                $filePath = $path . '/' . $fileName;
+                move_uploaded_file($file->getPathname(), $filePath);
+            }
 
             $ikan = new Ikan();
             $ikan->fillum                   = $request->fillum??""; 
@@ -78,7 +84,7 @@ class KatalogIkanController extends Controller
             $ikan->save();
 
             return redirect()->route('katalog_ikan.index');
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
             throw $th;
         }
     }
@@ -107,49 +113,66 @@ class KatalogIkanController extends Controller
             //     'file' => 'required|file|max:10240',
             // ]);
 
-            if ($request->hasFile('foto')) {
-                $file = $request->file('foto');
-                $directory = 'public/' . $request->spesies;
-                
-                if (!Storage::exists($directory)) {
-                    Storage::makeDirectory($directory);
-                }
-                
-                $filename = $file->getClientOriginalName(); // Mendapatkan nama asli file
-                $file->storeAs($directory, $filename);
+            $ikan = Ikan::findOrFail($request->id);
+            $folderName = $ikan->spesies??"NA";
+            $path = public_path($folderName);
+            if(file_exists($path)){
+                File::deleteDirectory($path);
             }
-            // dd($filename,$request->hasFile('foto'),!Storage::exists($request->spesies));
 
-            // $ikan = Ikan::findOrFail($request->id);
-            // $ikan->fillum                   = $request->fillum??""; 
-            // $ikan->super_kelas              = $request->super_kelas??""; 
-            // $ikan->kelas                    = $request->kelas??""; 
-            // $ikan->ordo                     = $request->ordo??""; 
-            // $ikan->famili                   = $request->famili??""; 
-            // $ikan->genus                    = $request->genus??""; 
-            // $ikan->spesies                  = $request->spesies??""; 
-            // $ikan->kategori                 = $request->kategori??""; 
-            // $ikan->habitat                  = $request->habitat??""; 
-            // $ikan->nama_daerah              = $request->nama_daerah??""; 
-            // $ikan->pengarang                = $request->pengarang??""; 
-            // $ikan->karakteristik_morfologi  = $request->karakteristik_morfologi??""; 
-            // $ikan->kemunculan               = $request->kemunculan??""; 
-            // $ikan->panjang_maksimal         = $request->panjang_maksimal??""; 
-            // $ikan->id_genom                 = $request->id_genom??""; 
-            // $ikan->status_konservasi        = $request->status_konservasi??"";
-            // $ikan->status_konservasi_tahun  = $request->status_konservasi_tahun??""; 
-            // $ikan->upaya_konservasi         = $request->upaya_konservasi??""; 
-            // $ikan->komentar                 = $request->komentar??""; 
-            // $ikan->foto                     = ""; 
-            // $ikan->save();
+            $folderName = $request->spesies??"NA";
+            $path = public_path($folderName);
+            if(file_exists($path)){
+                File::deleteDirectory($path);
+            }
+            mkdir($path, 0777, true);
+            if($request->has('foto')){
+                $file = $request->file('foto');
+                $fileName = $file->getClientOriginalName();
+                $filePath = $path . '/' . $fileName;
+                move_uploaded_file($file->getPathname(), $filePath);
+            }
+            
+            $ikan->fillum                   = $request->fillum??""; 
+            $ikan->super_kelas              = $request->super_kelas??""; 
+            $ikan->kelas                    = $request->kelas??""; 
+            $ikan->ordo                     = $request->ordo??""; 
+            $ikan->famili                   = $request->famili??""; 
+            $ikan->genus                    = $request->genus??""; 
+            $ikan->spesies                  = $request->spesies??""; 
+            $ikan->kategori                 = $request->kategori??""; 
+            $ikan->habitat                  = $request->habitat??""; 
+            $ikan->nama_daerah              = $request->nama_daerah??""; 
+            $ikan->pengarang                = $request->pengarang??""; 
+            $ikan->karakteristik_morfologi  = $request->karakteristik_morfologi??""; 
+            $ikan->kemunculan               = $request->kemunculan??""; 
+            $ikan->panjang_maksimal         = $request->panjang_maksimal??""; 
+            $ikan->id_genom                 = $request->id_genom??""; 
+            $ikan->status_konservasi        = $request->status_konservasi??"";
+            $ikan->status_konservasi_tahun  = $request->status_konservasi_tahun??""; 
+            $ikan->upaya_konservasi         = $request->upaya_konservasi??""; 
+            $ikan->komentar                 = $request->komentar??""; 
+            $ikan->foto                     = ""; 
+            $ikan->save();
 
             return redirect()->route('katalog_ikan.index');
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
             throw $th;
         }
     }
 
     public function delete($id){
+        try {
+            $ikan = Ikan::findOrFail($id);
+            $folderName = $ikan->spesies??"NA";
+            $path = public_path($folderName);
+            if(file_exists($path)){
+                File::deleteDirectory($path);
+            }
+            $ikan->delete();
+        } catch (\Exception $th) {
+            throw $th;
+        }
         return redirect()->route('katalog_ikan.index');
     }
 }
