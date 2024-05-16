@@ -40,14 +40,14 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(1, minmax(10vmax, 1fr));
-    /* grid-auto-rows: 1fr; */
     grid-template-areas: 
         "klasifikasi"
+        "status_konservasi"
         "taksonomi"
-        "karakteristik"
-        "genom"
-        "status"
-        "filogenetik upaya";
+        "id_genom"
+        "info_ikan"
+        "karakteristik" 
+        "upaya_konservasi";
     grid-column-gap: 5px;
     grid-row-gap: 20px;
 
@@ -66,7 +66,7 @@
         overflow-wrap: break-word;
     }
 
-    & * > table{
+    & table{
         & tr{
             & td:nth-child(2)::before {
                 content: ":";
@@ -110,7 +110,6 @@
 .klasifikasi{
     width: -webkit-fill-available;
     max-height: 500px;
-    /* height: 40vmax; */
     object-fit: fill;
 }
 .content--image{
@@ -127,19 +126,19 @@
         grid-template-columns: repeat(2, minmax(10vmax, 1fr));
         grid-template-areas: 
         "klasifikasi klasifikasi"
-        "taksonomi karakteristik"
-        "genom status" 
-        "filogenetik upaya";
+        "status_konservasi status_konservasi"
+        "taksonomi id_genom"
+        "info_ikan karakteristik" 
+        "upaya_konservasi";
     }
 
     & div[data-area="klasifikasi"] {
         grid-column: span 2;
     }
 
-    /* .klasifikasi{
-        width: -webkit-fill-available;
-        max-height: 500px;
-    } */
+    & div[data-area="status_konservasi"] {
+        grid-column: span 2;
+    }
 }
 
 .bullet__point{
@@ -201,21 +200,67 @@
 .ucfirst{
     text-transform: capitalize;
 }
-.status_konservasi__container{
-    display:flex; 
-    gap: 0.5rem; 
-    margin-top: 0.5rem;
+.upaya_konservasi__container{
+    & p{
+        font-size: 1rem;
+        color: black;
+    }
 }
-.status_konservasi__description{
-    display:flex; 
-    gap: 0.5rem; 
-    flex-direction:column;
-}
-.status_konservasi__title{
-    font-size: 1.3rem !important;
-}
-.status_konservasi__desc{
-    font-size: 1rem !important;
+.status_konservasi{
+    overflow-x: auto; 
+    scrollbar-width: auto;
+    
+    & table{
+        text-align: center;
+        border: 1px solid black;
+
+        & tr{
+            height: 3.7vmax;
+        }
+        & td{
+            font-size: .8rem !important;
+            background: white; 
+            color: black;
+            padding: 0.4rem 1rem;
+        }
+        & td[data-mark="black"]{
+            background: black; 
+            color: white;
+        }
+        & td[data-mark="mark"]{
+            width: -webkit-fill-available;
+            height: -webkit-fill-available;
+            background: #f21f1f;
+            color: white;
+            font-size: 1.3rem;
+            padding: 0 min(1rem,1vmax) 0.4rem min(1rem,1vmax);
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+
+            & .mark__container{
+                display: flex;
+                align-items: flex-end;
+                flex-direction: column;
+                gap: 0.3rem;
+
+                & img{
+                    width: 2rem;
+                    aspect-ratio: 1/1;
+                    filter: brightness(100);
+                }
+
+                & .mark_info{
+                    display: flex;
+                    flex-direction: column;
+
+                    & label{
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
 }
 .id_genom{
     line-height: 24px;
@@ -225,7 +270,7 @@
 @stop
 
 @section('content')
-<section class="section2">
+    <section class="section2">
         <div class="container">
             @if (count($classification??[])>0)
                 <img src="{{ \App\Helper\Utility::loadAssetbase64($image) }}" class="content--image" alt="hasil prediksi"/>
@@ -242,6 +287,43 @@
                 <div data-area="klasifikasi">
                     <h3>{{$klasifikasi}}</h3>
                     <img src='{{$ikan->foto}}' class="klasifikasi" alt="gambar ikan">
+                </div>
+
+                <div data-area="status_konservasi" class="status_konservasi">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td data-mark="black">NOT EEVALUATED</td>
+                                <td data-mark="black">DATA DEFICIENT</td>
+                                <td>LEAST CONCERN</td>
+                                <td>NEAR THREATENED</td>
+                                <td>VULNERABLE</td>
+                                <td rowspan="2" data-mark="mark">
+                                    <div class="mark__container">
+                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
+                                        <div class="mark_info">
+                                            <label>ENDANGERED</label>
+                                            <span>EN</span>
+                                            <span>{{$ikan->status_konservasi_tahun}}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>CRITICAL ENDANGERED</td>
+                                <td>EXTINCT IN TdE WILD</td>
+                                <td data-mark="black">EXTINCT</td>
+                            </tr>
+                            <tr>
+                                <td>NE</td>
+                                <td>DD</td>
+                                <td>LC</td>
+                                <td>NT</td>
+                                <td>VU</td>
+                                <td>CR</td>
+                                <td>EW</td>
+                                <td>EX</td>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
 
                 <div data-area="taksonomi">
@@ -311,17 +393,13 @@
                             <td class="ucfirst text-break">{{$ikan->habitat}}</td>
                         </tr>
                         <tr>
-                            <td>Tahun Konservasi</td>
-                            <td class="ucfirst text-break">{{$ikan->status_konservasi_tahun}}</td>
-                        </tr>
-                        <tr>
                             <td>Komentar</td>
                             <td class="ucfirst text-break">{{$ikan->komentar}}</td>
                         </tr>
                     </table>
                 </div>
 
-                <div data-area="upaya_konservasi">
+                <div data-area="karakteristik">
                     <h5>Karakteristik Morfologi</h5>
                     @php
                         $list_karakteristik = explode(';',$ikan->karakteristik_morfologi);
@@ -333,23 +411,12 @@
                     </ol>
                 </div>
 
-                <div data-area="status_konservasi">
-                    <h5>Status Konservasi</h5>
-                    @php
-                        $data = \App\Helper\Utility::deskripsiStatus($ikan->status_konservasi);
-                    @endphp
-                    <div class="status_konservasi__container">
-                        <span class="bullet__point" data-point="{{$ikan->status_konservasi}}">{{$ikan->status_konservasi}}</span> 
-                        <div class="status_konservasi__description">
-                            <p class="status_konservasi__title">{{$data["inggris"]}}</p>
-                            <p class="status_konservasi__desc">{{$data["deskripsi"]}}</p>
-                        </div>
-                    </div>
+                <div data-area="upaya_konservasi" class="upaya_konservasi__container">
+                    <h5>Upaya Konservasi</h5>
+                    <p>
+                        {{$ikan->upaya_konservasi}}
+                    </p>
                 </div>
-                <!-- <div data-area="filogenetik">
-                    <h5>Pohon Filogenetik</h5>
-                    <div id="filogenetik"></div>
-                </div> -->
             </div>
             @endforeach
         </div>
