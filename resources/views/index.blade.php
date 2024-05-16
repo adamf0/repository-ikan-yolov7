@@ -52,11 +52,24 @@
     height: 100%;
 }
 .section1__wrapper{
-    min-width: 400px;
+    max-width: 800px;
+    flex-grow: 1;
 }
 .section1__content--vertical{
     display: flex;
     flex-direction: column;
+}
+.section1__content--credit{
+    margin-top: 2vmin;
+    & span{        
+        float: right;
+        color: white;
+        background: #21760c;
+        width: fit-content;
+        padding: 0.3rem 1rem;
+        border-radius: 1rem;
+        font-size: clamp(0.4rem, (0.4rem + 20vmax), 1rem);
+    }
 }
 .section1__content--horizontal{
     display: flex;
@@ -97,6 +110,9 @@
                     </a>
                     <input type="file" id="fileInput" style="display:none;">
                 </div>
+                <div class="section1__content--credit">
+                    <span>Sisa 3 kredit untuk klasifikasi menggunakan gambar</span>
+                </div>
             </div>
         </div>
     </section>
@@ -120,15 +136,22 @@
 @section('script')
 <script>
     $(document).ready(function () {
+        const kredit = 0;
+        const isMember = 0;
+
         var nameInput = document.getElementById('nameInput');
         var selectFile = document.getElementById('selectFile');
         var fileInput = document.getElementById('fileInput');
 
         selectFile.addEventListener('click', function (e) {
             e.preventDefault();
-            const file = document.querySelector('#fileInput');
-            file.value = '';
-            fileInput.click();
+            if(kredit>0){
+                const file = document.querySelector('#fileInput');
+                file.value = '';
+                fileInput.click();
+            } else{
+                alert(isMember? "Sisa kredit anda sudah 0 kredit untuk pemakaian bulan ini. perbaharui langganan aplikasi ke lebih yang tinggi!" : "Sisa kredit gratis anda sudah 0 kredit. ayo langganan aplikasi kami!");
+            }
         });
 
         fileInput.addEventListener('change', function () {
