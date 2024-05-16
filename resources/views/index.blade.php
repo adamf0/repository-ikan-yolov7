@@ -110,9 +110,9 @@
                     </a>
                     <input type="file" id="fileInput" style="display:none;">
                 </div>
-                <div class="section1__content--credit">
+                <!-- <div class="section1__content--credit">
                     <span>Sisa 3 kredit untuk klasifikasi menggunakan gambar</span>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
