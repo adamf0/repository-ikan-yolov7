@@ -50,7 +50,7 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ \App\Helper\Utility::stateMenu(['dashboard'],request('dashboard'))? 'active':'' }}">
+                        <a href="{{route('dashboard.index')}}" class="nav-link {{ \App\Helper\Utility::stateMenu(['dashboard'],request())? 'active':'' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -58,7 +58,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{ \App\Helper\Utility::stateMenu(['katalog_ikan'],request('katalog_ikan'))? 'active':'' }}">
+                        <a href="{{route('katalog_ikan.index')}}" class="nav-link {{ \App\Helper\Utility::stateMenu(['katalog_ikan'],request())? 'active':'' }}">
                             <i class="nav-icon far fa-image"></i>
                             <p>
                                 Katalog Ikan

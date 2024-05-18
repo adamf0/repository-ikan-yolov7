@@ -24,6 +24,7 @@
                             <thead>
                             <tr>
                                     <th>#</th>
+                                    <th>Aksi</th>
                                     <th>Fillum</th>
                                     <th>Super Kelas</th>
                                     <th>Kelas</th>
@@ -47,9 +48,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $i = 1;
+                                @endphp
                                 @foreach ($list as $item)
                                 <tr>
-                                    <td>{{$item->iteration}}</td>
+                                    <td>{{$i}}</td>
+                                    <td class="d-flex flex-row">
+                                        <a href="{{route('katalog_ikan.delete',['id'=>$item->id])}}" class="btn btn-danger">Hapus</a>
+                                        <a href="{{route('katalog_ikan.edit',['id'=>$item->id])}}" class="mx-2 btn btn-warning">Edit</a>
+                                    </td>
                                     <td>{{ $item->fillum }}</td>
                                     <td>{{ $item->super_kelas }}</td>
                                     <td>{{ $item->kelas }}</td>
@@ -70,11 +78,10 @@
                                     <td>{{ $item->upaya_konservasi }}</td>
                                     <td></td>
                                     <td>{{ $item->komentar }}</td>
-                                    <td class="d-flex flex-row">
-                                        <a href="{{route('katalog_ikan.delete',['id'=>$item->id])}}" class="btn btn-danger">Hapus</a>
-                                        <a href="{{route('katalog_ikan.edit',['id'=>$item->id])}}" class="mx-2 btn btn-warning">Edit</a>
-                                    </td>
                                 </tr>
+                                @php
+                                    $i++;
+                                @endphp
                                 @endforeach
                             </tbody>
                         </table>
