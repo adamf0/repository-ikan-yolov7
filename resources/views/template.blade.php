@@ -37,11 +37,11 @@
                 <table>
                     <tr>
                         <td>Email</td>
-                        <td>aaaa@gmail.com</td>
+                        <td><a href="mailto:rifkimunandar13@gmail.com">rifkimunandar13@gmail.com</a></td>
                     </tr>
                     <tr>
                         <td>Telp</td>
-                        <td>0800000000000</td>
+                        <td><a href="tel:+6287847680155">087847680155</a></td>
                     </tr>
                 </table>
             </div>
@@ -49,7 +49,10 @@
                 <h3>Quick Link</h3>
                 <ul>
                     <li>
-                        <a href="{{ route('acknowledgements') }}">Acknowledgements</a>
+                        <a href="https://www.fishbase.se">FishBase</a>
+                    </li>
+                    <li>
+                        <a href="https://www.iucnredlist.org/">The IUCN Red List of Threatened SpeciesTM</a>
                     </li>
                 </ul>
             </div>
