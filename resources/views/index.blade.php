@@ -145,13 +145,13 @@
 
         selectFile.addEventListener('click', function (e) {
             e.preventDefault();
-            if(kredit>0){
+            // if(kredit>0){
                 const file = document.querySelector('#fileInput');
                 file.value = '';
                 fileInput.click();
-            } else{
-                alert(isMember? "Sisa kredit anda sudah 0 kredit untuk pemakaian bulan ini. perbaharui langganan aplikasi ke lebih yang tinggi!" : "Sisa kredit gratis anda sudah 0 kredit. ayo langganan aplikasi kami!");
-            }
+            // } else{
+            //     alert(isMember? "Sisa kredit anda sudah 0 kredit untuk pemakaian bulan ini. perbaharui langganan aplikasi ke lebih yang tinggi!" : "Sisa kredit gratis anda sudah 0 kredit. ayo langganan aplikasi kami!");
+            // }
         });
 
         fileInput.addEventListener('change', function () {
