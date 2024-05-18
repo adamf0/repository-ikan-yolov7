@@ -273,7 +273,7 @@
     <section class="container section2">
         <div class="card content__section--grid">
             <div data-area="klasifikasi">
-                <h3>{{$ikan->speies}}</h3>
+                <h3>{{$ikan->spesies}}</h3>
                 <img src='{{$ikan->foto}}' class="klasifikasi" alt="gambar ikan">
             </div>
 
