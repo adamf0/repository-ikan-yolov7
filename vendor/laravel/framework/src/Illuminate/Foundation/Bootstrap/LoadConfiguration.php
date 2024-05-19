@@ -119,7 +119,7 @@ class LoadConfiguration
             'auth' => ['guards', 'providers', 'passwords'],
             'broadcasting' => ['connections'],
             'cache' => ['stores'],
-            'database' => ['connections', 'redis'],
+            'database' => ['connections'],
             'filesystems' => ['disks'],
             'logging' => ['channels'],
             'mail' => ['mailers'],
@@ -138,6 +138,10 @@ class LoadConfiguration
         $files = [];
 
         $configPath = realpath($app->configPath());
+
+        if (! $configPath) {
+            return [];
+        }
 
         foreach (Finder::create()->files()->name('*.php')->in($configPath) as $file) {
             $directory = $this->getNestedDirectory($file, $configPath);

@@ -2,109 +2,258 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Repository Ikan</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
+  <title>Fishiden</title>
+  <link href="{{ \App\Helper\Utility::loadAsset('assets/css/style.css') }}" rel="stylesheet">
+  <link href="{{ \App\Helper\Utility::loadAsset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ \App\Helper\Utility::loadAsset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" />
+  <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('assets/css/yearpicker.css') }}" />
+  <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('assets/css/datepicker.css') }}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <style>
+    .offset-x {
+      margin-left: 3.33333333%;
+      margin-top: 1%;
+    }
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('dist/css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-    @yield('css')
+    .select2-container {
+      width: 100% !important;
+    }
+  </style>
+  <style>
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+      padding: 0 !important;
+    }
+
+    .dataTables_wrapper .dataTables_filter {
+      margin-right: 0.8em !important
+    }
+
+    table.dataTable {
+      width: 100% !important;
+    }
+
+    .input-disabled {
+      background-color: #e9ecef;
+      opacity: 1;
+    }
+
+    .input-disabled:focus {
+      color: #212529;
+      background-color: #e9ecef;
+      opacity: 1;
+      border-color: #ced4da;
+      outline: 0;
+      box-shadow: 0 0 0 0.25rem transparent;
+    }
+
+    .circle-tab-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .circle-tab-container-box {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .circle-tab {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      padding-top: 8px;
+      margin-right: 10px;
+      font-weight: bold;
+      border: 2px solid #ccc;
+      background-color: #fff;
+      color: #000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .circle-tab,
+    .step-label {
+      display: block;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .circle-tab.active {
+      background-color: #007bff;
+      color: #fff;
+      border-color: #007bff;
+    }
+
+    .line {
+      flex: 1;
+      border-top: 2px solid #ccc;
+    }
+
+    .btn-draf {
+      --bs-btn-color: #000;
+      --bs-btn-bg: white;
+      --bs-btn-border-color: #000;
+      --bs-btn-hover-color: #000;
+      --bs-btn-hover-bg: white;
+      --bs-btn-hover-border-color: white;
+      --bs-btn-focus-shadow-rgb: 130, 138, 145;
+      --bs-btn-active-color: #000;
+      --bs-btn-active-bg: white;
+      --bs-btn-active-border-color: #000;
+      --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+      --bs-btn-disabled-color: #fff;
+      --bs-btn-disabled-bg: white;
+      --bs-btn-disabled-border-color: white;
+    }
+  </style>
 </head>
 
-<body class="hold-transition sidebar-mini">
-    <div class="wrapper">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="#" class="brand-link">
-                <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-                <span class="brand-text font-weight-light">Repository Ikan</span>
-            </a>
-
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <li class="nav-item">
-                        <a href="{{route('dashboard.index')}}" class="nav-link {{ \App\Helper\Utility::stateMenu(['dashboard'],request())? 'active':'' }}">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Dashboard
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('katalog_ikan.index')}}" class="nav-link {{ \App\Helper\Utility::stateMenu(['katalog_ikan'],request())? 'active':'' }}">
-                            <i class="nav-icon far fa-image"></i>
-                            <p>
-                                Katalog Ikan
-                            </p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-
-            <!-- /.sidebar -->
-        </aside>
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            @yield('content')
-        </div>
-        <!-- /.content-wrapper -->
+<body>
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{{route('dashboard.index')}}" class="logo d-flex align-items-center">
+      <img src="{{ \App\Helper\Utility::loadAsset('img/logo.svg') }}" alt="" style="filter: brightness(0.5)"/>
+        <span class="d-none d-lg-block">Fishiden</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
-    <!-- ./wrapper -->
-</body>
-<!-- jQuery -->
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div> -->
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+        <!-- <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li> -->
+        <!-- <x-top-nav-menu-dropdown></x-top-nav-menu-dropdown> -->
+        <li class="nav-item dropdown pe-3">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <img src="{{ \App\Helper\Utility::loadAsset('img/logo.svg') }}" alt=""/>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{\App\Helper\Utility::getName()}}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>{{\App\Helper\Utility::getName()}}</h6>
+            </li>
+            {{-- <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li> --}}
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{route('login.logout')}}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/jszip/jszip.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/pdfmake/pdfmake.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/pdfmake/vfs_fonts.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-<script src="{{ \App\Helper\Utility::loadAsset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <x-sidebar-item-menu title="Dashboard" icon="bi bi-menu-button-wide" link="{{route('dashboard.index')}}" :active="\App\Helper\Utility::stateMenu(['dashboard'],request())" />
+      <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-menu-button-wide" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['jenis_cuti'],request())" />  
+      <!-- <li class="nav-heading">Form Pengajuan</li> -->
+    </ul>
+  </aside><!-- End Sidebar-->
 
-<script src="{{ \App\Helper\Utility::loadAsset('dist/js/adminlte.min.js?v=3.2.0') }}"></script>
+  <main id="main" class="main">
+    @yield('page-title')
+    <section class="section dashboard">
+      @yield('content')
+    </section>
+  </main>
 
-<script src="{{ \App\Helper\Utility::loadAsset('dist/js/demo.js') }}"></script>
-<script>
-    $(function() {
-        // bsCustomFileInput.init();
+  <!-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.0.0/index.global.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.45/moment-timezone-with-data.min.js"></script>
+
+  <script src="{{ \App\Helper\Utility::loadAsset('assets/js/main.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="{{ \App\Helper\Utility::loadAsset('assets/js/yearpicker.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script type="text/javascript" src="{{ \App\Helper\Utility::loadAsset('jquery.redirect.js') }}"></script>
+  @stack('scripts')
+  <script>
+    $(".yearpicker").yearpicker();
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      todayHighlidht: true,
+      orientation: 'top'
+    }).on('show', function(e) {
+      // Mengatur posisi popover Datepicker ke center (middle).
+      var $input = $(e.currentTarget);
+      var $datepicker = $input.data('datepicker').picker;
+      var $parent = $input.parent();
+      var top = ($parent.offset().top - $datepicker.outerHeight()) + $parent.outerHeight();
+      $datepicker.css({
+        top: top,
+        left: $parent.offset().left
+      });
     });
-</script>
-@yield('script')
+
+    $('.datepicker-bottom').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      todayHighlidht: true,
+      orientation: 'bottom'
+    }).on('show', function(e) {
+      // Mengatur posisi popover Datepicker ke center (middle).
+      var $input = $(e.currentTarget);
+      var $datepicker = $input.data('datepicker').picker;
+      var $parent = $input.parent();
+      var bottom = ($parent.offset().bottom - $datepicker.outerHeight()) + $parent.outerHeight();
+      $datepicker.css({
+        bottom: bottom,
+        left: $parent.offset().left
+      });
+    });
+  </script>
+</body>
 
 </html>

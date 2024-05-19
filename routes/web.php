@@ -17,6 +17,7 @@ Route::get('/search/{spesies}',[SearchController::class,"index"])->name('search'
 Route::get('/searchv2/{klasifikasi}',[SearchController::class,"indexv2"])->name('searchv2');
 Route::get('/acknowledgements',[AcknowledgementsController::class,"index"])->name('acknowledgements');
 
+Route::get('/logout', [LoginController::class,"logout"])->name('login.logout');
 Route::get('/login', [LoginController::class,"index"])->name('login.index');
 Route::post('/login', [LoginController::class,"dologin"])->name('login.dologin');
 Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard.index');
