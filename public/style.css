@@ -137,60 +137,38 @@ a{
         margin: 0 0 0 1.5rem;
     }
 
-    .footer__container{
-        /* display: grid; */
-        grid-template-columns: repeat(3,1fr) !important;
-        /* grid-template-rows: 100px auto; */
-    }
-    
-    .footer__copyright{
-        grid-column: span 3;
-    }
 }
 
 .footer__container{
-    padding: 10px 100px;
+    padding: .8vmax;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: 100px auto;
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(24vmax,1fr));
+    gap: 1rem;
+    font-size: 1.1rem;
 
     & h3{
-        color: #dee9ea;
+        color: white;
         font-weight: bold;
-        text-transform: capitalize;
+        font-size: 1.4rem;
     }
-}
-
-.footer__contact{
-    display: grid;
-    color: white;
-    
-    & table{
-        & tr{
-            & td:nth-child(1){
-                width: 10px;
-            }
-            & td:nth-child(2)::before{
-                content: ': ';
-            }
-        }
-    }
-}
-.footer__repository{
-    display: grid;
-
     & ul{
         list-style: none;
-        margin: 0 0 0 15px;
     }
 
     & ul > li{
-        margin: 1rem 0;
+        margin: .8rem 0 0 1rem;
     }
-}
-.footer__copyright{
-    grid-column: span 2;
-    text-align: center;
-    color: white;
+
+    .btn{
+        padding: 1rem;
+        border-radius: 15px;
+        background: red;
+    }
+
+    .footer__contact > .footer__contact--item{
+        display: flex;
+        gap: 1rem;
+        margin: 1rem 0 0 1rem;
+        font-size: 1.5rem;
+    }
 }

@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                Selamat datang di Repository Ikan
+                Selamat datang di Fishiden
             </div>
         </div>
         <!-- /.row -->

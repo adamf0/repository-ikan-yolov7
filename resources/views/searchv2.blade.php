@@ -48,7 +48,7 @@
         "info_ikan"
         "karakteristik" 
         "upaya_konservasi";
-    grid-column-gap: 5px;
+    grid-column-gap: 1.5rem;
     grid-row-gap: 20px;
 
     & * > h3{
@@ -64,9 +64,10 @@
         font-size: .8rem;
         color: #3b3b3b;
         overflow-wrap: break-word;
+        hyphens: auto;
     }
 
-    & table{
+    /* & table{
         & tr{
             & td:nth-child(2)::before {
                 content: ":";
@@ -74,7 +75,7 @@
                 margin-right: 5px;
             }
         }
-    }
+    } */
 
     & * > ol {
         list-style: none;
@@ -213,6 +214,7 @@
     & table{
         text-align: center;
         border: 1px solid black;
+        width: -webkit-fill-available;
 
         & tr{
             height: 3.7vmax;
@@ -331,38 +333,47 @@
                     <table>
                         <tr>
                             <td>Kategori</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->kategori}}</td>
                         </tr>
                         <tr>
                             <td>Fillum</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->fillum}}</td>
                         </tr>
                         <tr>
                             <td>Super Kelas</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->super_kelas}}</td>
                         </tr>
                         <tr>
                             <td>Kelas</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->kelas}}</td>
                         </tr>
                         <tr>
                             <td>Ordo</td>
+                            <td>:</td>
                             <td class="ucfirst text-break highlight">{{$ikan->ordo}}</td>
                         </tr>
                         <tr>
                             <td>Familia</td>
+                            <td>:</td>
                             <td class="ucfirst text-break highlight">{{$ikan->famili}}</td>
                         </tr>
                         <tr>
                             <td>Genus</td>
+                            <td>:</td>
                             <td class="ucfirst text-break highlight">{{$ikan->genus}}</td>
                         </tr>
                         <tr>
                             <td>Nama Daerah</td>
+                            <td>:</td>
                             <td class="ucfirst text-break highlight">{{$ikan->nama_daerah}}</td>
                         </tr>
                         <tr>
                             <td>Pengarang</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->pengarang}}</td>
                         </tr>
                     </table>
@@ -378,22 +389,27 @@
                     <table>
                         <tr>
                             <td>Kemunculan</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->kemunculan}}</td>
                         </tr>
                         <tr>
                             <td>Panjang Maksimal</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->panjang_maksimal}}</td>
                         </tr>
                         <tr>
                             <td>Distribusi</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->distribusi}}</td>
                         </tr>
                         <tr>
                             <td>Habitat</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->habitat}}</td>
                         </tr>
                         <tr>
                             <td>Komentar</td>
+                            <td>:</td>
                             <td class="ucfirst text-break">{{$ikan->komentar}}</td>
                         </tr>
                     </table>
@@ -430,72 +446,65 @@
 <script src="{{ \App\Helper\Utility::loadAsset('data-filogenetik.js') }}"></script>
 <script>
     $(document).ready(function(){
-        const navToggle = document.querySelector('.nav-toggle');
-        const nav = document.querySelector('.nav');
-
-
-        navToggle.addEventListener('click', () => {
-            nav.classList.toggle('nav--visible');
-        })
-
-        Highcharts.chart('filogenetik', {
-            credits: {
-                enabled: false
-            },
-            chart: {
-                spacingBottom: 30,
-                marginRight: 120,
-                height: 1200
-            },
-            title: {
-                text: ''
-            },
-            series: [
-                {
-                    type: 'treegraph',
-                    clip: false,
-                    data: data,
-                    ooltip: {
-                        pointFormat: '{point.name}'
-                    },
-                    marker: {
-                        symbol: 'circle',
-                        radius: 6,
-                        fillColor: '#ffffff',
-                        lineWidth: 3
-                    },
-                    dataLabels: {
-                        align: 'left',
-                        pointFormat: '{point.name}',
-                        style: {
-                            color: '#000000',
-                            textOutline: '3px #ffffff',
-                            whiteSpace: 'nowrap'
-                        },
-                        x: 24,
-                        crop: false,
-                        overflow: 'none'
-                    },
-                    levels: [
-                        {
-                            level: 1,
-                            levelIsConstant: false
-                        },
-                        {
-                            level: 2,
-                            colorByPoint: true
-                        },
-                        // {
-                        //     level: 3,
-                        //     colorVariation: {
-                        //         key: 'brightness',
-                        //         to: -0.5
-                        //     }
-                        // },
-                    ]
-                }
-            ]
-        });
+        $("td[data-mark='mark']").get(0).scrollIntoView();
+        // Highcharts.chart('filogenetik', {
+        //     credits: {
+        //         enabled: false
+        //     },
+        //     chart: {
+        //         spacingBottom: 30,
+        //         marginRight: 120,
+        //         height: 1200
+        //     },
+        //     title: {
+        //         text: ''
+        //     },
+        //     series: [
+        //         {
+        //             type: 'treegraph',
+        //             clip: false,
+        //             data: data,
+        //             ooltip: {
+        //                 pointFormat: '{point.name}'
+        //             },
+        //             marker: {
+        //                 symbol: 'circle',
+        //                 radius: 6,
+        //                 fillColor: '#ffffff',
+        //                 lineWidth: 3
+        //             },
+        //             dataLabels: {
+        //                 align: 'left',
+        //                 pointFormat: '{point.name}',
+        //                 style: {
+        //                     color: '#000000',
+        //                     textOutline: '3px #ffffff',
+        //                     whiteSpace: 'nowrap'
+        //                 },
+        //                 x: 24,
+        //                 crop: false,
+        //                 overflow: 'none'
+        //             },
+        //             levels: [
+        //                 {
+        //                     level: 1,
+        //                     levelIsConstant: false
+        //                 },
+        //                 {
+        //                     level: 2,
+        //                     colorByPoint: true
+        //                 },
+        //                 // {
+        //                 //     level: 3,
+        //                 //     colorVariation: {
+        //                 //         key: 'brightness',
+        //                 //         to: -0.5
+        //                 //     }
+        //                 // },
+        //             ]
+        //         }
+        //     ]
+        // });
     });
 </script>
 @stop

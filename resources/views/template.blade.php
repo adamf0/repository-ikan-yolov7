@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fishiden</title>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css">
     <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 @yield('css')
 <body>
@@ -15,7 +16,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <a class="logo" href="{{ route('home') }}">
-                <img src="{{ \App\Helper\Utility::loadAsset('img/logo.svg') }}" alt="logo aplikasi">
+                <h1>Fishiden</h1>
             </a>
             <nav class="nav">
                 <ul class="nav__list">
@@ -34,30 +35,21 @@
         <div class="footer__container">
             <div class="footer__contact">
                 <h3>Contact Us</h3>
-                <table>
-                    <tr>
-                        <td>Email</td>
-                        <td><a href="mailto:rifkimunandar13@gmail.com">rifkimunandar13@gmail.com</a></td>
-                    </tr>
-                    <tr>
-                        <td>Telp</td>
-                        <td><a href="tel:+6287847680155">087847680155</a></td>
-                    </tr>
-                </table>
+                <div class="footer__contact--item">
+                    <a href="mailto:rifkimunandar13@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="tel:+6287847680155"><i class="fa-solid fa-phone"></i></a>
+                </div>
             </div>
             <div class="footer__repository">
                 <h3>Quick Link</h3>
                 <ul>
                     <li>
-                        <a href="https://www.fishbase.se">FishBase</a>
+                        <a href="https://www.fishbase.se/">FishBase</a>
                     </li>
                     <li>
                         <a href="https://www.iucnredlist.org/">The IUCN Red List of Threatened SpeciesTM</a>
                     </li>
                 </ul>
-            </div>
-            <div class="footer__copyright">
-                <p>copyright &copy; 2024</p>
             </div>
         </div>
     </footer>
