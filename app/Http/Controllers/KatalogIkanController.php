@@ -115,19 +115,21 @@ class KatalogIkanController extends Controller
             // ]);
 
             $ikan = Ikan::findOrFail($request->id);
-            $folderName = $ikan->spesies??"NA";
-            $path = public_path($folderName);
-            if(file_exists($path)){
-                File::deleteDirectory($path);
-            }
-
-            $folderName = $request->spesies??"NA";
-            $path = public_path($folderName);
-            if(file_exists($path)){
-                File::deleteDirectory($path);
-            }
-            mkdir($path, 0777, true);
+            
             if($request->has('foto')){
+                $folderName = $ikan->spesies??"NA";
+                $path = public_path($folderName);
+                if(file_exists($path)){
+                    File::deleteDirectory($path);
+                }
+
+                $folderName = $request->spesies??"NA";
+                $path = public_path($folderName);
+                if(file_exists($path)){
+                    File::deleteDirectory($path);
+                }
+                mkdir($path, 0777, true);
+
                 $file = $request->file('foto');
                 $fileName = $file->getClientOriginalName();
                 $filePath = $path . '/' . $fileName;
