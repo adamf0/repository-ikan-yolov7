@@ -12,6 +12,7 @@ class Ikan extends Model
     protected $fillable = [
         "habitat",
         "kategori",
+        "kingdom",
         "fillum",
         "super_kelas",
         "kelas",

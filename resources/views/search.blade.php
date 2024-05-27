@@ -466,6 +466,11 @@
                         <td class="ucfirst text-break">{{$ikan->kategori}}</td>
                     </tr>
                     <tr>
+                        <td>Kingdom</td>
+                        <td>:</td>
+                        <td class="ucfirst text-break">{{$ikan->kingdom}}</td>
+                    </tr>
+                    <tr>
                         <td>Fillum</td>
                         <td>:</td>
                         <td class="ucfirst text-break">{{$ikan->fillum}}</td>

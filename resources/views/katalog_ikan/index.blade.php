@@ -27,6 +27,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Aksi</th>
+                                        <th>Kingdom</th>
                                         <th>Fillum</th>
                                         <th>Super Kelas</th>
                                         <th>Kelas</th>
@@ -77,6 +78,13 @@
                 {
                     data: 'action', 
                     name: 'action'
+                },
+                {
+                    data: 'kingdom',
+                    name: 'kingdom',
+                    render: function ( data, type, row, meta ) {
+                        return data;
+                    }
                 },
                 {
                     data: 'fillum',

@@ -109,6 +109,7 @@ class FamilyGuideApiController extends Controller
                     "habitat"                   => $item->habitat,
                     "foto"                      => $randomFile,
                     "kategori"                  => $item->kategori,
+                    "kingdom"                   => $item->kingdom,
                     "fillum"                    => $item->fillum,
                     "super_kelas"               => $item->super_kelas,
                     "kelas"                     => $item->kelas,

@@ -42,6 +42,7 @@ class KlasifikasiApiController extends Controller
                             "habitat"                   => $ikan->habitat,
                             "foto"                      => $randomFile,
                             "kategori"                  => $ikan->kategori,
+                            "kingdom"                   => $ikan->kingdom,
                             "fillum"                    => $ikan->fillum,
                             "super_kelas"               => $ikan->super_kelas,
                             "kelas"                     => $ikan->kelas,

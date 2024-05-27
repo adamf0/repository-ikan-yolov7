@@ -68,7 +68,8 @@ class KatalogIkanController extends Controller
             $ikan->famili                   = $request->famili??""; 
             $ikan->genus                    = $request->genus??""; 
             $ikan->spesies                  = $request->spesies??""; 
-            $ikan->kategori                 = $request->kategori??""; 
+            $ikan->kategori                 = $request->kategori??"";
+            $ikan->kingdom                  = $request->kingdom??""; 
             $ikan->habitat                  = $request->habitat??""; 
             $ikan->nama_daerah              = $request->nama_daerah??""; 
             $ikan->pengarang                = $request->pengarang??""; 
@@ -140,7 +141,8 @@ class KatalogIkanController extends Controller
             $ikan->famili                   = $request->famili??""; 
             $ikan->genus                    = $request->genus??""; 
             $ikan->spesies                  = $request->spesies??""; 
-            $ikan->kategori                 = $request->kategori??""; 
+            $ikan->kategori                 = $request->kategori??"";
+            $ikan->kingdom                  = $request->kingdom??""; 
             $ikan->habitat                  = $request->habitat??""; 
             $ikan->nama_daerah              = $request->nama_daerah??""; 
             $ikan->pengarang                = $request->pengarang??""; 

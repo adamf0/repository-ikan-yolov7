@@ -28,6 +28,10 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4 form-group">
+                                            <label>Kingdom</label>
+                                            <input type="text" class="form-control" name="kingdom" placeholder="Masukkan kingdom..." value="{{$old->kingdom}}">
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4 form-group">
                                             <label>Fillum</label>
                                             <input type="text" class="form-control" name="fillum" placeholder="Masukkan fillum..." value="{{$old->fillum}}">
                                         </div>
