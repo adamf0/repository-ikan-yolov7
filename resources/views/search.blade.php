@@ -286,7 +286,6 @@
                             @if (strtolower($ikan->status_konservasi)=="ne")
                             <td rowspan="2" data-mark="mark">
                                 <div class="mark__container">
-                                    <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
                                     <div class="mark_info">
                                         <label>NOT EVALUATED</label>
                                         <span>NE</span>
@@ -301,7 +300,6 @@
                             @if (strtolower($ikan->status_konservasi)=="dd")
                             <td rowspan="2" data-mark="mark">
                                 <div class="mark__container">
-                                    <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
                                     <div class="mark_info">
                                         <label>DATA DEFICIENT</label>
                                         <span>DD</span>
