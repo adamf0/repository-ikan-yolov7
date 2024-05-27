@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Ikan;
+use Exception;
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables as DataTables;
+
+class KatalogIkanApiController extends Controller
+{
+    public function index(Request $request){
+        try {
+            $list = Ikan::orderBy('id','desc')->get();
+            return DataTables::of($list)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row){
+                    $render = '
+                    <a href="'.route('katalog_ikan.edit',['id'=>$row->id]).'" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                    <a href="'.route('katalog_ikan.delete',['id'=>$row->id]).'" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                    ';
+
+                    return $render;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+}
