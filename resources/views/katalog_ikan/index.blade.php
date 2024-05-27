@@ -205,8 +205,8 @@
                     }
                 },
                 {
-                    data: 'kometar',
-                    name: 'kometar',
+                    data: 'komentar',
+                    name: 'komentar',
                     render: function ( data, type, row, meta ) {
                         return data;
                     }

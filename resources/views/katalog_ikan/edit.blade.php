@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Karakteristik Morfologi</label>
-                                        <input type="text" class="form-control" name="karakteristik_morfologi" placeholder="Masukkan karakteristik morfologi..." value="{{$old->karakteristik_morfologi}}">
+                                        <textarea class="form-control editor2" name="karakteristik_morfologi" placeholder="Masukkan karakteristik morfologi...">{!!$old->karakteristik_morfologi!!}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Kemunculan</label>
@@ -122,7 +122,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Upaya konservasi</label>
-                                        <textarea class="form-control" name="upaya_konservasi" placeholder="Masukkan upaya konservasi...">{!!$old->upaya_konservasi!!}</textarea>
+                                        <textarea class="form-control editor1" name="upaya_konservasi" placeholder="Masukkan upaya konservasi...">{!!$old->upaya_konservasi!!}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Foto</label>
@@ -148,7 +148,17 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
+            ClassicEditor
+            .create( document.querySelector( '.editor1' ) )
+            .catch( error => {
+                console.error( error );
+            } );
 
+            ClassicEditor
+            .create( document.querySelector( '.editor2' ) )
+            .catch( error => {
+                console.error( error );
+            } );
         });
     </script>
 @endpush

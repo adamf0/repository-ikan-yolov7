@@ -108,15 +108,15 @@ class FamilyGuideApiController extends Controller
                     "spesies"                   => $item->spesies,
                     "nama_daerah"               => $item->nama_daerah,
                     "pengarang"                 => $item->pengarang,
-                    "karakteristik_morfologi"   => $item->karakteristik_morfologi,
+                    "karakteristik_morfologi"   => htmlspecialchars_decode($item->karakteristik_morfologi),
                     "kemunculan"                => $item->kemunculan,
                     "panjang_maksimal"          => $item->panjang_maksimal,
                     "status_konservasi"         => $item->status_konservasi,
                     "status_konservasi_tahun"   => $item->status_konservasi_tahun,
                     "id_genom"                  => $item->id_genom,
-                    "upaya_konservasi"          => $item->upaya_konservasi,
+                    "upaya_konservasi"          => htmlspecialchars_decode($item->upaya_konservasi),
                     "distribusi"                => $item->distribusi,
-                    "komentar"                   => $item->komentar,
+                    "komentar"                  => $item->komentar,
                 ];
             });
             

@@ -410,21 +410,14 @@
                         <tr>
                             <td>Komentar</td>
                             <td>:</td>
-                            <td class="ucfirst text-break">{{$ikan->komentar}}</td>
+                            <td class="ucfirst text-break">{!!$ikan->komentar!!}</td>
                         </tr>
                     </table>
                 </div>
 
                 <div data-area="karakteristik">
                     <h5>Karakteristik Morfologi</h5>
-                    @php
-                        $list_karakteristik = explode(';',$ikan->karakteristik_morfologi);
-                    @endphp
-                    <ol class="circle">
-                        @foreach ($list_karakteristik as $karakteristik)
-                            <li class="ucfirst text-break">{{ $karakteristik }}</li>
-                        @endforeach
-                    </ol>
+                    {!! $ikan->karakteristik_morfologi !!}
                 </div>
 
                 <div data-area="upaya_konservasi" class="upaya_konservasi__container">

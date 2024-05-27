@@ -11,7 +11,11 @@ class KatalogIkanApiController extends Controller
 {
     public function index(Request $request){
         try {
-            $list = Ikan::orderBy('id','desc')->get();
+            $list = Ikan::orderBy('id','desc')->get()->map(function($item){
+                $item->upaya_konservasi = htmlspecialchars_decode($item->upaya_konservasi);
+                $item->karakteristik_morfologi = htmlspecialchars_decode($item->karakteristik_morfologi);
+                return $item;
+            });
             return DataTables::of($list)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row){

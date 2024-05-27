@@ -125,7 +125,6 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{route('dashboard.index')}}" class="logo d-flex align-items-center">
-      <img src="{{ \App\Helper\Utility::loadAsset('img/logo.svg') }}" alt="" style="filter: brightness(0.5)"/>
         <span class="d-none d-lg-block">Fishiden</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -217,6 +216,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script type="text/javascript" src="{{ \App\Helper\Utility::loadAsset('jquery.redirect.js') }}"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
   @stack('scripts')
   <script>
     $(".yearpicker").yearpicker();

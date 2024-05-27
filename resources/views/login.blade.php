@@ -31,7 +31,6 @@
 
               <div class="flex-row align-items-center justify-content-center py-4">
                 <a href="#" class="logo text-decoration-none align-items-center">
-                  <img src="{{ \App\Helper\Utility::loadAsset('img/logo.svg') }}" alt="" style="filter: brightness(0.5)">
                   <span class="d-none d-lg-block">Fishiden</span>
                 </a>
                 <!-- <small class="d-none d-lg-block">Sistem Informasi Penelitian, Abdimas dan PubliKaSI</small> -->
