@@ -26,7 +26,17 @@ class FamilyGuideApiController extends Controller
 
     public function listDropdown(){
         try {
-            $ikan = Ikan::all()->groupBy([
+            $ikan = Ikan::select(
+                "fillum",
+                "super_kelas",
+                "kelas",
+                "ordo",
+                "famili",
+                "genus",
+                "spesies",
+            )
+            ->get()
+            ->groupBy([
                 "fillum",
                 "super_kelas",
                 "kelas",
