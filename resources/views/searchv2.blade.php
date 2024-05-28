@@ -428,7 +428,7 @@
                 <div data-area="upaya_konservasi" class="upaya_konservasi__container">
                     <h5>Upaya Konservasi</h5>
                     <p>
-                        {{$ikan->upaya_konservasi}}
+                        {!!$ikan->upaya_konservasi!!}
                     </p>
                 </div>
             </div>
