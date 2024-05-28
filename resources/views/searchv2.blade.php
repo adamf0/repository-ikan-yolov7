@@ -278,7 +278,7 @@
                 <img src="{{ \App\Helper\Utility::loadAssetbase64($image) }}" class="content--image" alt="hasil prediksi"/>
             @else
                 <img src="{{ \App\Helper\Utility::loadAsset('not_found.jpg') }}" class="content--image" style="box-shadow: none" alt="hasil prediksi"/>
-                <center><h2>Data ikan tidak ditemukan</h2></center>
+                <center><h2>data tidak ditemukan, pastikan kembali kejelasan foto/video yang Anda upload dan spesies ikan asli Indonesia</h2></center>
             @endif
             
             @foreach ($classification??[] as $klasifikasi => $ikan)
