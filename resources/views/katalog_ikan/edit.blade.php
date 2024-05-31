@@ -122,7 +122,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Tahun Konservasi</label>
-                                        <input type="text" class="form-control" name="status_konservasi_tahun" placeholder="Masukkan tahun konservasi..." {{$old->status_konservasi_tahun}}>
+                                        <input type="text" class="form-control" name="status_konservasi_tahun" placeholder="Masukkan tahun konservasi..." value="{{$old->status_konservasi_tahun}}">
                                     </div>
                                     <div class="form-group">
                                         <label>Upaya konservasi</label>

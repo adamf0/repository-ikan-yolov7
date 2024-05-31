@@ -20,13 +20,14 @@ class KatalogIkanApiController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row){
                     $render = '
+                    <a href="#" class="btn btn-primary btn-detail">Detail</a>
                     <a href="'.route('katalog_ikan.edit',['id'=>$row->id]).'" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                     <a href="'.route('katalog_ikan.delete',['id'=>$row->id]).'" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                     ';
 
                     return $render;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','karakteristik_morfologi','upaya_konservasi'])
                 ->make(true);
         } catch (Exception $e) {
             throw $e;

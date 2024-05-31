@@ -27,27 +27,12 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Aksi</th>
-                                        <th>Kingdom</th>
-                                        <th>Fillum</th>
-                                        <th>Super Kelas</th>
-                                        <th>Kelas</th>
                                         <th>Ordo</th>
                                         <th>Famili</th>
                                         <th>Genus</th>
-                                        <th>Spesie</th>
-                                        <th>Kategori</th>
-                                        <th>Habitat</th>
-                                        <th>Nama daerah</th>
-                                        <th>Pengarang</th>
-                                        <th>Karakteristik Morfologi</th>
-                                        <th>Kemunculan</th>
-                                        <th>Panjang Maksimal</th>
-                                        <th>ID Genus</th>
+                                        <th>Spesies</th>
                                         <th>Status</th>
                                         <th>Tahun Konservasi</th>
-                                        <th>Upaya Konservasi</th>
-                                        <!-- <th>Foto</th> -->
-                                        <th>Komentar</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -59,6 +44,17 @@
         </div>
     </div>
 </div>
+<div class="modal modal-lg fade" id="modalDetail" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title modalDetailTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modalDetailBody"></div>
+        </div>
+    </div>
+</div>
 @stop
 
 @push('scripts')
@@ -67,6 +63,10 @@
         $(document).ready(function () {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             
+            let modalDetail         = new bootstrap.Modal(document.getElementById('modalDetail'));
+            let modalDetailTitle = $('.modalDetailTitle');
+            let modalDetailBody = $('.modalDetailBody');
+
             let table = eTable({
                 url: `{{ route('datatable.KatalogIkan.index') }}`,
             }, [
@@ -78,34 +78,6 @@
                 {
                     data: 'action', 
                     name: 'action'
-                },
-                {
-                    data: 'kingdom',
-                    name: 'kingdom',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'fillum',
-                    name: 'fillum',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'super_kelas',
-                    name: 'super_kelas',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'kelas',
-                    name: 'kelas',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
                 },
                 {
                     data: 'ordo',
@@ -136,62 +108,6 @@
                     }
                 },
                 {
-                    data: 'kategori',
-                    name: 'kategori',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'kategori',
-                    name: 'kategori',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'nama_daerah',
-                    name: 'nama_daerah',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'pengarang',
-                    name: 'pengarang',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'karakteristik_morfologi',
-                    name: 'karakteristik_morfologi',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'kemunculan',
-                    name: 'kemunculan',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'panjang_maksimal',
-                    name: 'panjang_maksimal',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'id_genom',
-                    name: 'id_genom',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
                     data: 'status_konservasi',
                     name: 'status_konservasi',
                     render: function ( data, type, row, meta ) {
@@ -205,21 +121,98 @@
                         return data;
                     }
                 },
-                {
-                    data: 'upaya_konservasi',
-                    name: 'upaya_konservasi',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
-                {
-                    data: 'komentar',
-                    name: 'komentar',
-                    render: function ( data, type, row, meta ) {
-                        return data;
-                    }
-                },
             ]);
+
+            $('#tb tbody').on('click', '.btn-detail', function(e) {
+                e.preventDefault();
+                const type = $(this).data('type');
+                const rowData = table.row($(this).closest('tr')).data();
+                let contentTable = `<tr>
+                                        <th>Kingdom</th>
+                                        <td>${rowData.kingdom}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fillum</th>
+                                        <td>${rowData.fillum}</td>
+                                    </tr>
+                                    <tr>    
+                                        <th>Super Kelas</th>
+                                        <td>${rowData.super_kelas}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ordo</th>
+                                        <td>${rowData.ordo}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Famili</th>
+                                        <td>${rowData.famili}</td>
+                                    </tr>
+                                    <tr>    
+                                        <th>Genus</th>
+                                        <td>${rowData.genus}</td>
+                                    </tr>
+                                    <tr>    
+                                        <th>Spesies</th>
+                                        <td>${rowData.spesies}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kategori</th>
+                                        <td>${rowData.kategori}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Habitat</th>
+                                        <td>${rowData.habitat}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Daerah</th>
+                                        <td>${rowData.nama_daerah}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pengarang</th>
+                                        <td>${rowData.pengarang}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Karakteristik</th>
+                                        <td>${rowData.karakteristik_morfologi}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kemunculan</th>
+                                        <td>${rowData.kemunculan}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Panjang</th>
+                                        <td>${rowData.panjang_maksimal}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <td>${rowData.id_genom}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status</th>
+                                        <td>${rowData.status_konservasi}</td>
+                                    </tr>
+                                    <tr>    
+                                        <th>Tahun</th>
+                                        <td>${rowData.status_konservasi_tahun}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Upaya</th>
+                                        <td>${rowData.upaya_konservasi}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Komentar</th>
+                                        <td>${rowData.komentar}</td>
+                                    </tr>`;
+                
+                modalDetailTitle.text("Detail Spesies ");
+                modalDetailBody.html(`<div class="row table-responsive offset-x">
+                                        <table class="col-12 table">
+                                            ${contentTable}
+                                        </table>
+                                    </div>`);
+                modalDetail.show();
+            });
         });
+        
     </script>
 @endpush
