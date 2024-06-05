@@ -26,6 +26,9 @@
                     <li class="nav__item">
                         <a href="{{ route('about') }}" class="nav__link {{\App\Helper\Utility::stateMenu(['about'],request())? 'nav__link--button':''}}">About</a>
                     </li>
+                    <li class="nav__item">
+                        <a href="{{ route('login') }}" class="nav__link">Login</a>
+                    </li>
                 </ul>
             </nav>
         </div>
