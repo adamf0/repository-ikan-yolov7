@@ -374,13 +374,7 @@
     }
 
     $(document).ready(function(){
-        const navToggle = document.querySelector('.nav-toggle');
-        const nav       = document.querySelector('.nav');
         listIkan        = $("#listIkan");
-
-        navToggle.addEventListener('click', () => {
-            nav.classList.toggle('nav--visible');
-        })
 
         let dataForm = new FormData();
         dataForm.append("fillum",null)
