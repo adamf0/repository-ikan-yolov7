@@ -21,10 +21,19 @@
             <nav class="nav">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="{{ route('familyguide') }}" class="nav__link {{\App\Helper\Utility::stateMenu(['family_guide'],request())? 'nav__link--button':''}}">Family Guide</a>
+                        <a href="#apa_fishiden" class="nav__link">Apa itu Fishiden</a>
                     </li>
                     <li class="nav__item">
-                        <a href="{{ route('about') }}" class="nav__link {{\App\Helper\Utility::stateMenu(['about'],request())? 'nav__link--button':''}}">About</a>
+                        <a href="#cara_kerja" class="nav__link">Cara Kerja</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#keahlian" class="nav__link">Keahlian</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{{ route('about') }}" class="nav__link {{\App\Helper\Utility::stateMenu(['about'],request())? 'nav__link--button':''}}">Tentang</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{{ route('familyguide') }}" class="nav__link {{\App\Helper\Utility::stateMenu(['family_guide'],request())? 'nav__link--button':''}}">Gallery</a>
                     </li>
                     <li class="nav__item">
                         <a href="{{ route('login.index') }}" class="nav__link">Login</a>
@@ -51,6 +60,9 @@
                     </li>
                     <li>
                         <a href="https://www.iucnredlist.org/">The IUCN Red List of Threatened SpeciesTM</a>
+                    </li>
+                    <li>
+                        <a href="https://www.ncbi.nlm.nih.gov/">NCBI (National Center for Biotechnology Information)</a>
                     </li>
                 </ul>
             </div>

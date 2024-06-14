@@ -81,7 +81,7 @@
 <section class="section2">
         <div class="content__section--grid">
             <div class="panel">
-                <h3>About</h3>
+                <h3>Tentang</h3>
             </div>
             <div class="container panel__content">
                 <h3>Selamat Datang di Aplikasi Klasifikasi Ikan: "Fishiden"</h3>

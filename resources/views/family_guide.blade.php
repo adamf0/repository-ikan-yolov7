@@ -161,7 +161,7 @@
 <section class="section2">
         <div class="content__section--grid">
             <div class="panel">
-                <h3>Family Guide</h3>
+                <h3>Gallery</h3>
             </div>
             <div class="panel__content">
                 <div class="panel__filter">

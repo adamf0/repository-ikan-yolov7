@@ -7,6 +7,7 @@ use App\Http\Controllers\FamilyGuideController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KatalogIkanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,9 @@ Route::get('/acknowledgements',[AcknowledgementsController::class,"index"])->nam
 Route::get('/logout', [LoginController::class,"logout"])->name('login.logout');
 Route::get('/login', [LoginController::class,"index"])->name('login.index');
 Route::post('/login', [LoginController::class,"dologin"])->name('login.dologin');
+Route::get('/register',[RegisterController::class,"index"])->name('register.index');
+Route::post('/register',[RegisterController::class,"store"])->name('register.store');
+
 Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard.index');
 Route::get('/katalog_ikan',[KatalogIkanController::class,"index"])->name('katalog_ikan.index');
 Route::get('/katalog_ikan/add',[KatalogIkanController::class,"add"])->name('katalog_ikan.add');
