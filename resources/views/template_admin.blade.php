@@ -152,14 +152,14 @@
             <li class="dropdown-header">
               <h6>{{\App\Helper\Utility::getName()}}</h6>
             </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{route('profile.index')}}">
+                <i class="bi bi-person"></i>
+                <span>Profile</span>
+              </a>
+            </li>
             {{-- <li>
               <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -188,7 +188,11 @@
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <x-sidebar-item-menu title="Dashboard" icon="bi bi-menu-button-wide" link="{{route('dashboard.index')}}" :active="\App\Helper\Utility::stateMenu(['dashboard'],request())" />
-      <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-menu-button-wide" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['jenis_cuti'],request())" />  
+      @if (\App\Helper\Utility::hasAdmin())
+      <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-menu-button-wide" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['katalog_ikan'],request())" />  
+      @else
+      <x-sidebar-item-menu title="Project" icon="bi bi-menu-button-wide" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['project'],request())" />
+      @endif
       <!-- <li class="nav-heading">Form Pengajuan</li> -->
     </ul>
   </aside><!-- End Sidebar-->

@@ -39,7 +39,8 @@
                   </div>
                 </div>
               </div>
-              <form action="{{route('login.dologin')}}" method="post">
+              <form action="{{route('register.store')}}" method="post">
+                @csrf
                 <div class="row gy-3 gy-md-4 overflow-hidden">
                   <div class="col-12">
                     <label for="email" class="form-label">Email <span class="text-danger">*</span></label>

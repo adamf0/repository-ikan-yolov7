@@ -7,6 +7,7 @@ use App\Http\Controllers\FamilyGuideController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KatalogIkanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +26,21 @@ Route::get('/register',[RegisterController::class,"index"])->name('register.inde
 Route::post('/register',[RegisterController::class,"store"])->name('register.store');
 
 Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard.index');
+
+Route::get('/profile', [ProfileController::class,"index"])->name('profile.index');
+Route::get('/profile/edit', [ProfileController::class,"edit"])->name('profile.edit');
+Route::get('/profile/save', [ProfileController::class,"update"])->name('profile.update');
+
 Route::get('/katalog_ikan',[KatalogIkanController::class,"index"])->name('katalog_ikan.index');
 Route::get('/katalog_ikan/add',[KatalogIkanController::class,"add"])->name('katalog_ikan.add');
 Route::post('/katalog_ikan/store',[KatalogIkanController::class,"store"])->name('katalog_ikan.store');
 Route::get('/katalog_ikan/edit/{id}',[KatalogIkanController::class,"edit"])->name('katalog_ikan.edit');
 Route::post('/katalog_ikan/update',[KatalogIkanController::class,"update"])->name('katalog_ikan.update');
 Route::get('/katalog_ikan/delete/{id}',[KatalogIkanController::class,"delete"])->name('katalog_ikan.delete');
+
+// Route::get('/project',[KatalogIkanController::class,"index"])->name('project.index');
+// Route::get('/project/add',[KatalogIkanController::class,"add"])->name('project.add');
+// Route::post('/project/store',[KatalogIkanController::class,"store"])->name('project.store');
+// Route::get('/project/edit/{id}',[KatalogIkanController::class,"edit"])->name('project.edit');
+// Route::post('/project/update',[KatalogIkanController::class,"update"])->name('project.update');
+// Route::get('/project/delete/{id}',[KatalogIkanController::class,"delete"])->name('project.delete');

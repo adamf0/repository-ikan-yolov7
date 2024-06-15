@@ -4,6 +4,7 @@ namespace App\Helper;
 
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,19 +23,24 @@ trait Utility
     }
     public static function getName()
     {
-        return Session::get('name') ?? 'N/A';
+        return Session::get('level')=="admin"? Session::get('nama'):Auth::user()->name;
     }
-    public static function getLevel($toLower=false)
+    public static function getLevel()
     {
-        return match (Session::get('levelActive')) {
-            "admin"     => $toLower? "admin":"Admin",
-            default     => $toLower? "n/a":"N/A"
+        return match (Session::get('level')) {
+            "admin"     => "Admin",
+            default     => "User"
         };
     }
-    public static function getLevels()
+    public static function hasAdmin()
     {
-        return Session::get('level');
+        return Session::get('level')=="admin";
     }
+    public static function hasUser()
+    {
+        return Session::get('level')=="user";
+    }
+    
     public static function loadAsset($path)
     {
         return env('DEPLOY', 'dev') == 'dev' ? asset($path) : secure_asset($path);

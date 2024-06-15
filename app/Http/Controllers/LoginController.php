@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\TypeNotif;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -11,13 +14,20 @@ class LoginController extends Controller
     }
 
     public function dologin(Request $request){
-        if($request->username=="admin" && $request->password=="123"){
-            return redirect()->to('dashboard');
+        if($request->email=="admin" && $request->password=="123"){
+            Session::push("nama","admininstrator");
+            Session::push("level","admin");
+            return redirect()->route('dashboard.index');
+        } else if(Auth::attempt(["email"=>$request->get('email'),"password"=>$request->get('password')])){
+            Session::push("level","user");
+            return redirect()->route('dashboard.index');
         }
-        return redirect()->to('login');
+
+        Session::flash(TypeNotif::Error->val(), "akses ditolak");
+        return redirect()->route('login.index');
     }
     public function logout(){
-        // session_destroy();
-        return redirect()->to('login');
+        Auth::logout();
+        return redirect()->route('login.index');
     }
 }

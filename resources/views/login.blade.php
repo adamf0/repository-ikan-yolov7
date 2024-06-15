@@ -40,10 +40,11 @@
                 </div>
               </div>
               <form action="{{route('login.dologin')}}" method="post">
+                @csrf
                 <div class="row gy-3 gy-md-4 overflow-hidden">
                   <div class="col-12">
-                    <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-                    <input class="form-control" name="username" id="username" required>
+                    <label for="email" class="form-label">Email/Username<span class="text-danger">*</span></label>
+                    <input class="form-control" name="email" id="email" required>
                   </div>
                   <div class="col-12">
                     <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
