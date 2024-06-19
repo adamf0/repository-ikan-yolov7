@@ -9,6 +9,7 @@ use App\Http\Controllers\KatalogIkanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NegaraSelect2Controller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,7 @@ Route::get('/katalog_ikan/delete/{id}',[KatalogIkanController::class,"delete"])-
 
 Route::get('/list_negara',[NegaraSelect2Controller::class,"list"])->name('select2.negara.list');
 
-// Route::get('/project',[KatalogIkanController::class,"index"])->name('project.index');
+Route::get('/project',[ProjectController::class,"index"])->name('project.index');
 // Route::get('/project/add',[KatalogIkanController::class,"add"])->name('project.add');
 // Route::post('/project/store',[KatalogIkanController::class,"store"])->name('project.store');
 // Route::get('/project/edit/{id}',[KatalogIkanController::class,"edit"])->name('project.edit');
