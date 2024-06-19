@@ -36,6 +36,12 @@
                   <div class="mb-5">
                     <h3>Register</h3>
                     {{ \App\Helper\Utility::showNotif() }}
+                    @if ($errors->count())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      {{ implode(",",$errors->all()) }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
                   </div>
                 </div>
               </div>

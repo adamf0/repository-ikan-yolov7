@@ -15,7 +15,17 @@ class RegisterController extends Controller
 
     public function store(Request $request){
         try {
+            $validator      = validator($request->all(), [
+                "email"     => "required|email|unique:users,email",
+                "password"  => "required",
+            ]);
+
+            if(count($validator->errors())){
+                return redirect()->route('register.index')->withInput()->withErrors($validator->errors()->toArray());    
+            } 
+
             $user           = new User();
+            $user->nama     = "user-".date('Ymd').User::count();
             $user->email    = $request->email;
             $user->password = $request->password;
             $user->save();
