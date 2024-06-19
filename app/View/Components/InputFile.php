@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Helper\File;
 use Closure;
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -17,7 +18,9 @@ class InputFile extends Component
     public $default=false;
     public $class='';
     public $enable=false;
-    public function __construct($title=false,$name,$default=false,$class='',$enable=false)
+    public $accept=false;
+    public $multi=false;
+    public function __construct($title=false,$name,$default=false,$class='',$accept=false,$enable=false,$multi=false)
     {
         // if($title==null) throw new Exception('title in component indicator cannot be null'); 
         if($name==null) throw new Exception('name in component indicator cannot be null'); 
@@ -26,7 +29,9 @@ class InputFile extends Component
         $this->name = $name;
         $this->default = $default;
         $this->class = $class;
+        $this->accept = $accept;
         $this->enable = $enable;
+        $this->multi = $multi;
     }
 
     /**
@@ -37,9 +42,11 @@ class InputFile extends Component
         return view('components.input-file',[
             'title'=>$this->title,
             'name'=>$this->name,
-            'default'=>$this->default,
+            'default'=>new File($this->default,'dokumen_foto'),
             'class'=>$this->class,
+            'accept'=>$this->accept,
             'enable'=>$this->enable,
+            'multi'=>$this->multi,
         ]);
     }
 }

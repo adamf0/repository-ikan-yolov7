@@ -6,7 +6,7 @@
 @section('content')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <style>
-    #map { min-height: 300px; }
+    #map { min-height: 600px; }
 </style>
 
 <div class="row gutters-sm">
@@ -14,10 +14,10 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <img src="{{empty($profile->foto)? 'https://bootdey.com/img/Content/avatar/avatar7.png':\App\Helper\Utility::loadAsset('dokumen_foto/'.$profile->foto)}}" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                        <h4>John Doe</h4>
-                        <p class="text-secondary mb-1">Negara</p>
+                        <h4>{{empty($profile->nama)? '-':$profile->nama}}</h4>
+                        <p class="text-secondary mb-1">{{empty($profile->negara)? '-':$profile->negara}}</p>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                         <h6 class="mb-0">Nama Lengkap</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        Kenneth Valdez
+                        {{ $profile->nama }}
                     </div>
                 </div>
                 <hr>
@@ -43,7 +43,7 @@
                         <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        fip@jukmuh.al
+                        {{ $profile->email }}
                     </div>
                 </div>
                 <hr>
@@ -52,7 +52,7 @@
                         <h6 class="mb-0">Pekerjaan</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        -
+                        {{ $profile->pekerjaan }}
                     </div>
                 </div>
                 <hr>
@@ -61,7 +61,7 @@
                         <h6 class="mb-0">Instansi </h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        -
+                        {{ $profile->instansi }}
                     </div>
                 </div>
                 <hr>
@@ -70,7 +70,7 @@
                         <h6 class="mb-0">Bidang Keahlian</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        -
+                        {{ $profile->bidang_keahlian }}
                     </div>
                 </div>
                 <hr>
@@ -91,9 +91,12 @@
 <script>
     $(document).ready(function() {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        var map = L.map('map').setView([51.505, -0.09], 13); // Set the view to a specific location and zoom level
+        var map = L.map('map').setView([-6.200000, 106.816666], 5); // Set the view to a specific location and zoom level
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+        @if(!empty($profile->latitude) && !empty($profile->longitude))
+            L.marker([`{{$profile->latitude}}`,`{{$profile->longitude}}`]).addTo(map);
+        @endif
 
         map.on('click', function(e){
             var coord = e.latlng;

@@ -44,6 +44,14 @@ return [
             'throw' => false,
         ],
 
+        'dokumen_foto' => [
+            'driver' => 'local',
+            'root' => public_path('/dokumen_foto'),
+            'url' => env('APP_URL').'/dokumen_foto',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

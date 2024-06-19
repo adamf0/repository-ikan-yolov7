@@ -23,7 +23,7 @@ trait Utility
     }
     public static function getName()
     {
-        return Session::get('level')=="admin"? Session::get('nama'):Auth::user()->name;
+        return Session::get('level')=="admin"? Session::get('nama'):Auth::user()->nama;
     }
     public static function getLevel()
     {

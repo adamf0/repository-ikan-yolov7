@@ -19,6 +19,8 @@ class LoginController extends Controller
             Session::push("level","admin");
             return redirect()->route('dashboard.index');
         } else if(Auth::attempt(["email"=>$request->get('email'),"password"=>$request->get('password')])){
+            Session::push("id",Auth::user()?->id);
+            Session::push("nama",Auth::user()?->nama);
             Session::push("level","user");
             return redirect()->route('dashboard.index');
         }

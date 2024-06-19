@@ -7,10 +7,12 @@ use App\Http\Controllers\FamilyGuideController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KatalogIkanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NegaraSelect2Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
+use Yajra\DataTables\Html\Editor\Fields\Select;
 
 Route::get('/', [HomeController::class,"index"])->name('home');
 Route::get('/about',[AboutController::class,"index"])->name('about');
@@ -29,7 +31,7 @@ Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard.
 
 Route::get('/profile', [ProfileController::class,"index"])->name('profile.index');
 Route::get('/profile/edit', [ProfileController::class,"edit"])->name('profile.edit');
-Route::get('/profile/save', [ProfileController::class,"update"])->name('profile.update');
+Route::post('/profile/save', [ProfileController::class,"update"])->name('profile.update');
 
 Route::get('/katalog_ikan',[KatalogIkanController::class,"index"])->name('katalog_ikan.index');
 Route::get('/katalog_ikan/add',[KatalogIkanController::class,"add"])->name('katalog_ikan.add');
@@ -37,6 +39,8 @@ Route::post('/katalog_ikan/store',[KatalogIkanController::class,"store"])->name(
 Route::get('/katalog_ikan/edit/{id}',[KatalogIkanController::class,"edit"])->name('katalog_ikan.edit');
 Route::post('/katalog_ikan/update',[KatalogIkanController::class,"update"])->name('katalog_ikan.update');
 Route::get('/katalog_ikan/delete/{id}',[KatalogIkanController::class,"delete"])->name('katalog_ikan.delete');
+
+Route::get('/list_negara',[NegaraSelect2Controller::class,"list"])->name('select2.negara.list');
 
 // Route::get('/project',[KatalogIkanController::class,"index"])->name('project.index');
 // Route::get('/project/add',[KatalogIkanController::class,"add"])->name('project.add');
