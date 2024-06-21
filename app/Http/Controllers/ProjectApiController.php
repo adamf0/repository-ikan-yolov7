@@ -17,12 +17,25 @@ class ProjectApiController extends Controller
             $page = $request->get("page")??1;
             $limit = $request->get("limit")??10;
 
-            $project = Project::with(['IdentityCreator','Member','Member.IdentityMember'])->where('creator',$id_user)->orWhereHas('Member',function($query) use($id_user){
+            $project = Project::with(['Classification','IdentityCreator','Member','Member.IdentityMember'])->where('creator',$id_user)->orWhereHas('Member',function($query) use($id_user){
                 $query->where('id_user',$id_user);
             });
             $total_data = $project->count();
             $total_page = ceil($total_data / $limit);
 
+            $source = $project->offset($page-1*$limit)->limit($limit)->get()->map(function($item){
+                if(empty($item->Classification) || $item->Classification->count()==0){
+                    $item->foto = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+                } else{
+                    $data = (object) json_decode($item->Classification[0]?->result, true);
+                    if(isset($data->image)){
+                        $item->foto = "data:image/png;base64,".$data->image;
+                    } else{
+                        $item->foto = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+                    }
+                }
+                return $item;
+            });
             return json_encode([
                 "status"=>"ok",
                 "message"=>null,
@@ -33,7 +46,7 @@ class ProjectApiController extends Controller
                     "active_next"=> $page>=1 && $page<$total_page,
                     "page"=>$page,
                     "limit"=>$limit,
-                    "source"=>$project->offset($page-1*$limit)->limit($limit)->get(),
+                    "source"=>$source,
                 ]
             ]);
         } catch (Exception $e) {

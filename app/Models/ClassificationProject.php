@@ -14,7 +14,7 @@ class ClassificationProject extends Model
         "result"
     ];
 
-    public function Project(){
-        return $this->hasMany(Project::class, 'id_project', 'id');
-    }
+    // public function Project(){
+    //     return $this->hasMany(Project::class, 'id_project', 'id');
+    // }
 }

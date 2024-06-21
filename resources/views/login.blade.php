@@ -43,7 +43,7 @@
                 @csrf
                 <div class="row gy-3 gy-md-4 overflow-hidden">
                   <div class="col-12">
-                    <label for="email" class="form-label">Email/Username<span class="text-danger">*</span></label>
+                    <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
                     <input class="form-control" name="email" id="email" required>
                   </div>
                   <div class="col-12">

@@ -22,4 +22,7 @@ class Project extends Model
     public function IdentityCreator(){
         return $this->hasOne(User::class, 'id', 'creator');
     }
+    public function Classification(){
+        return $this->hasMany(ClassificationProject::class, 'id_project', 'id');
+    }
 }
