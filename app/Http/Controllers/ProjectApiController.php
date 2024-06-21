@@ -50,12 +50,12 @@ class ProjectApiController extends Controller
             $project            = new Project();
             $project->judul     = $request->judul;
             $project->deskripsi = $request->deskripsi;
-            $project->id_user   = $request->id_user;
+            $project->creator   = $request->id_user;
             $project->save();
 
             return json_encode([
                 "status"=>"ok",
-                "message"=>null,
+                "message"=>"berhasil buat project",
                 "data"=>$request->all()
             ]);
         } catch (Exception $e) {

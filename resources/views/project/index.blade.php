@@ -141,7 +141,7 @@
 
 <div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
-        <form class="modal-content modalContent" action="" method="post">
+        <form class="modal-content modalContent" action="{{route('api.project.store')}}" method="post">
             <div class="modal-header">
                 <h5 class="modal-title">Project Baru</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -474,7 +474,7 @@
                 data: formData,
                 success: function(response) {
                     modal.hide();
-                    alert('Project successfully saved!');
+                    alert(response.message);
                 },
                 error: function(xhr, status, error) {
                     alert('An error occurred: ' + xhr.responseText);
