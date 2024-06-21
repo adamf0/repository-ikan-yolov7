@@ -116,6 +116,7 @@
         flex-wrap: wrap;
         gap: 2rem;
         justify-content: center;
+        align-items: center;
         width: 100%;
         padding: 0 6vmax;
     }
@@ -133,7 +134,7 @@
     }
 
     .pengenalan>.box2 {
-        flex: 2;
+        flex: 1;
         min-width: min(100%, 30rem);
 
         & .penjelasan {
@@ -445,13 +446,13 @@
     </div>
 </section>
 <section class="section2" id="apa_fishiden">
+    <h1 class="heading-content">Apa itu Fishiden?</h1>
     <div class="container pengenalan">
         <div class="box1">
             <div class="card-image"></div>
         </div>
         <div class="box2">
             <div class="penjelasan">
-                <h1 class="heading-content">Apa itu Fishiden?</h1>
                 <p>Indonesia tercatat memiliki 1.248 jenis ikan air tawar dan 3.476 jenis ikan laut (9% dari jumlah jenis dunia). Fishiden adalah sistem inovatif yang menggunakan AI untuk mengidentifikasi dan mengklasifikasi ikan air tawar dan air laut asli Indonesia. Selain itu, Fishiden memberikan informasi status dan upaya konservasi serta menyajikan data genom setiap species teridentifikasi yang bisa digunakan dalam proses pembelajaran.</p>
             </div>
         </div>
