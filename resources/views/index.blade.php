@@ -109,7 +109,7 @@
     }
 
     .heading-content{
-        font-size: clamp(.5rem, .5rem + 4vmax, 4rem);
+        font-size: clamp(.5rem, .5rem + 4vmax, 2.6rem);
     }
     .pengenalan {
         display: flex;
