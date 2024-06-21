@@ -53,7 +53,8 @@ class FamilyGuideApiController extends Controller
         } catch (Exception $e) {
             return json_encode([
                 "status"=>"fail",
-                "message"=>$e->getMessage(),
+                "message"=>"ada masalah pada proses aplikasi",
+                "log"=>$e->getMessage(),
                 "data"=>[],
             ]);
         }
@@ -135,7 +136,8 @@ class FamilyGuideApiController extends Controller
         } catch (Exception $e) {
             return json_encode([
                 "status"=>"fail",
-                "message"=>$e->getMessage(),
+                "message"=>"ada masalah pada proses aplikasi",
+                "log"=>$e->getMessage(),
                 "data"=>[],
             ]);
         }

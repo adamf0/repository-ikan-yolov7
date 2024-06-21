@@ -2,17 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassificationProject;
 use App\Models\Ikan;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
-use Ramsey\Uuid\Uuid;
 
-class KlasifikasiApiController extends Controller
+class ClassificationProjectApiController extends Controller
 {
-    public function index(Request $request){
+    public function list(Request $request,$id_project){
+        try {
+            $page = $request->get("page")??1;
+            $limit = $request->get("limit")??10;
+
+            $project = ClassificationProject::where('id_project',$id_project);
+            $total_data = $project->count();
+            $total_page = ceil($total_data / $limit);
+
+            return json_encode([
+                "status"=>"ok",
+                "message"=>null,
+                "data"=>[
+                    "total_data"=>$total_data,
+                    "total_page"=>$total_page,
+                    "active_prev"=>$page<=$total_page && $page>1,
+                    "active_next"=> $page>=1 && $page<$total_page,
+                    "page"=>$page,
+                    "limit"=>$limit,
+                    "source"=>$project->offset($page-1*$limit)->limit($limit)->get()->map(function($item){
+                        $item->result = json_decode($item->result, true);
+
+                        return $item;
+                    }),
+                ]
+            ]);
+        } catch (Exception $e) {
+            return json_encode([
+                "status"=>"fail",
+                "message"=>"ada masalah pada proses aplikasi",
+                "log"=>$e->getMessage(),
+                "data"=>[],
+            ]);
+        }
+    }
+    public function store(Request $request){
         try {
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
@@ -73,18 +106,37 @@ class KlasifikasiApiController extends Controller
                 };
                 $datas["image"] = $responseData["img_result"];
 
-                $key = ($request->ip()??Uuid::uuid4()->toString())."-".date("Ymdhis");
-                $filePath = public_path($key.'.json');
-                File::put($filePath, json_encode($datas));
+                $classProject = new ClassificationProject();
+                $classProject->id_project = $request->id_project;
+                $classProject->result = json_encode($datas);
+                $classProject->save();
 
                 return json_encode([
                     "status"=>"ok",
                     "message"=>null,
-                    "data"=>$key
+                    "data"=>$request->all()
                 ]);
             } else {
                 throw new Exception("belum upload gambar");
             }
+        } catch (Exception $e) {
+            return json_encode([
+                "status"=>"fail",
+                "message"=>"ada masalah pada proses aplikasi",
+                "log"=>$e->getMessage(),
+                "data"=>[],
+            ]);
+        }
+    }
+    public function delete($id){
+        try {
+            ClassificationProject::findOrFail($id)->delete();
+           
+            return json_encode([
+                "status"=>"ok",
+                "message"=>"berhasil hapus gambar klasifikasi",
+                "data"=>null
+            ]);
         } catch (Exception $e) {
             return json_encode([
                 "status"=>"fail",

@@ -191,7 +191,7 @@
       @if (\App\Helper\Utility::hasAdmin())
       <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-menu-button-wide" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['katalog_ikan'],request())" />  
       @else
-      <x-sidebar-item-menu title="Project" icon="bi bi-menu-button-wide" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['project'],request())" />
+      <x-sidebar-item-menu title="Project" icon="bi bi-menu-button-wide" link="{{route('project.index')}}" :active="\App\Helper\Utility::stateMenu(['project'],request())" />
       @endif
       <!-- <li class="nav-heading">Form Pengajuan</li> -->
     </ul>

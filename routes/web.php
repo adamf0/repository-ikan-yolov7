@@ -12,8 +12,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserSelect2Controller;
 use Illuminate\Support\Facades\Route;
-use Yajra\DataTables\Html\Editor\Fields\Select;
 
 Route::get('/', [HomeController::class,"index"])->name('home');
 Route::get('/about',[AboutController::class,"index"])->name('about');
@@ -42,10 +42,8 @@ Route::post('/katalog_ikan/update',[KatalogIkanController::class,"update"])->nam
 Route::get('/katalog_ikan/delete/{id}',[KatalogIkanController::class,"delete"])->name('katalog_ikan.delete');
 
 Route::get('/list_negara',[NegaraSelect2Controller::class,"list"])->name('select2.negara.list');
+Route::get('/list_user',[UserSelect2Controller::class,"list"])->name('select2.user.list');
 
 Route::get('/project',[ProjectController::class,"index"])->name('project.index');
-// Route::get('/project/add',[KatalogIkanController::class,"add"])->name('project.add');
-// Route::post('/project/store',[KatalogIkanController::class,"store"])->name('project.store');
-// Route::get('/project/edit/{id}',[KatalogIkanController::class,"edit"])->name('project.edit');
-// Route::post('/project/update',[KatalogIkanController::class,"update"])->name('project.update');
-// Route::get('/project/delete/{id}',[KatalogIkanController::class,"delete"])->name('project.delete');
+Route::get('/project/{id}',[ProjectController::class,"detail"])->name('project.detail');
+Route::get('/accept_project/{id_member}',[ProjectController::class,"verifyInvite"])->name('project.verifyInvite');
