@@ -472,11 +472,14 @@
                 url: url,
                 method: method,
                 data: formData,
+                dataType: 'json',
                 success: function(response) {
                     modal.hide();
+                    loadProject()
                     alert(response.message);
                 },
                 error: function(xhr, status, error) {
+                    loadProject()
                     alert('An error occurred: ' + xhr.responseText);
                 }
             });

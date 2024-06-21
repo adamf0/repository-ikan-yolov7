@@ -112,7 +112,7 @@
     }
 </style>
 <div id="spinner-body" class="pt-5">
-    <div class="spinner-border text-primary" role="status">
+    <div class="spinner-border text-primary" role="status" style="position: absolute;top: 50%;">
     </div>
 </div>
 
