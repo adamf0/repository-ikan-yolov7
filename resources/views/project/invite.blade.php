@@ -31,7 +31,8 @@
                                         <!-- <h3 class="display-2 fw-bold mb-2"></h3> -->
                                         <p class="fs-5 mb-0 text-secondary">
                                             {{$message}}
-                                        </p>
+                                        </p><br>
+                                        <a href="{{ route('project.index') }}">Klik menuju halama project</a>
                                     </div>
                                 </div>
                             </div>
