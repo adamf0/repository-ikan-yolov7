@@ -40,7 +40,11 @@
                         <a href="{{ route('familyguide') }}" class="nav__link {{\App\Helper\Utility::stateMenu(['family_guide'],request())? 'nav__link--button':''}}">Gallery</a>
                     </li>
                     <li class="nav__item">
+                        @if (Session::has("level"))
                         <a href="{{ route('login.index') }}" class="nav__link">Login</a>
+                        @else
+                        <a href="{{ route('dashboard.index') }}" class="nav__link">Dashboard</a>
+                        @endif
                     </li>
                 </ul>
             </nav>
