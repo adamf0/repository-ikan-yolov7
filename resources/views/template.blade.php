@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content='Klasifikasi Ikan; Kecerdasan Buatan; AI; Image Processing; Object Detection; Ikan Laut dan Ikan Tawar; Perairan Indonesia;' name='Keywords' />
+    <meta content='Situs klasifikasi ikan berbasis kecerdasan buatan ini memudahkan Anda mengenali semua ikan laut dan tawar di perairan Indonesia.' name='deskripsi' />
     <title>Fishiden</title>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css">
     <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 @yield('css')
+
 <body>
     <header>
         <div class="container text-center row">
@@ -71,7 +75,45 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
-    $(document).ready(function(){
+    function getCountry() {
+        const language = navigator.language || navigator.userLanguage;
+        if (language.includes('id')) {
+            return 'Indonesia';
+        } else {
+            return 'Other';
+        }
+    }
+
+    function setMetaTags() {
+        const country = getCountry();
+
+        let keywords = '';
+        let description = '';
+
+        if (country === 'Indonesia') {
+            keywords = 'Klasifikasi Ikan; Kecerdasan Buatan; AI; Image Processing; Object Detection; Ikan Laut dan Ikan Tawar; Perairan Indonesia;';
+            description = 'Situs klasifikasi ikan berbasis kecerdasan buatan ini memudahkan Anda mengenali semua ikan laut dan tawar di perairan Indonesia.';
+        } else {
+            keywords = 'Fish classification; Artificial intelligence; AI; Image Processing; Object Detection; Sea Fish and Freshwater Fish;';
+            description = 'This AI-based fish classification site makes it easy for you to recognize all sea and freshwater fish.';
+        }
+
+        const keywordsMeta = document.createElement('meta');
+        keywordsMeta.name = 'Keywords';
+        keywordsMeta.content = keywords;
+        document.head.appendChild(keywordsMeta);
+
+        const descriptionMeta = document.createElement('meta');
+        descriptionMeta.name = 'description';
+        descriptionMeta.content = description;
+        document.head.appendChild(descriptionMeta);
+    }
+
+    // Panggil fungsi untuk mengatur meta tag setelah halaman dimuat
+    document.addEventListener('DOMContentLoaded', setMetaTags);
+</script>
+<script>
+    $(document).ready(function() {
         const navToggle = document.querySelector('.nav-toggle');
         const nav = document.querySelector('.nav');
 
@@ -81,4 +123,5 @@
     });
 </script>
 @yield('script')
+
 </html>

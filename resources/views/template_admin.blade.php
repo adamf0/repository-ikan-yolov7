@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content='Klasifikasi Ikan; Kecerdasan Buatan; AI; Image Processing; Object Detection; Ikan Laut dan Ikan Tawar; Perairan Indonesia;' name='Keywords' />
+  <meta content='Situs klasifikasi ikan berbasis kecerdasan buatan ini memudahkan Anda mengenali semua ikan laut dan tawar di perairan Indonesia.' name='deskripsi' />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
   <title>Fishiden</title>
@@ -12,7 +14,6 @@
   <link href="{{ \App\Helper\Utility::loadAsset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
-  <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" />
   <link rel="stylesheet" href="{{ \App\Helper\Utility::loadAsset('assets/css/yearpicker.css') }}" />
@@ -145,7 +146,7 @@
         <!-- <x-top-nav-menu-dropdown></x-top-nav-menu-dropdown> -->
         <li class="nav-item dropdown pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="{{ \App\Helper\Utility::loadAsset('img/logo.svg') }}" alt=""/>
+            <img src="{{ \App\Helper\Utility::loadAsset('img/logo.svg') }}" alt="" />
             <span class="d-none d-md-block dropdown-toggle ps-2">{{\App\Helper\Utility::getName()}}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -189,7 +190,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
       <x-sidebar-item-menu title="Dashboard" icon="bi bi-menu-button-wide" link="{{route('dashboard.index')}}" :active="\App\Helper\Utility::stateMenu(['dashboard'],request())" />
       @if (\App\Helper\Utility::hasAdmin())
-      <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-menu-button-wide" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['katalog_ikan'],request())" />  
+      <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-menu-button-wide" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['katalog_ikan'],request())" />
       @else
       <x-sidebar-item-menu title="Project" icon="bi bi-menu-button-wide" link="{{route('project.index')}}" :active="\App\Helper\Utility::stateMenu(['project'],request())" />
       @endif
@@ -257,6 +258,44 @@
         left: $parent.offset().left
       });
     });
+  </script>
+  <script>
+    function getCountry() {
+      const language = navigator.language || navigator.userLanguage;
+      if (language.includes('id')) {
+        return 'Indonesia';
+      } else {
+        return 'Other';
+      }
+    }
+
+    function setMetaTags() {
+      const country = getCountry();
+
+      let keywords = '';
+      let description = '';
+
+      if (country === 'Indonesia') {
+        keywords = 'Klasifikasi Ikan; Kecerdasan Buatan; AI; Image Processing; Object Detection; Ikan Laut dan Ikan Tawar; Perairan Indonesia;';
+        description = 'Situs klasifikasi ikan berbasis kecerdasan buatan ini memudahkan Anda mengenali semua ikan laut dan tawar di perairan Indonesia.';
+      } else {
+        keywords = 'Fish classification; Artificial intelligence; AI; Image Processing; Object Detection; Sea Fish and Freshwater Fish;';
+        description = 'This AI-based fish classification site makes it easy for you to recognize all sea and freshwater fish.';
+      }
+
+      const keywordsMeta = document.createElement('meta');
+      keywordsMeta.name = 'Keywords';
+      keywordsMeta.content = keywords;
+      document.head.appendChild(keywordsMeta);
+
+      const descriptionMeta = document.createElement('meta');
+      descriptionMeta.name = 'description';
+      descriptionMeta.content = description;
+      document.head.appendChild(descriptionMeta);
+    }
+
+    // Panggil fungsi untuk mengatur meta tag setelah halaman dimuat
+    document.addEventListener('DOMContentLoaded', setMetaTags);
   </script>
 </body>
 
