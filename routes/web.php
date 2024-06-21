@@ -13,6 +13,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserSelect2Controller;
+use App\Http\Middleware\ThrowSessionUI;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,"index"])->name('home');
@@ -27,6 +28,8 @@ Route::get('/login', [LoginController::class,"index"])->name('login.index');
 Route::post('/login', [LoginController::class,"dologin"])->name('login.dologin');
 Route::get('/register',[RegisterController::class,"index"])->name('register.index');
 Route::post('/register',[RegisterController::class,"store"])->name('register.store');
+
+Route::middleware(ThrowSessionUI::class)->group(function () {
 
 Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard.index');
 
@@ -47,3 +50,5 @@ Route::get('/list_user',[UserSelect2Controller::class,"list"])->name('select2.us
 Route::get('/project',[ProjectController::class,"index"])->name('project.index');
 Route::get('/project/{id}',[ProjectController::class,"detail"])->name('project.detail');
 Route::get('/accept_project/{id_member}',[ProjectController::class,"verifyInvite"])->name('project.verifyInvite');
+
+});

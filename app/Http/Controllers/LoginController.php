@@ -15,13 +15,13 @@ class LoginController extends Controller
 
     public function dologin(Request $request){
         if($request->email=="admin" && $request->password=="123"){
-            Session::push("nama","admininstrator");
-            Session::push("level","admin");
+            Session::put("nama","admininstrator");
+            Session::put("level","admin");
             return redirect()->route('dashboard.index');
         } else if(Auth::attempt(["email"=>$request->get('email'),"password"=>$request->get('password')])){
-            Session::push("id",Auth::user()?->id);
-            Session::push("nama",Auth::user()?->nama);
-            Session::push("level","user");
+            Session::put("id",Auth::user()?->id);
+            Session::put("nama",Auth::user()?->nama);
+            Session::put("level","user");
             return redirect()->route('dashboard.index');
         }
 
@@ -30,6 +30,7 @@ class LoginController extends Controller
     }
     public function logout(){
         Auth::logout();
+        Session::flush();
         return redirect()->route('login.index');
     }
 }

@@ -127,7 +127,7 @@
         & .card-image {
             width: 100%;
             height: min(70vmin, 27rem);
-            background-color: red;
+            background: url('{{\App\Helper\Utility::loadAsset("assets/img/fishiden.jpg")}}');
             border-radius: 10%;
         }
     }
