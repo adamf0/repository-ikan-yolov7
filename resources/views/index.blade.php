@@ -530,10 +530,10 @@
     </div>
 </section>
 <section class="section2" id="keahlian">
+    <h1 class="heading-content">Keahlian</h1>
     <div class="container pengenalan">
         <div class="box2">
             <div class="penjelasan">
-                <h1 class="heading-content">Keahlian</h1>
                 <p>Tim ahli kami mengonfigurasi dan menggunakan Fishiden untuk mengatasi tantangan identifikasi dan pemrosesan data unik yang dihadapi oleh pengguna. Kami menyediakan solusi khusus yang memungkinkan pengguna untuk membuat keputusan yang tepat berdasarkan data yang dapat diandalkan dan komprehensif. Fishiden merupakan pilot project yang memungkinkan untuk terus dikembangkan. Namun demikian struktur database (karakteristik, taksonomi, data genom, stratus konservasi, dan upaya konservasi) sama dengan data sebenarnya</p>
             </div>
         </div>
