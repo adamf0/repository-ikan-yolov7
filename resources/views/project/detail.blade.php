@@ -356,12 +356,12 @@
         }
         loadData()
 
-        $('#fileInput').addEventListener('change', function() {
-            console.log('File selected:', $(this)[0].files[0]);
+        fileInput.addEventListener('change', function() {
+            console.log('File selected:', $('#file')[0].files[0]);
             let dataForm = new FormData();
             dataForm.set("id_project", "{{$project->id}}");
             // if (fileInput.files.length) {
-                dataForm.set("image", $(this)[0].files[0], $(this)[0].files[0].name);
+                dataForm.set("image", $('#file')[0].files[0], $('#file')[0].files[0].name);
             // }
             $("#spinner-body").show();
 
