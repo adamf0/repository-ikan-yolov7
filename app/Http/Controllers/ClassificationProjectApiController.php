@@ -50,15 +50,15 @@ class ClassificationProjectApiController extends Controller
         ini_set('post_max_size', '10M');
 
         try {
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $base64Image = base64_encode(file_get_contents($image->getPathName()));
+            if ($request->has('image')) { //base64
+                // $image = $request->file('image');
+                // $base64Image = base64_encode(file_get_contents($image->getPathName()));
                 
                 $url = env("YOLO_URL","localhost")."/classfication";
                 $response = Http::withHeaders([
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
-                ])->post($url,["image"=>$base64Image]);
+                ])->post($url,["image"=>$request->get('image')]);
 
                 if (!$response->successful()) {
                     throw new Exception($response->json()['error']);
