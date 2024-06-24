@@ -50,7 +50,7 @@ class ClassificationProjectApiController extends Controller
         ini_set('post_max_size', '10M');
 
         try {
-            if ($request->hasFile('image')) {
+            if ($request->file('image')) {
                 $image = $request->file('image');
                 $base64Image = base64_encode(file_get_contents($image->getPathName()));
                 
