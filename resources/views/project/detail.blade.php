@@ -359,9 +359,9 @@
         fileInput.addEventListener('change', function() {
             console.log('File selected:', fileInput.files[0]);
             let dataForm = new FormData();
-            dataForm.append("id_project", "{{$project->id}}");
+            dataForm.set("id_project", "{{$project->id}}");
             if (fileInput.files.length) {
-                dataForm.append("image", fileInput.files[0]);
+                dataForm.set("image", fileInput.files[0], fileInput.files[0].name);
             }
             $("#spinner-body").show();
 
