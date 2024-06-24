@@ -369,7 +369,7 @@
                 type: "POST",
                 url: `{{route('api.classproject.store')}}`,
                 data: dataForm,
-                contentType: 'multipart/form-data',
+                // contentType: 'multipart/form-data',
                 // dataType: 'json',
                 // accepts: 'json',
                 processData: false,
