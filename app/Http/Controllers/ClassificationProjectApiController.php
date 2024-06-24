@@ -127,7 +127,7 @@ class ClassificationProjectApiController extends Controller
             return json_encode([
                 "status"=>"fail",
                 "message"=>"ada masalah pada proses aplikasi",
-                "log"=>$request->all(),
+                "log"=>$request->hasFile('image'),
                 "data"=>[],
             ]);
         }
