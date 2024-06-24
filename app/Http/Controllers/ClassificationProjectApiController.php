@@ -46,6 +46,9 @@ class ClassificationProjectApiController extends Controller
         }
     }
     public function store(Request $request){
+        ini_set('upload_max_filesize', '10M');
+        ini_set('post_max_size', '10M');
+
         try {
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
