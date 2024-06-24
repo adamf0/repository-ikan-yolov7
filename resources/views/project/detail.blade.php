@@ -357,11 +357,11 @@
         loadData()
 
         fileInput.addEventListener('change', function() {
-            console.log('File selected:', fileInput.files[0]);
+            console.log('File selected:', $(this).files[0]);
             let dataForm = new FormData();
-            dataForm.set("id_project", "{{$project->id}}");
-            // if (fileInput.files.length) {
-                dataForm.set("image", fileInput.files[0], fileInput.files[0].name);
+            dataForm.append("id_project", "{{$project->id}}");
+            // if ($(this).files.length) {
+                dataForm.append("image", $(this).files[0]);
             // }
             $("#spinner-body").show();
 
