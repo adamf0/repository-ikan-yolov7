@@ -123,7 +123,6 @@ class ClassificationProjectApiController extends Controller
                 throw new Exception("belum upload gambar");
             }
         } catch (Exception $e) {
-            dump($request->all());
             return json_encode([
                 "status"=>"fail",
                 "message"=>"ada masalah pada proses aplikasi",
