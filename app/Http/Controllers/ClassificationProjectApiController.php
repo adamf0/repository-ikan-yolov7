@@ -53,12 +53,14 @@ class ClassificationProjectApiController extends Controller
             if ($request->has('image')) { //base64
                 // $image = $request->file('image');
                 // $base64Image = base64_encode(file_get_contents($image->getPathName()));
-                
+                $pattern = '/^data:image\/([a-zA-Z]*);base64,/';
+                $base64String = preg_replace($pattern, '', $request->get('image'));
+
                 $url = env("YOLO_URL","localhost")."/classfication";
                 $response = Http::withHeaders([
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
-                ])->post($url,["image"=>$request->get('image')]);
+                ])->post($url,["image"=>$base64String]);
 
                 if (!$response->successful()) {
                     throw new Exception($response->json()['error']);
