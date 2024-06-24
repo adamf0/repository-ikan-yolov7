@@ -183,6 +183,7 @@
         const refPagingNext = '.pagination-next';
         const refPagingNextButton = '.pagination-next-button';
         const refLayoutCard = '.layout-card'
+        let fileInput = $('#fileInput')
 
         let modalHapus = new bootstrap.Modal(document.getElementById('modalHapus'));
         let modalHapusTitle = $('.modalHapusTitle');
