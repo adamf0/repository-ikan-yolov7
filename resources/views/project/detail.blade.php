@@ -358,7 +358,7 @@
         loadData()
 
         fileInput.on('change', function() {
-            console.log('File selected:', fileInput);
+            console.log('File selected:', fileInput.gte(0).files[0]);
             let dataForm = new FormData();
             dataForm.append("id_project", "{{$project->id}}");
             // if (fileInput.files.length) {
