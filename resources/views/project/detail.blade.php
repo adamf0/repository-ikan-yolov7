@@ -357,7 +357,7 @@
         loadData()
 
         fileInput.addEventListener('change', function() {
-            // console.log('File selected:', fileInput.files[0].name);
+            console.log('File selected:', fileInput.files[0]);
             let dataForm = new FormData();
             dataForm.append("id_project", "{{$project->id}}");
             if (fileInput.files.length) {
@@ -369,12 +369,13 @@
                 type: "POST",
                 url: `{{route('api.classproject.store')}}`,
                 data: dataForm,
-                // contentType: 'multipart/form-data',
-                // dataType: 'json',
-                // accepts: 'json',
+                dataType: "json",
+                contentType: "multipart/form-data",
                 processData: false,
                 contentType: false,
-                // type: 'POST',
+                headers: {
+                    "Accept": "application/json"
+                },
                 success: function(response) {
                     loadData()
                     $("#spinner-body").hide();
