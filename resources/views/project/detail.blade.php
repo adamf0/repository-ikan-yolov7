@@ -357,7 +357,7 @@
         }
         loadData()
 
-        fileInput.addEventListener('change', function() {
+        fileInput.on('change', function() {
             console.log('File selected:', $(this).files[0]);
             let dataForm = new FormData();
             dataForm.append("id_project", "{{$project->id}}");
