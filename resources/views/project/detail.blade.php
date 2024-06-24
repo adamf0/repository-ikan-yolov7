@@ -359,34 +359,40 @@
 
         fileInput.on('change', function() {
             console.log('File selected:', fileInput.get(0).files[0]);
-            let dataForm = new FormData();
-            dataForm.append("id_project", "{{$project->id}}");
-            // if (fileInput.files.length) {
-                dataForm.append("image", fileInput.get(0).files[0]);
-            // }
-            $("#spinner-body").show();
+            
+            var reader = new FileReader();
+            reader.onload = function(){
+                let dataForm = new FormData();
+                dataForm.append("id_project", "{{$project->id}}");
+                // if (fileInput.files.length) {
+                    dataForm.append("image", reader.result);
+                // }
+                $("#spinner-body").show();
 
-            $.ajax({
-                type: "POST",
-                url: `{{route('api.classproject.store')}}`,
-                data: dataForm,
-                dataType: "json",
-                contentType: "multipart/form-data",
-                processData: false,
-                contentType: false,
-                headers: {
-                    "Accept": "application/json"
-                },
-                success: function(response) {
-                    loadData()
-                    $("#spinner-body").hide();
-                },
-                error: function(xhr, status, error) {
-                    handleAjaxError(xhr, status, error, true);
-                    loadData()
-                    $("#spinner-body").hide();
-                }
-            });
+                $.ajax({
+                    type: "POST",
+                    url: `{{route('api.classproject.store')}}`,
+                    data: dataForm,
+                    dataType: "json",
+                    contentType: "multipart/form-data",
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    success: function(response) {
+                        loadData()
+                        $("#spinner-body").hide();
+                    },
+                    error: function(xhr, status, error) {
+                        handleAjaxError(xhr, status, error, true);
+                        loadData()
+                        $("#spinner-body").hide();
+                    }
+                });
+            }
+            reader.readAsDataURL(fileInput.get(0).files[0])
+
         });
 
         $(document).on('click', '.action-delete', function(e) {
