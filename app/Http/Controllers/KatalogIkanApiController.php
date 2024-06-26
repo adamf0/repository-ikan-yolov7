@@ -33,4 +33,31 @@ class KatalogIkanApiController extends Controller
             throw $e;
         }
     }
+    public function detail($id){
+        try {
+            $ikan = Ikan::where('id',$id)->firstOrFail();
+            $ikan->upaya_konservasi = htmlspecialchars_decode($ikan->upaya_konservasi);
+            $ikan->karakteristik_morfologi = htmlspecialchars_decode($ikan->karakteristik_morfologi);
+            $ikan->komentar = htmlspecialchars_decode($ikan->komentar);
+            
+            $files = \App\Helper\Utility::scanFiles($ikan->spesies);
+            $ikan->list_foto = count($files)>0? array_map(function($file){
+                $file = \App\Helper\Utility::loadAsset($file);
+                return $file;
+            },$files): [\App\Helper\Utility::loadAsset('not_found.jpg')];
+
+            return json_encode([
+                "status"=>"ok",
+                "message"=>null,
+                "data"=>$ikan
+            ]);
+        } catch (Exception $e) {
+            return json_encode([
+                "status"=>"fail",
+                "message"=>"ada masalah pada proses aplikasi",
+                "log"=>$e->getMessage(),
+                "data"=>[],
+            ]);
+        }
+    }
 }

@@ -60,7 +60,7 @@ class KlasifikasiApiController extends Controller
                             "id_genom"                  => $ikan->id_genom,
                             "upaya_konservasi"          => htmlspecialchars_decode($ikan->upaya_konservasi),
                             "distribusi"                => $ikan->distribusi,
-                            "komentar"                   => $ikan->komentar,
+                            "komentar"                   => htmlspecialchars_decode($ikan->komentar),
                             "kotak_prediksi"            =>[
                                 "confidence"=>$item["confidence"],
                                 "xmax"=>$item["xmax"],

@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FamilyGuideController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KatalogIkanController;
+use App\Http\Controllers\KatalogIkanSelect2Controller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NegaraSelect2Controller;
 use App\Http\Controllers\ProfileController;
@@ -62,6 +63,7 @@ Route::get('/katalog_ikan/delete/{id}',[KatalogIkanController::class,"delete"])-
 
 Route::get('/list_negara',[NegaraSelect2Controller::class,"list"])->name('select2.negara.list');
 Route::get('/list_user',[UserSelect2Controller::class,"list"])->name('select2.user.list');
+Route::get('/list_spesies',[KatalogIkanSelect2Controller::class,"list"])->name('select2.katalogikan.list');
 
 Route::get('/project',[ProjectController::class,"index"])->name('project.index');
 Route::get('/project/{id}',[ProjectController::class,"detail"])->name('project.detail');

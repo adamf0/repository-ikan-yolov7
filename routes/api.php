@@ -17,7 +17,11 @@ Route::get('/project/delete/{id}',[ProjectApiController::class,"delete"])->name(
 Route::post('/project/invite',[ProjectApiController::class,"invite"])->name('api.project.invite');
 
 Route::get('/list_classproject/{id_project}',[ClassificationProjectApiController::class,"list"])->name('api.classproject.list');
+Route::post('/classproject/save',[ClassificationProjectApiController::class,"save"])->name('api.classproject.save');
+Route::get('/classproject/destroy/{id_project}',[ClassificationProjectApiController::class,"destroy"])->name('api.classproject.destroy');
+Route::post('/classproject/update',[ClassificationProjectApiController::class,"update"])->name('api.classproject.update');
 Route::post('/classproject/store',[ClassificationProjectApiController::class,"store"])->name('api.classproject.store');
-Route::get('/classproject/delete/{id}',[ClassificationProjectApiController::class,"delete"])->name('api.classproject.delete');
+Route::get('/classproject/delete/{id_project}/{id}',[ClassificationProjectApiController::class,"delete"])->name('api.classproject.delete');
 
 Route::get('/datatable/katalog_ikan',[KatalogIkanApiController::class,"index"])->name('datatable.KatalogIkan.index');
+Route::get('/katalog_ikan/{id}',[KatalogIkanApiController::class,"detail"])->name('api.KatalogIkan.detail');

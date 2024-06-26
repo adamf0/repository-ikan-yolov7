@@ -295,11 +295,80 @@
                     <table>
                         <thead>
                             <tr>
-                                <td data-mark="black">NOT EEVALUATED</td>
+                                @if (strtolower($ikan->status_konservasi)=="ne")
+                                <td rowspan="2" data-mark="mark">
+                                    <div class="mark__container">
+                                        <div class="mark_info">
+                                            <label>NOT EVALUATED</label>
+                                            <span>NE</span>
+                                            <span>{{$ikan->status_konservasi_tahun}}</span>
+                                        </div>
+                                    </div>
+                                </td>    
+                                @else
+                                <td data-mark="black">NOT EVALUATED</td>
+                                @endif
+
+                                @if (strtolower($ikan->status_konservasi)=="dd")
+                                <td rowspan="2" data-mark="mark">
+                                    <div class="mark__container">
+                                        <div class="mark_info">
+                                            <label>DATA DEFICIENT</label>
+                                            <span>DD</span>
+                                            <span>{{$ikan->status_konservasi_tahun}}</span>
+                                        </div>
+                                    </div>
+                                </td>    
+                                @else
                                 <td data-mark="black">DATA DEFICIENT</td>
+                                @endif
+
+                                @if (strtolower($ikan->status_konservasi)=="lc")
+                                <td rowspan="2" data-mark="mark">
+                                    <div class="mark__container">
+                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
+                                        <div class="mark_info">
+                                            <label>LEAST CONCERN</label>
+                                            <span>LC</span>
+                                            <span>{{$ikan->status_konservasi_tahun}}</span>
+                                        </div>
+                                    </div>
+                                </td>    
+                                @else
                                 <td>LEAST CONCERN</td>
+                                @endif
+
+                                @if (strtolower($ikan->status_konservasi)=="nt")
+                                <td rowspan="2" data-mark="mark">
+                                    <div class="mark__container">
+                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
+                                        <div class="mark_info">
+                                            <label>NEAR THREATENED</label>
+                                            <span>NT</span>
+                                            <span>{{$ikan->status_konservasi_tahun}}</span>
+                                        </div>
+                                    </div>
+                                </td>    
+                                @else
                                 <td>NEAR THREATENED</td>
+                                @endif
+
+                                @if (strtolower($ikan->status_konservasi)=="vu")
+                                <td rowspan="2" data-mark="mark">
+                                    <div class="mark__container">
+                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
+                                        <div class="mark_info">
+                                            <label>VULNERABLE</label>
+                                            <span>VU</span>
+                                            <span>{{$ikan->status_konservasi_tahun}}</span>
+                                        </div>
+                                    </div>
+                                </td>    
+                                @else
                                 <td>VULNERABLE</td>
+                                @endif
+
+                                @if (strtolower($ikan->status_konservasi)=="en")
                                 <td rowspan="2" data-mark="mark">
                                     <div class="mark__container">
                                         <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
@@ -309,20 +378,92 @@
                                             <span>{{$ikan->status_konservasi_tahun}}</span>
                                         </div>
                                     </div>
-                                </td>
+                                </td>    
+                                @else
+                                <td>ENDANGERED</td>
+                                @endif
+                                
+                                @if (strtolower($ikan->status_konservasi)=="cr")
+                                <td rowspan="2" data-mark="mark">
+                                    <div class="mark__container">
+                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
+                                        <div class="mark_info">
+                                            <label>CRITICAL ENDANGERED</label>
+                                            <span>CR</span>
+                                            <span>{{$ikan->status_konservasi_tahun}}</span>
+                                        </div>
+                                    </div>
+                                </td>    
+                                @else
                                 <td>CRITICAL ENDANGERED</td>
-                                <td>EXTINCT IN TdE WILD</td>
+                                @endif
+
+                                @if (strtolower($ikan->status_konservasi)=="ew")
+                                <td rowspan="2" data-mark="mark">
+                                    <div class="mark__container">
+                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
+                                        <div class="mark_info">
+                                            <label>EXTINCT IN THE WILD</label>
+                                            <span>EW</span>
+                                            <span>{{$ikan->status_konservasi_tahun}}</span>
+                                        </div>
+                                    </div>
+                                </td>    
+                                @else
+                                <td>EXTINCT IN THE WILD</td>
+                                @endif
+
+                                @if (strtolower($ikan->status_konservasi)=="ex")
+                                <td rowspan="2" data-mark="mark">
+                                    <div class="mark__container">
+                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
+                                        <div class="mark_info">
+                                            <label>EXTINCT</label>
+                                            <span>EX</span>
+                                            <span>{{$ikan->status_konservasi_tahun}}</span>
+                                        </div>
+                                    </div>
+                                </td>    
+                                @else
                                 <td data-mark="black">EXTINCT</td>
+                                @endif
                             </tr>
                             <tr>
+                                @if (strtolower($ikan->status_konservasi)!="ne")
                                 <td>NE</td>
+                                @endif
+
+                                @if (strtolower($ikan->status_konservasi)!="dd")
                                 <td>DD</td>
+                                @endif
+
+                                @if (strtolower($ikan->status_konservasi)!="lc")
                                 <td>LC</td>
+                                @endif
+                                
+                                @if (strtolower($ikan->status_konservasi)!="nt")
                                 <td>NT</td>
+                                @endif
+                                
+                                @if (strtolower($ikan->status_konservasi)!="vu")
                                 <td>VU</td>
+                                @endif
+                                
+                                @if (strtolower($ikan->status_konservasi)!="en")
+                                <td>EN</td>
+                                @endif
+                                
+                                @if (strtolower($ikan->status_konservasi)!="cr")
                                 <td>CR</td>
+                                @endif
+                                
+                                @if (strtolower($ikan->status_konservasi)!="ew")
                                 <td>EW</td>
+                                @endif
+                                
+                                @if (strtolower($ikan->status_konservasi)!="ex")
                                 <td>EX</td>
+                                @endif
                             </tr>
                         </thead>
                     </table>
