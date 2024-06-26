@@ -11,7 +11,10 @@ import numpy as np
 # from fastapi import APIRouter, Request
 from fastapi import Request
 # from app.routers._inference import draw_annotations
-from schemas import InferenceRequest, ResponseModel, SchemaResult
+from schemas import InferenceRequest, ResponseModel, SchemaResult, ScrappingRequest, ResponseScrappingModel
+
+import requests
+from bs4 import BeautifulSoup
 
 
 @asynccontextmanager
@@ -72,4 +75,41 @@ def yolo_inference(request: Request, body: InferenceRequest):
     except Exception as E:
         resp.message = str(E)
         resp.status_code = 501
+    return resp
+
+# https://medium.com/@darshankhandelwal12/scrape-google-with-python-2023-86cda73ffb16
+@app.post("/scrapping_google")
+def yolo_inference(request: Request, body: ScrappingRequest):
+    resp = ResponseScrappingModel()
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4703.0 Safari/537.36"
+        }
+        query = body.url
+        print(f"https://www.google.com/search?q={query}")
+        response = requests.get(f"https://www.google.com/search?q={query}", headers=headers)
+        soup = BeautifulSoup(response.content, "html.parser")
+        organic_results = []
+
+        for el in soup.select(".g"):
+            title_el = el.select_one("h3")
+            link_el = el.select_one("a")
+            desc_el = el.select_one(".VwiC3b")
+ 
+            if title_el and link_el and desc_el:
+                if link_el["href"]==query:
+                    organic_results.append({
+                        "title": title_el.text,
+                        "link": link_el["href"],
+                        "description": desc_el.text,
+                    })
+
+            print(f"Organic Results: {organic_results}")
+            
+        resp.body = organic_results
+
+    except Exception as E:
+        resp.message = str(E)
+        resp.status_code = 501
+    
     return resp

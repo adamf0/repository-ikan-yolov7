@@ -13,3 +13,11 @@ class ResponseModel(BaseModel):
     status_code: int = 200
     message: str = "success"
     body: Dict = SchemaResult
+
+class ScrappingRequest(BaseModel):
+    url: str
+
+class ResponseScrappingModel(BaseModel):
+    status_code: int = 200
+    message: str = "success"
+    body: list = []
