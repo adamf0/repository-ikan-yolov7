@@ -113,7 +113,7 @@
 
 <div class="d-flex flex-column justify-content-between" style="min-height: calc(100vh - 11rem); gap: 2rem;">
     <div class="flex-grow-2 layout-card">
-        <button class="card custom-card border border-dotted d-flex justify-content-center align-items-center" id="newProject">
+        <button class="card custom-card border border-dotted d-flex justify-content-center align-items-center" id="newProject" style="overflow-y: hidden !important">
             <i class="bi bi-plus-lg fs-1"></i>
             <span>Buat Project</span>
         </button>

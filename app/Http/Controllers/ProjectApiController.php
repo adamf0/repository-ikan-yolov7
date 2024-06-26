@@ -9,6 +9,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Helper\Utility;
 
 class ProjectApiController extends Controller
 {
@@ -29,7 +30,7 @@ class ProjectApiController extends Controller
                 } else{
                     $data = (object) json_decode($item->Classification[0]?->result, true);
                     if(isset($data->image)){
-                        $item->foto = "data:image/png;base64,".$data->image;
+                        $item->foto = Utility::loadasset("Prediksi/".$data->image);
                     } else{
                         $item->foto = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
                     }

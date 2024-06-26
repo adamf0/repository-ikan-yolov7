@@ -1051,7 +1051,7 @@
                                             ${deskripsiStatus(label.status_konservasi)['judul']}
                                             <span class="badge bg-primary rounded-pill">${ label.type=="edited"? "Edited":(label.akurasi*100).toFixed(3)+"%" }</span>
                                         </div>
-                                        <div class="dropdown">
+                                        <div class="dropdown" style="margin-left: auto;">
                                             <button class="btn text-black fs-4" type="button" id="shortmenu${item.id}${label.id}" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="bi bi-three-dots"></i>
                                             </button>
