@@ -158,11 +158,17 @@
 
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
-      <x-sidebar-item-menu title="Dashboard" icon="bi bi-menu-button-wide" link="{{route('dashboard.index')}}" :active="\App\Helper\Utility::stateMenu(['dashboard'],request())" />
+      <x-sidebar-item-menu title="Dashboard" icon="bi bi-speedometer2" link="{{route('dashboard.index')}}" :active="\App\Helper\Utility::stateMenu(['dashboard'],request())" />
       @if (\App\Helper\Utility::hasAdmin())
-      <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-menu-button-wide" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['katalog_ikan'],request())" />
+      <li class="nav-heading">Resource</li>
+      <x-sidebar-item-menu title="Berita" icon="bi bi-newspaper" link="#" :active="\App\Helper\Utility::stateMenu(['berita'],request())" />
+      <x-sidebar-item-menu title="Video" icon="bi bi-play-btn-fill" link="#" :active="\App\Helper\Utility::stateMenu(['video'],request())" />
+      <x-sidebar-item-menu title="Arsip Publikasi" icon="bi bi-journals" link="#" :active="\App\Helper\Utility::stateMenu(['arsip_publikasi'],request())" />
+
+      <li class="nav-heading">Data Master</li>
+      <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-card-checklist" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['katalog_ikan'],request())" />
       @else
-      <x-sidebar-item-menu title="Project" icon="bi bi-menu-button-wide" link="{{route('project.index')}}" :active="\App\Helper\Utility::stateMenu(['project'],request())" />
+      <x-sidebar-item-menu title="Project" icon="bi bi-kanban" link="{{route('project.index')}}" :active="\App\Helper\Utility::stateMenu(['project'],request())" />
       @endif
     </ul>
   </aside><!-- End Sidebar-->
