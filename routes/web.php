@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AcknowledgementsController;
+use App\Http\Controllers\ArsipPublikasiController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FamilyGuideController;
 use App\Http\Controllers\HomeController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserSelect2Controller;
+use App\Http\Controllers\VideoController;
 use App\Http\Middleware\ThrowSessionUI;
 use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\Sitemap;
@@ -60,6 +63,27 @@ Route::post('/katalog_ikan/store',[KatalogIkanController::class,"store"])->name(
 Route::get('/katalog_ikan/edit/{id}',[KatalogIkanController::class,"edit"])->name('katalog_ikan.edit');
 Route::post('/katalog_ikan/update',[KatalogIkanController::class,"update"])->name('katalog_ikan.update');
 Route::get('/katalog_ikan/delete/{id}',[KatalogIkanController::class,"delete"])->name('katalog_ikan.delete');
+
+Route::get('/berita',[BeritaController::class,"index"])->name('berita.index');
+Route::get('/berita/add',[BeritaController::class,"add"])->name('berita.add');
+Route::post('/berita/store',[BeritaController::class,"store"])->name('berita.store');
+Route::get('/berita/edit/{id}',[BeritaController::class,"edit"])->name('berita.edit');
+Route::post('/berita/update',[BeritaController::class,"update"])->name('berita.update');
+Route::get('/berita/delete/{id}',[BeritaController::class,"delete"])->name('berita.delete');
+
+Route::get('/video',[VideoController::class,"index"])->name('video.index');
+Route::get('/video/add',[VideoController::class,"add"])->name('video.add');
+Route::post('/video/store',[VideoController::class,"store"])->name('video.store');
+Route::get('/video/edit/{id}',[VideoController::class,"edit"])->name('video.edit');
+Route::post('/video/update',[VideoController::class,"update"])->name('video.update');
+Route::get('/video/delete/{id}',[VideoController::class,"delete"])->name('video.delete');
+
+Route::get('/arsip_publikasi',[ArsipPublikasiController::class,"index"])->name('arsip_publikasi.index');
+Route::get('/arsip_publikasi/add',[ArsipPublikasiController::class,"add"])->name('arsip_publikasi.add');
+Route::post('/arsip_publikasi/store',[ArsipPublikasiController::class,"store"])->name('arsip_publikasi.store');
+Route::get('/arsip_publikasi/edit/{id}',[ArsipPublikasiController::class,"edit"])->name('arsip_publikasi.edit');
+Route::post('/arsip_publikasi/update',[ArsipPublikasiController::class,"update"])->name('arsip_publikasi.update');
+Route::get('/arsip_publikasi/delete/{id}',[ArsipPublikasiController::class,"delete"])->name('arsip_publikasi.delete');
 
 Route::get('/list_negara',[NegaraSelect2Controller::class,"list"])->name('select2.negara.list');
 Route::get('/list_user',[UserSelect2Controller::class,"list"])->name('select2.user.list');

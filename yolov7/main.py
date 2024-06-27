@@ -95,14 +95,13 @@ def yolo_inference(request: Request, body: ScrappingRequest):
             title_el = el.select_one("h3")
             link_el = el.select_one("a")
             desc_el = el.select_one(".VwiC3b")
- 
-            if title_el and link_el and desc_el:
-                if link_el["href"]==query:
-                    organic_results.append({
-                        "title": title_el.text,
-                        "link": link_el["href"],
-                        "description": desc_el.text,
-                    })
+
+            if link_el is not None and query in link_el["href"]:
+                organic_results.append({
+                    "title": title_el.text if title_el is not None else "",
+                    "link": link_el["href"],
+                    "description": desc_el.text if desc_el is not None else "",
+                })
 
             print(f"Organic Results: {organic_results}")
             

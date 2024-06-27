@@ -119,7 +119,11 @@
       --bs-btn-disabled-bg: white;
       --bs-btn-disabled-border-color: white;
     }
-  </style>
+
+    .ck-editor__editable {
+        min-height: 400px !important;
+    }
+  </style>  
 </head>
 
 <body>
@@ -161,9 +165,9 @@
       <x-sidebar-item-menu title="Dashboard" icon="bi bi-speedometer2" link="{{route('dashboard.index')}}" :active="\App\Helper\Utility::stateMenu(['dashboard'],request())" />
       @if (\App\Helper\Utility::hasAdmin())
       <li class="nav-heading">Resource</li>
-      <x-sidebar-item-menu title="Berita" icon="bi bi-newspaper" link="#" :active="\App\Helper\Utility::stateMenu(['berita'],request())" />
-      <x-sidebar-item-menu title="Video" icon="bi bi-play-btn-fill" link="#" :active="\App\Helper\Utility::stateMenu(['video'],request())" />
-      <x-sidebar-item-menu title="Arsip Publikasi" icon="bi bi-journals" link="#" :active="\App\Helper\Utility::stateMenu(['arsip_publikasi'],request())" />
+      <x-sidebar-item-menu title="Berita" icon="bi bi-newspaper" link="{{route('berita.index')}}" :active="\App\Helper\Utility::stateMenu(['berita'],request())" />
+      <x-sidebar-item-menu title="Video" icon="bi bi-play-btn-fill" link="{{route('video.index')}}" :active="\App\Helper\Utility::stateMenu(['video'],request())" />
+      <x-sidebar-item-menu title="Arsip Publikasi" icon="bi bi-journals" link="{{route('arsip_publikasi.index')}}" :active="\App\Helper\Utility::stateMenu(['arsip_publikasi'],request())" />
 
       <li class="nav-heading">Data Master</li>
       <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-card-checklist" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['katalog_ikan'],request())" />
