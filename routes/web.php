@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AcknowledgementsController;
+use App\Http\Controllers\ArchivePublicationController;
 use App\Http\Controllers\ArsipPublikasiController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
@@ -11,6 +12,8 @@ use App\Http\Controllers\KatalogIkanController;
 use App\Http\Controllers\KatalogIkanSelect2Controller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NegaraSelect2Controller;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsVideoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
@@ -27,13 +30,20 @@ Route::get('/about',[AboutController::class,"index"])->name('about');
 Route::get('/family_guide',[FamilyGuideController::class,"index"])->name('familyguide');
 Route::get('/search/{spesies}',[SearchController::class,"index"])->name('search');
 Route::get('/searchv2/{klasifikasi}',[SearchController::class,"indexv2"])->name('searchv2');
-Route::get('/acknowledgements',[AcknowledgementsController::class,"index"])->name('acknowledgements');
+// Route::get('/acknowledgements',[AcknowledgementsController::class,"index"])->name('acknowledgements');
 
 Route::get('/logout', [LoginController::class,"logout"])->name('login.logout');
 Route::get('/login', [LoginController::class,"index"])->name('login.index');
 Route::post('/login', [LoginController::class,"dologin"])->name('login.dologin');
 Route::get('/register',[RegisterController::class,"index"])->name('register.index');
 Route::post('/register',[RegisterController::class,"store"])->name('register.store');
+
+Route::get('/archive_publicaton',[ArchivePublicationController::class,"index"])->name('archive_publicaton');
+Route::get('/news',[NewsController::class,"index"])->name('news');
+Route::get('/news/detail/{id}',[NewsController::class,"detail"])->name('news.detail');
+Route::get('/news/video',[NewsVideoController::class,"index"])->name('news_video');
+// Route::get('/news/blogs',[NewsBlogController::class,"index"])->name('news_blog.index');
+// Route::get('/news/blogs',[NewsBlogController::class,"index"])->name('news_blog.index');
 
 Route::get('/sitemap.xml', function(){
     $sitemap = Sitemap::create()

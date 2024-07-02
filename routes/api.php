@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArchivePublicatonApiController;
 use App\Http\Controllers\ArsipPublikasiApiController;
 use App\Http\Controllers\BeritaApiController;
 use App\Http\Controllers\ClassificationProjectApiController;
@@ -28,7 +29,7 @@ Route::get('/classproject/delete/{id_project}/{id}',[ClassificationProjectApiCon
 
 Route::get('/katalog_ikan/{id}',[KatalogIkanApiController::class,"detail"])->name('api.KatalogIkan.detail');
 
-
+Route::get('/datatable/archive_publicaton',[ArchivePublicatonApiController::class,"index"])->name('datatable.ArchivePublicaton.index');
 Route::get('/datatable/katalog_ikan',[KatalogIkanApiController::class,"index"])->name('datatable.KatalogIkan.index');
 Route::get('/datatable/video',[VideoApiController::class,"index"])->name('datatable.Video.index');
 Route::get('/datatable/arsip_publikasi',[ArsipPublikasiApiController::class,"index"])->name('datatable.ArsipPublikasi.index');

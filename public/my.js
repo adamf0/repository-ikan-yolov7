@@ -1,6 +1,46 @@
 function to_select_data_dropdown(element,selected){
     element.val(selected).trigger("change");
 }
+// const load_dropdown = (element, local=null, url, selected=null, placeholder=false, parent=null)=>{
+//     console.log(placeholder);
+//     if(local!=null){
+//         if(placeholder){
+//             local.unshift({
+//                 id: '',
+//                 text: placeholder
+//             });
+//         }
+
+//         $(element).select2({
+//             theme: 'bootstrap-5',
+//             dropdownParent: parent,
+//             data: local??[]
+//         }).val(selected).trigger("change");
+//     } else{
+//         $.ajax({
+//             type: "GET",
+//             url: url,
+//             data: {},
+//             dataType: 'json',
+//             accepts: 'json',    
+//             success: function (r1) {
+//                 // console.log(selected);
+//                 if(placeholder){
+//                     r1.unshift({
+//                         id: '',
+//                         text: placeholder
+//                     });
+//                 }
+//                 // console.log(r1);
+//                 $(element).select2({
+//                     theme: 'bootstrap-5',
+//                     dropdownParent: parent,
+//                     data: r1
+//                 }).val(selected).trigger("change");
+//             }
+//         });
+//     }
+// }
 function load_dropdown(element, local=null, url, selected=null, placeholder=false, parent=null){
     if(local!=null){
         if(placeholder){
