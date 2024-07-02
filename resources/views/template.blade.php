@@ -225,9 +225,32 @@
                 </div>
                 <div class="col-12 col-md-3">
                     <h5>Quick Link</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a class="text-primary link-underline link-underline-opacity-0" href="https://www.fishbase.se/">FishBase</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a class="text-primary link-underline link-underline-opacity-0" href="https://www.iucnredlist.org/">The IUCN Red List of Threatened SpeciesTM</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a class="text-primary link-underline link-underline-opacity-0" href="https://www.ncbi.nlm.nih.gov/">NCBI (National Center for Biotechnology Information)</a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-12 col-md-3">
                     <h5>Contact Us</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a class="text-primary link-underline link-underline-opacity-0" href="mailto:rifkimunandar13@gmail.com">
+                                Email: rifkimunandar13@gmail.com
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a class="text-primary link-underline link-underline-opacity-0" href="tel:+6287847680155">
+                                Telp: +6287847680155
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <hr>
