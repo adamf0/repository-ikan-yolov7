@@ -21,6 +21,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserSelect2Controller;
 use App\Http\Controllers\VideoController;
 use App\Http\Middleware\ThrowSessionUI;
+use App\Models\Ikan;
 use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
@@ -50,12 +51,17 @@ Route::get('/sitemap.xml', function(){
     ->add(Url::create('/'))
     ->add(Url::create('/about'))
     ->add(Url::create('/family_guide'))
-    ->add(Url::create('/search'))
-    ->add(Url::create('/searchv2'))
     ->add(Url::create('/acknowledgements'))
-    ->add(Url::create('/logout'))
+    ->add(Url::create('/archive_publicaton'))
+    ->add(Url::create('/news'))
+    //detail berita belum
+    ->add(Url::create('/news/video'))    
     ->add(Url::create('/login'))
     ->add(Url::create('/register'));
+
+    $ikan = Ikan::get();
+    $ikan->each(fn($item)=> $sitemap->add(Url::create("/search/{$item->spesies}")));
+
     $sitemap->writeToFile(public_path('sitemap.xml'));
 });
 
