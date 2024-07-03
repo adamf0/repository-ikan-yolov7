@@ -50,35 +50,35 @@
                 <h5 class="text-heading">Filter Gallery</h5>
                 <hr>
                 <div class="row g-2 row-cols-2 row-cols-sm-2 row-cols-md-auto justify-content-center">
-                    <div class="col" style="flex-grow: 1; flex-wrap: 1;">
+                    <div class="col" style="flex-grow: 1; flex-wrap: wrap;">
                         <select data-placeholder="fillum" id="fillum" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col" style="flex-grow: 1; flex-wrap: 1;">
+                    <div class="col" style="flex-grow: 1; flex-wrap: wrap;">
                         <select data-placeholder="super kelas" id="super_kelas" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col" style="flex-grow: 1; flex-wrap: 1;">
+                    <div class="col" style="flex-grow: 1; flex-wrap: wrap;">
                         <select data-placeholder="kelas" id="kelas" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col" style="flex-grow: 1; flex-wrap: 1;">
+                    <div class="col" style="flex-grow: 1; flex-wrap: wrap;">
                         <select data-placeholder="ordo" id="ordo" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col" style="flex-grow: 1; flex-wrap: 1;">
+                    <div class="col" style="flex-grow: 1; flex-wrap: wrap;">
                         <select data-placeholder="famili" id="famili" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col" style="flex-grow: 1; flex-wrap: 1;">
+                    <div class="col" style="flex-grow: 1; flex-wrap: wrap;">
                         <select data-placeholder="genus" id="genus" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col" style="flex-grow: 1; flex-wrap: 1;">
+                    <div class="col" style="flex-grow: 1; flex-wrap: wrap;">
                         <select data-placeholder="spesies" id="spesies" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col  style="flex-grow: 1; flex-wrap: 1;"hidden-md"></div>
+                    <div class="col  style="flex-grow: 1; flex-wrap: wrap;"hidden-md"></div>
                 </div>
             </div>
             <div id="listIkan" class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-4">
