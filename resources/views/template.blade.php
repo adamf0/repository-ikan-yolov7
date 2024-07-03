@@ -245,11 +245,11 @@
                                 Email: rifkimunandar13@gmail.com
                             </a>
                         </li>
-                        <li class="list-group-item">
+                        <!-- <li class="list-group-item">
                             <a class="text-primary link-underline link-underline-opacity-0" href="tel:+6287847680155">
                                 Telp: +6287847680155
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
