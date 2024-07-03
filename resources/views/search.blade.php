@@ -26,7 +26,7 @@
             </div>
             @else
             <div class="col-3 col-md">
-                <div class="rounded-2 border bg-primary p-1 text-center h-100">
+                <div class="rounded-2 border p-1 text-center h-100" style="background: black; color: #cc3333">
                     <div style="height: 40px;" class="font-small border-bottom">NOT EVALUATED</div>
                     <div class="fw-bold">NE</div>
                 </div>
@@ -48,7 +48,7 @@
             </div>
             @else
             <div class="col-3 col-md">
-                <div class="rounded-2 border bg-primary p-1 text-center h-100">
+                <div class="rounded-2 border p-1 text-center h-100" style="background: black;">
                     <div style="height: 40px;" class="font-small border-bottom">DATA DEFICIENT</div>
                     <div class="fw-bold">DD</div>
                 </div>
@@ -70,7 +70,7 @@
             </div>
             @else
             <div class="col-3 col-md">
-                <div class="rounded-2 border p-1 text-center h-100">
+                <div class="rounded-2 border p-1 text-center h-100" style="background: #cc3333; color: white">
                     <div style="height: 40px;" class="font-small border-bottom">LEAST CONCERN</div>
                     <div class="fw-bold">LC</div>
                 </div>
@@ -92,7 +92,7 @@
             </div>
             @else
             <div class="col-3 col-md">
-                <div class="rounded-2 border p-1 text-center h-100">
+                <div class="rounded-2 border p-1 text-center h-100" style="background: #cc6633; color: white">
                     <div style="height: 40px;" class="font-small border-bottom">NEAR THREATENED</div>
                     <div class="fw-bold">NT</div>
                 </div>
@@ -114,7 +114,7 @@
             </div>
             @else
             <div class="col-3 col-md">
-                <div class="rounded-2 border p-1 text-center h-100">
+                <div class="rounded-2 border p-1 text-center h-100" style="background: #cc9900; coloor: white">
                     <div style="height: 40px;" class="font-small border-bottom">VULNERABLE</div>
                     <div class="fw-bold">VU</div>
                 </div>
@@ -136,7 +136,7 @@
             </div>
             @else
             <div class="col-3 col-md">
-                <div class="rounded-2 border p-1 text-center h-100">
+                <div class="rounded-2 border p-1 text-center h-100" style="background: #006666; color: white">
                     <div style="height: 40px;" class="font-small border-bottom">ENDANGERED</div>
                     <div class="fw-bold">EN</div>
                 </div>
@@ -158,7 +158,7 @@
             </div>
             @else
             <div class="col-3 col-md">
-                <div class="rounded-2 border p-1 text-center h-100">
+                <div class="rounded-2 border p-1 text-center h-100" style="background: #006666; color: white">
                     <div style="height: 40px;" class="font-small border-bottom">CRITICAL ENDANGERED</div>
                     <div class="fw-bold">CR</div>
                 </div>
@@ -180,7 +180,7 @@
             </div>
             @else
             <div class="col-3 col-md">
-                <div class="rounded-2 border p-1 text-center h-100">
+                <div class="rounded-2 border p-1 text-center h-100" style="background: #006666; color: white">
                     <div style="height: 40px;" class="font-small border-bottom">EXTINCT IN THE WILD</div>
                     <div class="fw-bold">EW</div>
                 </div>
@@ -202,7 +202,7 @@
             </div>
             @else
             <div class="col-3 col-md">
-                <div class="rounded-2 border bg-primary p-1 text-center h-100">
+                <div class="rounded-2 border p-1 text-center h-100" style="background: #006666; color: white">
                     <div style="height: 40px;" class="font-small border-bottom">EXTINCT</div>
                     <div class="fw-bold">EX</div>
                 </div>
