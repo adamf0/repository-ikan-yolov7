@@ -324,13 +324,13 @@
                     <h5 class="text-heading mb-3">
                         KARAKTERISTIK MORFOLOGI
                     </h5>
-                    <ol><li>perlindungan habitat dan populasi ikan;&nbsp;</li><li>rehabilitasi habitat dan populasi ikan;&nbsp;</li><li>penelitian dan pengembangan;&nbsp;</li><li>pemanfaatan sumber daya ikan dan jasa lingkungan;&nbsp;</li><li>pengembangan sosial ekonomi masyarakat;&nbsp;</li><li>pengawasan dan pengendalian; dan/atau&nbsp;</li><li>monitoring dan evaluasi.</li></ol>
+                    {!! $ikan->karakteristik_morfologi !!}
                 </div>
                 <div class="col-12 col-md-6 upaya_konservasi">
                     <h5 class="text-heading mb-3">
                         UPAYA KONSERVASI
                     </h5>
-                    <ol><li>perlindungan habitat dan populasi ikan;&nbsp;</li><li>rehabilitasi habitat dan populasi ikan;&nbsp;</li><li>penelitian dan pengembangan;&nbsp;</li><li>pemanfaatan sumber daya ikan dan jasa lingkungan;&nbsp;</li><li>pengembangan sosial ekonomi masyarakat;&nbsp;</li><li>pengawasan dan pengendalian; dan/atau&nbsp;</li><li>monitoring dan evaluasi.</li></ol>
+                    {!!$ikan->upaya_konservasi!!}
                 </div>
             </div>
         </div>
