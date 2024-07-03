@@ -41,7 +41,13 @@
                                 <a href="{{$n->scrapping? $n->url:route('news.detail',['id'=>$n->id])}}" class="text-decoration-none" target="_blank">
                                     <h5 class="fw-bold">{{$n->judul}}</h5>
                                 </a>
-                                <p class="mb-0">{!! $n->deskripsi !!}</p>
+                                <p class="mb-0">
+                                    @if ($n->scrapping==0)
+                                        {!! $n->kontent_deskripsi !!}
+                                    @else
+                                        {!! $n->deskripsi !!}
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>

@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class BeritaController extends Controller
 {
     public $rule = [
-        "url"       => "required",
         "judul"     => "required",
         "deskripsi" => "required",
         "scrapping" => "required",
+        "url"       => "required_if:scrapping,1",
     ];
 
     public function index(){
@@ -33,7 +33,7 @@ class BeritaController extends Controller
             $validator      = validator($request->all(), $this->rule);
 
             if(count($validator->errors())){
-                return redirect()->route('berita.create')->withInput()->withErrors($validator->errors()->toArray());    
+                return redirect()->route('berita.add')->withInput()->withErrors($validator->errors()->toArray());    
             } 
 
             $berita             = new Berita();

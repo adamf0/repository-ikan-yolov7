@@ -83,8 +83,8 @@
                     }
                 },
                 {
-                    data: 'deskripsi',
-                    name: 'deskripsi',
+                    data: 'kontent_deskripsi',
+                    name: 'kontent_deskripsi',
                     render: function ( data, type, row, meta ) {
                         return data;
                     }

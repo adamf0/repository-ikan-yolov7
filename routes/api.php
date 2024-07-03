@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArchivePublicatonApiController;
 use App\Http\Controllers\ArsipPublikasiApiController;
 use App\Http\Controllers\BeritaApiController;
+use App\Http\Controllers\CkeditorApiController;
 use App\Http\Controllers\ClassificationProjectApiController;
 use App\Http\Controllers\FamilyGuideApiController;
 use App\Http\Controllers\KatalogIkanApiController;
@@ -34,3 +35,5 @@ Route::get('/datatable/katalog_ikan',[KatalogIkanApiController::class,"index"])-
 Route::get('/datatable/video',[VideoApiController::class,"index"])->name('datatable.Video.index');
 Route::get('/datatable/arsip_publikasi',[ArsipPublikasiApiController::class,"index"])->name('datatable.ArsipPublikasi.index');
 Route::get('/datatable/berita',[BeritaApiController::class,"index"])->name('datatable.Berita.index');
+
+Route::post('/ckeditor/upload',[CkeditorApiController::class,"upload"])->name('api.ckeditor.upload');

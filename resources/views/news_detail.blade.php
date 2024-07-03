@@ -27,14 +27,8 @@
     <div class="container py-5 text-light">
         <div class="spacer"></div>
         <hr>
-        <h2 style="text-shadow: 2px 2px 4px #010351;" class="text-white mb-3">Northeastern Wisconsin
-            communities build flood resilience at the local and watershed level</h2>
-        <div class="text-center mb-3">
-            <img src="https://www.seagrant.wisc.edu/wp-content/uploads/2024/06/lamont3-1024x768.jpg" class="img-fluid"
-            alt="">
-            <p class="font-small">Source image : </p>
-        </div>
-        <p>Since 2020, the East River Collaborative has demonstrated that it takes a village—and coordination between
+        <h2 style="text-shadow: 2px 2px 4px #010351;" class="text-white mb-3">{{$news->judul}}</h2>
+        {!!$news->deskripsi!!}
             municipalities, state and federal government, nonprofits and universities—to improve water quality and flood
             resilience at the watershed level.
 

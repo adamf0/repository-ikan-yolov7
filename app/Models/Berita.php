@@ -15,4 +15,8 @@ class Berita extends Model
         "deskripsi",
         "scrapping",
     ];
+    public function getKontentDeskripsiAttribute()
+    {
+        return preg_replace('/<figure\b[^>]*>(.*?)<\/figure>/is', '', $this->deskripsi);
+    }
 }

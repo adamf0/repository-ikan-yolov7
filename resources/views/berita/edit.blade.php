@@ -73,7 +73,9 @@
 
             ClassicEditor
             .create( document.querySelector( '#editor' ), {
-                
+                ckfinder:{
+                    uploadUrl:"{{route('api.ckeditor.upload',['_token'=>csrf_token()])}}"
+                }
             } )
             .then(newEditor => {
                 editor = newEditor;

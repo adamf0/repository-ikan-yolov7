@@ -14,6 +14,9 @@ class BeritaApiController extends Controller
             $list = Berita::orderBy('id','desc')->get();
             return DataTables::of($list)
                 ->addIndexColumn()
+                ->addColumn('kontent_deskripsi', function ($row){
+                    return $row->kontent_deskripsi;
+                })
                 ->addColumn('action', function ($row){
                     $render = '
                     <a href="'.route('berita.edit',['id'=>$row->id]).'" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
