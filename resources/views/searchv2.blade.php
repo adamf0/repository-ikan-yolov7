@@ -13,10 +13,7 @@
         <center><h2>data tidak ditemukan, pastikan kembali kejelasan foto/video yang Anda upload dan spesies ikan asli Indonesia</h2></center>
     @endif -->
             
-    @foreach ($classification??[] as $klasifikasi => $ikan)
-    @php
-        $ikan = (object) $ikan;
-    @endphp
+    @foreach ($list_ikan as $ikan)
     <!-- Data -->
     <div class="container py-5 text-light">
         <hr>
@@ -224,8 +221,28 @@
                 <div class="bg-glass p-3 rounded-3">
                     <h5 style="text-shadow: 2px 2px 4px #010351;" class="text-white mb-3">{{$ikan->spesies}}</h5>
                     <div class="text-center">
-                        <img src="{{$ikan->foto}}"
-                            class="img-fluid rounded-2 w-100" alt="{{$ikan->spesies}}" style="height: 600px">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                @foreach ($ikan->foto as $foto)
+                                <div class="carousel-item @if($loop->first) active @endif">
+                                    <img src="{{$foto}}" class="d-block img-fluid rounded-2 w-100" style="height: 600px">
+                                </div>
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
