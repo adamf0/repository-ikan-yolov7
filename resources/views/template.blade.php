@@ -227,13 +227,13 @@
                     <h5>Quick Link</h5>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a class="text-primary link-underline link-underline-opacity-0" href="https://www.fishbase.se/">FishBase</a>
+                            <a class="text-primary link-underline link-underline-opacity-0 text-break" href="https://www.fishbase.se/">FishBase</a>
                         </li>
                         <li class="list-group-item">
-                            <a class="text-primary link-underline link-underline-opacity-0" href="https://www.iucnredlist.org/">The IUCN Red List of Threatened SpeciesTM</a>
+                            <a class="text-primary link-underline link-underline-opacity-0 text-break" href="https://www.iucnredlist.org/">The IUCN Red List of Threatened SpeciesTM</a>
                         </li>
                         <li class="list-group-item">
-                            <a class="text-primary link-underline link-underline-opacity-0" href="https://www.ncbi.nlm.nih.gov/">NCBI (National Center for Biotechnology Information)</a>
+                            <a class="text-primary link-underline link-underline-opacity-0 text-break" href="https://www.ncbi.nlm.nih.gov/">NCBI (National Center for Biotechnology Information)</a>
                         </li>
                     </ul>
                 </div>
@@ -241,7 +241,7 @@
                     <h5>Contact Us</h5>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a class="text-primary link-underline link-underline-opacity-0" href="mailto:rifkimunandar13@gmail.com">
+                            <a class="text-primary link-underline link-underline-opacity-0 text-break" href="mailto:rifkimunandar13@gmail.com">
                                 Email: rifkimunandar13@gmail.com
                             </a>
                         </li>
