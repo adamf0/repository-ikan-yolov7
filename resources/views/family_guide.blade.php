@@ -3,16 +3,27 @@
 @section('css')
 <style>
 .select2.select2-container.select2-container--bootstrap-5{
-    min-width: 25vmin;
+    width: 150px !important;
 }
-.select2.select2-container.select2-container--bootstrap-5.select2-container--below.select2-container--focus{
+@media (max-width: 1200px) {
+    .select2.select2-container.select2-container--bootstrap-5{
+        width: 100% !important;
+    }
+    .select2.select2-container.select2-container--bootstrap-5.select2-container--below.select2-container--focus{
+        width: 100% !important;
+    }
+
+}
+/* .select2.select2-container.select2-container--bootstrap-5.select2-container--below.select2-container--focus{
     width: 100% !important;
     min-width: 25vmin;
-}
-.selection{
+} */
+/* .selection{
     display: none;
-}
+} */
 </style>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @stop
 
 @section('content')
@@ -39,34 +50,35 @@
                 <h5 class="text-heading">Filter Gallery</h5>
                 <hr>
                 <div class="row g-2 row-cols-2 row-cols-sm-2 row-cols-md-auto justify-content-center">
-                    <div class="col">
-                        <select id="fillum" class="form-select form-select-sm">
+                    <div class="col" style="flex-grow: 1;">
+                        <select data-placeholder="fillum" id="fillum" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col">
-                        <select id="super_kelas" class="form-select form-select-sm">
+                    <div class="col" style="flex-grow: 1;">
+                        <select data-placeholder="super kelas" id="super_kelas" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col">
-                        <select id="kelas" class="form-select form-select-sm">
+                    <div class="col" style="flex-grow: 1;">
+                        <select data-placeholder="kelas" id="kelas" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col">
-                        <select id="ordo" class="form-select form-select-sm">
+                    <div class="col" style="flex-grow: 1;">
+                        <select data-placeholder="ordo" id="ordo" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col">
-                        <select id="famili" class="form-select form-select-sm">
+                    <div class="col" style="flex-grow: 1;">
+                        <select data-placeholder="famili" id="famili" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col">
-                        <select id="genus" class="form-select form-select-sm">
+                    <div class="col" style="flex-grow: 1;">
+                        <select data-placeholder="genus" id="genus" class="form-select form-select-sm">
                         </select>
                     </div>
-                    <div class="col">
-                        <select id="spesies" class="form-select form-select-sm">
+                    <div class="col" style="flex-grow: 1;">
+                        <select data-placeholder="spesies" id="spesies" class="form-select form-select-sm">
                         </select>
                     </div>
+                    <div class="col  style="flex-grow: 1;"hidden-md"></div>
                 </div>
             </div>
             <div id="listIkan" class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-4">
@@ -124,7 +136,7 @@
             success: function (response) {
                 listIkan.empty();
                 const datas = (response??[]);
-                console.log(datas);
+                // console.log(datas);
 
                 if(datas.length){
                     $.each(datas, function(i, data) {
@@ -248,15 +260,35 @@
                 "placeholder":"Spesies",
             },
         ];
-        listDropdown.forEach(dropdown => {
+        for (let i = 0; i < listDropdown.length; i++) {
+            const dropdown = listDropdown[i];
             // console.log(dropdown.id, dropdown.source)
-            load_dropdown(
-                dropdown.id, 
-                dropdown.source instanceof Array? dropdown.source:null, 
-                dropdown.source instanceof Array? null:`{{route('api.familyguide.listDropdown')}}`, 
-                null, 
-                dropdown.placeholder
-            );
+            
+            const target = $(dropdown.id);
+
+            if(dropdown.source instanceof Array){
+                target.select2({
+                    theme: 'bootstrap-5',
+                    data: dropdown?.source??[]
+                }).val('').trigger("change");
+            } else{
+                $.ajax({
+                    type: "GET",
+                    url: dropdown?.source,
+                    data: {},
+                    dataType: 'json',
+                    accepts: 'json',    
+                    success: function (r1) {
+                        target.select2({
+                            theme: 'bootstrap-5',
+                            data: r1
+                        }).val('').trigger("change");
+                    }
+                });
+            }
+        }
+        for (let i = 0; i < listDropdown.length; i++) {
+            const dropdown = listDropdown[i];
 
             dropdown.element.on('change', function(e) {
                 let id = $(this).val();
@@ -267,26 +299,23 @@
                 for (let index = 0; index < listReset.length; index++) {
                     const dropdownReset = listReset[index];
                     dataForm.set(dropdownReset.replace("#",""),null);
-                    console.log(dropdownReset)
                     if ($(dropdownReset).hasClass("select2-hidden-accessible")) {
-                        $(dropdownReset).select2("destroy") //ga jalan
+                        $(dropdownReset).empty()
                     }
                 }
 
                 const ref = dropdown.id.replace("#","")
                 dataForm.set(ref,id);
-                load_dropdown(
-                    dropdown.next_id, 
-                    selectedData_?.list??[], 
-                    null, 
-                    null, 
-                    dropdown.placeholder
-                );
+
+                const next_target = $(dropdown.next_id);
+                next_target.select2({
+                    theme: 'bootstrap-5',
+                    data: selectedData_?.list??[]
+                }).val('').trigger("change"); 
 
                 load(dataForm)
             });
-        })
-        
+        }        
     });
 </script>
 @stop
