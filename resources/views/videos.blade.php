@@ -31,7 +31,7 @@
         <div class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-2">
             @foreach ($items as $item)
             <div class="col">
-                <div class="card-news bg-light rounded-3 p-2">
+                <div class="rounded-3 p-2">
                     <div class="row gy-3">
                         <div class="col-sm-12">
                             <iframe style="width:100%; height: 400px;" src='{{str_replace("youtu.be","youtube.com/embed",$item->url)}}'></iframe>

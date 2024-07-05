@@ -117,7 +117,7 @@ Route::get('/tes',function(){
     { 
         if(!in_array($value, array(".",".."))) 
         { 
-            if (is_dir(public_path() . DIRECTORY_SEPARATOR.$value)) 
+            if (is_dir(public_path() . DIRECTORY_SEPARATOR.$value) && $value!="Prediksi") 
             { 
                  $result[] = $value; 
                  $command = sprintf('mv "%s" "%s"', (public_path() . DIRECTORY_SEPARATOR.$value), (public_path() . DIRECTORY_SEPARATOR.strtolower($value)));

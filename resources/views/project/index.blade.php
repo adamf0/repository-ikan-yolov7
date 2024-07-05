@@ -119,6 +119,7 @@
         </div>
     </section>
 
+    @if (Session::has('level') && Session::get('level')=="user")
     <!-- Konten -->
     <section class="bg-dark">
         <div class="container py-5">
@@ -214,6 +215,22 @@
             </div>
         </div>
     </section>
+    @elseif(!Session::has('level'))
+    <!-- Tampilkan Jika Belum Login -->
+    <div class="container py-5 text-light">
+        <h5>
+            Proyek koleksi memungkinkan Anda untuk mengumpulkan dan memvisualisasikan pengamatan menggunakan alat
+            pencarian fishiden. Segala sesuatu yang memenuhi parameter yang ditetapkan oleh proyek akan secara otomatis
+            disertakan. Untuk memulai project silahkan untuk login
+        </h5>
+        <div class="text-center my-5">
+            <a class="nav-link mb-lg-0 align-items-center" href="#">
+                <div class="btn-custom-primary px-lg-4 mx-lg-3 w-100">LOGIN</div>
+            </a>
+        </div>
+        <img class="img-fluid" src="assets/bg-project.png" alt="">
+    </div>
+    @endif
 @stop
 
 @section('script')
@@ -223,6 +240,7 @@
     $(document).ready(function() {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
+        @if (Session::has('level') && Session::get('level')=="user")
         const refNewProject = '#newProject';
         const refCardLoading = '.card-loading';
         const refCardItem = '.card-item';
@@ -498,6 +516,7 @@
                 }
             });
         })
+        @endif
     });
 </script>
 @stop
