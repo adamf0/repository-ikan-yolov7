@@ -123,7 +123,7 @@ Route::get('/tes',function(){
             } 
         } 
    } 
-   dd($result);
+   dd($result, array_diff($result, array_unique($result)));
     // rename("/tmp/tmp_file.txt", "/home/user/login/docs/my_file.txt");
 });
 });
