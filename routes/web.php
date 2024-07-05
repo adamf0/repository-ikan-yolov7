@@ -65,6 +65,8 @@ Route::get('/sitemap.xml', function(){
     $sitemap->writeToFile(public_path('sitemap.xml'));
 });
 
+Route::get('/project',[ProjectController::class,"index"])->name('project.index');
+
 Route::middleware(ThrowSessionUI::class)->group(function () {
 
 Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard.index');
@@ -105,7 +107,6 @@ Route::get('/list_negara',[NegaraSelect2Controller::class,"list"])->name('select
 Route::get('/list_user',[UserSelect2Controller::class,"list"])->name('select2.user.list');
 Route::get('/list_spesies',[KatalogIkanSelect2Controller::class,"list"])->name('select2.katalogikan.list');
 
-Route::get('/project',[ProjectController::class,"index"])->name('project.index');
 Route::get('/project/{id}',[ProjectController::class,"detail"])->name('project.detail');
 Route::get('/accept_project/{id_member}',[ProjectController::class,"verifyInvite"])->name('project.verifyInvite');
 
