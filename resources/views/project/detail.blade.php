@@ -1065,7 +1065,7 @@
                                         </div>
                                         <div class="dropdown" style="margin-left: auto;">
                                             <button class="btn text-black fs-4" type="button" id="shortmenu${item.id}${label.id}" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="bi bi-three-dots"></i>
+                                                ...
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="shortmenu${item.id}${label.id}">
                                                 <li><a class="dropdown-item detail-klasifikasi" href="#" data-id="${item.id}" data-id_ikan="${label.id}">detail</a></li>
@@ -1085,7 +1085,7 @@
                                 <div class="stacked">
                                     <div class="dropdown">
                                         <button class="btn text-white fs-4" type="button" id="dropmenu${item.id}" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="bi bi-three-dots"></i>
+                                            ...
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropmenu${item.id}">
                                             <li><a class="dropdown-item action-delete" href="#" data-id="${item.id}">hapus</a></li>
