@@ -64,6 +64,7 @@ class FamilyGuideApiController extends Controller
         try {
             ///dd($request->all());
             $ikan = null;
+            dd($request->all());
             if(
                 $request->fillum == null &&
                 $request->super_kelas == null &&
