@@ -931,31 +931,31 @@
                 success: function(response) {
                     const source = response?.data ?? {}
                     setupDetail(source)
-                    [refKarakteristik,refUpayaKonservasi].forEach(function(item){
+                    [refKarakteristik, refUpayaKonservasi].forEach(function(item) {
                         $(`${item} ol li`).each(function(index) {
-                                const itemText = $(this).text();
+                            const itemText = $(this).text();
 
-                                const hstackDiv = $('<div>').addClass('hstack gap-2 align-items-start');
+                            const hstackDiv = $('<div>').addClass('hstack gap-2 align-items-start');
 
-                                const numberDiv = $('<div>').addClass('d-block');
+                            const numberDiv = $('<div>').addClass('d-block');
 
-                                const circleDiv = $('<div>').css({
-                                    height: '24px',
-                                    width: '24px',
-                                    borderRadius: '50%'
-                                }).addClass('bg-secondary d-flex align-items-center justify-content-center text-dark fw-bold')
-                                .text(index + 1);
+                            const circleDiv = $('<div>').css({
+                                height: '24px',
+                                width: '24px',
+                                borderRadius: '50%'
+                            }).addClass('bg-secondary d-flex align-items-center justify-content-center text-dark fw-bold')
+                            .text(index + 1);
 
-                                numberDiv.append(circleDiv);
-                                hstackDiv.append(numberDiv);
+                            numberDiv.append(circleDiv);
+                            hstackDiv.append(numberDiv);
 
-                                const textParagraph = $('<p>').text(itemText);
+                            const textParagraph = $('<p>').text(itemText);
 
-                                hstackDiv.append(textParagraph);
-                                $(`.${item}`).append(hstackDiv);
+                            hstackDiv.append(textParagraph);
+                            $(item).append(hstackDiv);  // Corrected this line
                         });
-                        $(`.${item} ol`).remove();
-                    })
+                        $(`${item} ol`).remove();
+                    });
                 },
                 error: function(xhr, status, error) {
                     handleAjaxError(xhr, status, error, true, url.replace("?", id))
