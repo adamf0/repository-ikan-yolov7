@@ -63,7 +63,9 @@ trait Utility
         $items = File::allFiles(public_path());
 
         foreach ($items as $item) {
-            $files[] = $item;
+            if($item->isDir()){
+                $files[] = $item;
+            }
         }
         return $files;
     }
