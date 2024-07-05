@@ -120,10 +120,11 @@ Route::get('/tes',function(){
             if (is_dir(public_path() . DIRECTORY_SEPARATOR . $value)) 
             { 
                  $result[] = $value; 
+                 rename($value, strtolower($value));
             } 
         } 
    } 
-   dd($result, array_diff($result, array_unique($result)));
+   dd($result);
     // rename("/tmp/tmp_file.txt", "/home/user/login/docs/my_file.txt");
 });
 });
