@@ -932,7 +932,7 @@
                     const source = response?.data ?? {}
                     setupDetail(source)
                     [refKarakteristik,refUpayaKonservasi].forEach(function(item){
-                        $(`.${item} ol li`).each(function(index) {
+                        $(`${item} ol li`).each(function(index) {
                                 const itemText = $(this).text();
 
                                 const hstackDiv = $('<div>').addClass('hstack gap-2 align-items-start');
