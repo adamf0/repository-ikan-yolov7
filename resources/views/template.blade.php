@@ -193,7 +193,6 @@
                                 </li> -->
                             </ul>
                         </li>
-                        @if (Session::get('level')=="user")
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{route('project.index')}}">
                                 <div class="hstack justify-content-between align-items-center">
@@ -204,6 +203,7 @@
                                 </div>
                             </a>
                         </li>
+                        @if (Session::get('level')=="user")
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{route('profile.index')}}">
                                 <div class="hstack justify-content-between align-items-center">
