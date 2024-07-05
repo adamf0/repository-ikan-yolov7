@@ -139,9 +139,9 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <hr class="dropdown-divider">
-                                </li>
+                                </li> -->
                                 <!-- <li>
                                     <a class="dropdown-item font-small" href="#">
                                         <div class="hstack justify-content-between align-items-center">
