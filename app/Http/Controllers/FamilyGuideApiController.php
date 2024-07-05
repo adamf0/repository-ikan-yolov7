@@ -64,15 +64,14 @@ class FamilyGuideApiController extends Controller
         try {
             ///dd($request->all());
             $ikan = null;
-            dd($request->all());
             if(
-                $request->fillum == null &&
-                $request->super_kelas == null &&
-                $request->kelas == null &&
-                $request->ordo == null &&
-                $request->famili == null &&
-                $request->genus == null &&
-                $request->spesies == null
+                in_array($request->fillum, ["null",null])  &&
+                in_array($request->super_kelas, ["null",null])  &&
+                in_array($request->kelas, ["null",null])  &&
+                in_array($request->ordo, ["null",null])  &&
+                in_array($request->famili, ["null",null])  &&
+                in_array($request->genus, ["null",null])  &&
+                in_array($request->spesies, ["null",null]) 
             ){
                 $ikan = Ikan::all();
             } else{
