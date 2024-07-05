@@ -138,82 +138,12 @@
         margin-top: 0px;
     }
 
-    .status_konservasi {
-        overflow-x: auto;
-        scrollbar-width: auto;
-
-        & table {
-            text-align: center;
-            border: 1px solid black;
-            width: -webkit-fill-available;
-
-            & tr {
-                height: 3.7vmax;
-            }
-
-            & td {
-                font-size: .8rem !important;
-                background: white;
-                color: black;
-                padding: 0.4rem 1rem;
-            }
-
-            & td[data-mark="black"] {
-                background: black;
-                color: white;
-            }
-
-            & td[data-mark="mark"] {
-                width: 140px;
-                height: -webkit-fill-available;
-                background: #f21f1f;
-                color: white;
-                font-size: 1.3rem;
-                padding: 0 min(1rem, 1vmax) 0.4rem min(1rem, 1vmax);
-                border-top-left-radius: 50%;
-                border-bottom-left-radius: 50%;
-                border-bottom-right-radius: 50%;
-
-                & .mark__container {
-                    display: flex;
-                    /* align-items: flex-end; */
-                    flex-direction: column;
-                    gap: 0.3rem;
-
-                    & img {
-                        width: 2rem;
-                        aspect-ratio: 1/1;
-                        filter: brightness(100);
-                        display: block;
-                        margin-left: auto;
-                    }
-
-                    & .mark_info {
-                        display: flex;
-                        flex-direction: column;
-
-                        & label {
-                            font-weight: bold;
-                        }
-                    }
-                }
-            }
-        }
-    }
     .fs-6{
         font-size: clamp(0.4rem, 0.4rem + 1.1vmax, 1rem) !important;
     }
     .offcanvas-body {
         padding: var(--bs-offcanvas-padding-y) var(--bs-offcanvas-padding-x);
         overflow-y: auto;
-    }
-    .detail-info{
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(400px,1fr));
-        gap: 2rem;
-    }
-    .detail-info > .merge-colums{
-        grid-column: 1/-1;
     }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -245,7 +175,6 @@
     <!-- Konten -->
     <section class="bg-dark">
         <div class="container py-5">
-
             <div class="d-flex flex-column justify-content-between" style="min-height: calc(100vh - 11rem); gap: 2rem;">
                 <div class="flex-grow-2 layout-card">
                     <button class="card custom-card border border-dotted d-flex justify-content-center align-items-center" id="newUpload">
@@ -273,37 +202,42 @@
                     </ul>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="modal modal-xl fade" id="modalDetail" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal modal-xl fade" id="modalDetail" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content" >
                         <div class="modal-header">
-                            <h5 class="modal-title taksonomi_spesies fs-3 text-primary">
-                                <div class="placeholder-glow">
-                                    <span class="placeholder col-12"></span>
-                                </div>
-                            </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="detail-info">
-                                <div class="merge-colums slider_gambar">
-                                    <div class="placeholder-glow">
-                                        <span class="placeholder col-12"></span>
+                            <div class="status_konservasi">
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-12"></span>
+                                </div>
+                            </div>
+                            <div class="row gy-3 mb-3">
+                                <div class="col-12 col-md-6">
+                                    <div class="bg-glass p-3 rounded-3">
+                                        <h5 style="text-shadow: 2px 2px 4px #010351;" class="text-primary taksonomi_spesies  mb-3">
+                                            <div class="placeholder-glow">
+                                                <span class="placeholder col-12"></span>
+                                            </div>
+                                        </h5>
+                                        <div class="text-center slider_gambar"></div>
                                     </div>
                                 </div>
-                                <div class="merge-colums status_konservasi">
-                                    <div class="placeholder-glow">
-                                        <span class="placeholder col-12"></span>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <h6 class="d-block fs-3 text-primary">Taksonomi</h6>
-                                    <table class="table fs-6">
+                                <div class="col-12 col-md-6">
+                                    <h5 class="text-heading">
+                                        TAKSONOMI
+                                    </h5>
+
+                                    <table class="table text-light table-dark table-sm table-bordered table-striped table-hover font-small">
                                         <tr>
                                             <td>Kategori</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_kategori">
+
+                                            <td class="taksonomi_kategori">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -311,8 +245,8 @@
                                         </tr>
                                         <tr>
                                             <td>Kingdom</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_kingdom">
+
+                                            <td class="taksonomi_kingdom">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -320,8 +254,8 @@
                                         </tr>
                                         <tr>
                                             <td>Fillum</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_fillum">
+
+                                            <td class="taksonomi_fillum">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -329,8 +263,8 @@
                                         </tr>
                                         <tr>
                                             <td>Super Kelas</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_superkelas">
+
+                                            <td class="taksonomi_superkelas">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -338,8 +272,8 @@
                                         </tr>
                                         <tr>
                                             <td>Kelas</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_kelas">
+
+                                            <td class="taksonomi_kelas">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -347,8 +281,8 @@
                                         </tr>
                                         <tr>
                                             <td>Ordo</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_ordo">
+
+                                            <td class="taksonomi_ordo">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -356,8 +290,8 @@
                                         </tr>
                                         <tr>
                                             <td>Familia</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_familia">
+
+                                            <td class="taksonomi_familia">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -365,8 +299,8 @@
                                         </tr>
                                         <tr>
                                             <td>Genus</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_genus">
+
+                                            <td class="taksonomi_genus">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -374,8 +308,8 @@
                                         </tr>
                                         <tr>
                                             <td>Nama Daerah</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_namadaerah">
+
+                                            <td class="taksonomi_namadaerah">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -383,22 +317,33 @@
                                         </tr>
                                         <tr>
                                             <td>Pengarang</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break taksonomi_pengarang">
+
+                                            <td class="taksonomi_pengarang">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
                                             </td>
                                         </tr>
                                     </table>
-                                </div>
-                                <div class="">
-                                    <h6 class="d-block fs-3 text-primary">Informasi Detail</h6>
-                                    <table class="table fs-6">
+
+                                    <h5 class="text-heading">
+                                        ID GENOM
+                                    </h5>
+                                    <p style="word-wrap: break-word;" class="font-small id_genom">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </p>
+
+                                    <h5 class="text-heading">
+                                        INFORMASI DETAIL
+                                    </h5>
+
+                                    <table class="table text-light table-dark table-sm table-bordered table-striped table-hover font-small">
                                         <tr>
                                             <td>Kemunculan</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break info_kemunculan">
+
+                                            <td class="info_kemunculan">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -406,8 +351,8 @@
                                         </tr>
                                         <tr>
                                             <td>Panjang Maksimal</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break info_panjangmax">
+
+                                            <td class="info_panjangmax">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -415,8 +360,8 @@
                                         </tr>
                                         <tr>
                                             <td>Distribusi</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break info_distribusi">
+
+                                            <td class="info_distribusi">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -424,8 +369,8 @@
                                         </tr>
                                         <tr>
                                             <td>Habitat</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break info_habitat">
+
+                                            <td class="info_habitat">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -433,8 +378,8 @@
                                         </tr>
                                         <tr>
                                             <td>Komentar</td>
-                                            <td>:</td>
-                                            <td class="ucfirst text-break info_komentar">
+
+                                            <td class="info_komentar">
                                                 <div class="placeholder-glow">
                                                     <span class="placeholder col-12"></span>
                                                 </div>
@@ -442,46 +387,30 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="">
-                                    <h6 class="d-block fs-3 text-primary">Upaya Konservasi</h6>
-                                    <div class="fs-6 upaya_konservasi">
-                                        <div class="placeholder-glow">
-                                            <span class="placeholder col-12"></span>
-                                        </div>
-                                        <div class="placeholder-glow">
-                                            <span class="placeholder col-12"></span>
-                                        </div>
-                                        <div class="placeholder-glow">
-                                            <span class="placeholder col-12"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <h6 class="d-block fs-3 text-primary">karakteristik Morfologi</h6>
-                                    <div class="fs-6 karakteristik">
-                                        <div class="placeholder-glow">
-                                            <span class="placeholder col-12"></span>
-                                        </div>
-                                        <div class="placeholder-glow">
-                                            <span class="placeholder col-12"></span>
-                                        </div>
+                            </div>
+                            <div class="bg-glass rounded-3 p-3">
+                                <div class="row gy-3">
+                                    <div class="col-12 col-md-6 karakteristik">
+                                        <h5 class="text-heading mb-3">
+                                            KARAKTERISTIK MORFOLOGI
+                                        </h5>
                                         <div class="placeholder-glow">
                                             <span class="placeholder col-12"></span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="merge-colums">
-                                    <h6 class="d-block fs-3 text-primary">ID Genom</h6>
-                                    <div class="fs-6 text-justify text-break id_genom">
+                                    <div class="col-12 col-md-6 upaya_konservasi">
+                                        <h5 class="text-heading mb-3">
+                                            UPAYA KONSERVASI
+                                        </h5>
                                         <div class="placeholder-glow">
                                             <span class="placeholder col-12"></span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="merge-colums">
-                                    <button class="btn btn-warning btn-ubah-klasifikasi" type="button">Ubah Hasil Klasifikasi</button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-warning btn-ubah-klasifikasi" type="button">Ubah Hasil Klasifikasi</button>
                         </div>
                     </div>
                 </div>
@@ -572,8 +501,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
 @stop
 
 @section('script')
@@ -749,177 +676,215 @@
         function setupDetail(data){
             console.log(data)
             let fotoHtml = ``;
+            let indicatorHtml = ``;
             data.list_foto.forEach(function(foto,index){
-                fotoHtml = `<div class="${index==0? "carousel-item active":"carousel-item"}">
-                    <img src="${foto}" class="" alt="...">
+                fotoHtml += `<div class="${index==0? "carousel-item active":"carousel-item"}">
+                    <img src="${foto}" class="d-block img-fluid rounded-2 w-100" style="height: 600px"/>
                 </div>`
+                indicatorHtml += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${index}" class="active" aria-current="true" aria-label="Slide ${index+1}"></button>`
             })
 
             $(refSliderGambar).html(`
-                <div class="carousel slide" id="carouselExampleCaptions" data-bs-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        ${indicatorHtml}
                     </div>
                     <div class="carousel-inner w-100">
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="bi bi-chevron-left fs-1 text-white"></span>
-                        </button>`
-                        +
-                        fotoHtml
-                        +
-                        `<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="bi bi-chevron-right fs-1 text-white"></span>
-                        </button>
+                        ${fotoHtml}
                     </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
+
             `)
             $(refStatusKonservasi).html(`
-                <table>
-                    <thead>
-                        <tr>
-                            `+(
-                                data.status_konservasi=="ne"? 
-                                `<td rowspan="2" data-mark="mark">
-                                    <div class="mark__container">
-                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
-                                        <div class="mark_info">
-                                            <label>NOT EVALUATED</label>
-                                            <span>NE</span>
-                                            <span>${data.status_konservasi_tahun}</span>
-                                        </div>
-                                    </div>
-                                </td>`
-                                :
-                                `<td data-mark="black">NOT EVALUATED</td>`
-                            )+ (
-                                data.status_konservasi=="dd"?
-                                `<td rowspan="2" data-mark="mark">
-                                    <div class="mark__container">
-                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
-                                        <div class="mark_info">
-                                            <label>DATA DEFICIENT</label>
-                                            <span>DD</span>
-                                            <span>${data.status_konservasi_tahun}</span>
-                                        </div>
-                                    </div>
-                                </td>`
-                                :
-                                `<td data-mark="black">DATA DEFICIENT</td>`
-                            )+(
-                                data.status_konservasi=="lc"?
-                                `<td rowspan="2" data-mark="mark">
-                                    <div class="mark__container">
-                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
-                                        <div class="mark_info">
-                                            <label>LEAST CONCERN</label>
-                                            <span>LC</span>
-                                            <span>${data.status_konservasi_tahun}</span>
-                                        </div>
-                                    </div>
-                                </td>`
-                                :
-                                `<td>LEAST CONCERN</td>`
-                            )+(
-                                data.status_konservasi=="nt"?
-                                `<td rowspan="2" data-mark="mark">
-                                    <div class="mark__container">
-                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
-                                        <div class="mark_info">
-                                            <label>NEAR THREATENED</label>
-                                            <span>NT</span>
-                                            <span>${data.status_konservasi_tahun}</span>
-                                        </div>
-                                    </div>
-                                </td> `
-                                :
-                                `<td>NEAR THREATENED</td>`
-                            )+(
-                                data.status_konservasi=="vu"?
-                                `<td rowspan="2" data-mark="mark">
-                                    <div class="mark__container">
-                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
-                                        <div class="mark_info">
-                                            <label>VULNERABLE</label>
-                                            <span>VU</span>
-                                            <span>${data.status_konservasi_tahun}</span>
-                                        </div>
-                                    </div>
-                                </td>`
-                                :
-                                `<td>VULNERABLE</td>`
-                            )+(
-                                data.status_konservasi=="vu"?
-                                `<td rowspan="2" data-mark="mark">
-                                    <div class="mark__container">
-                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
-                                        <div class="mark_info">
-                                            <label>ENDANGERED</label>
-                                            <span>EN</span>
-                                            <span>${data.status_konservasi_tahun}</span>
-                                        </div>
-                                    </div>
-                                </td>`
-                                :
-                                `<td>ENDANGERED</td>`
-                            )+(
-                                data.status_konservasi=="cr"?
-                                `<td rowspan="2" data-mark="mark">
-                                    <div class="mark__container">
-                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
-                                        <div class="mark_info">
-                                            <label>CRITICAL ENDANGERED</label>
-                                            <span>CR</span>
-                                            <span>${data.status_konservasi_tahun}</span>
-                                        </div>
-                                    </div>
-                                </td>`
-                                :
-                                `<td>CRITICAL ENDANGERED</td>`
-                            )+(
-                                data.status_konservasi=="ew"?
-                                `<td rowspan="2" data-mark="mark">
-                                    <div class="mark__container">
-                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
-                                        <div class="mark_info">
-                                            <label>EXTINCT IN THE WILD</label>
-                                            <span>EW</span>
-                                            <span>${data.status_konservasi_tahun}</span>
-                                        </div>
-                                    </div>
-                                </td>`
-                                :
-                                `<td>EXTINCT IN THE WILD</td>`
-                            )+(
-                                data.status_konservasi=="ex"?
-                                `<td rowspan="2" data-mark="mark">
-                                    <div class="mark__container">
-                                        <img src="{{ \App\Helper\Utility::loadAsset('red list.png') }}" alt="">
-                                        <div class="mark_info">
-                                            <label>EXTINCT</label>
-                                            <span>EX</span>
-                                            <span>${data.status_konservasi_tahun}</span>
-                                        </div>
-                                    </div>
-                                </td>    `
-                                :
-                                `<td data-mark="black">EXTINCT</td>`
-                            )+`
-                        </tr>
-                        <tr>
-                            `+(data.status_konservasi=="ne"? ``:`<td>NE</td>`)+`
-                            `+(data.status_konservasi=="dd"? ``:`<td>DD</td>`)+`
-                            `+(data.status_konservasi=="lc"? ``:`<td>LC</td>`)+`
-                            `+(data.status_konservasi=="nt"? ``:`<td>NT</td>`)+`
-                            `+(data.status_konservasi=="vu"? ``:`<td>VU</td>`)+`
-                            `+(data.status_konservasi=="vu"? ``:`<td>EN</td>`)+`
-                            `+(data.status_konservasi=="cr"? ``:`<td>CR</td>`)+`
-                            `+(data.status_konservasi=="ew"? ``:`<td>EW</td>`)+`
-                            `+(data.status_konservasi=="ex"? ``:`<td>EX</td>`)+`
-                        </tr>
-                    </thead>
-                </table>
+                <div class="row g-1 mb-3">
+                    ${data.status_konservasi=="ne"? 
+                    `<div class="col-6 col-md-2">
+                        <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
+                            <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
+                                <div class="font-small">NOT EVALUATED</div>
+                                <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
+                            </div>
+                            <div class="hstack gap-2 justify-content-center">
+                                <div class="fw-bold">NE</div>
+                                <div class="fw-small">${data.status_konservasi_tahun}</div>
+                            </div>
+                        </div>
+                    </div>`:
+                    `<div class="col-3 col-md">
+                        <div class="rounded-2 border p-1 text-center h-100" style="background: #666666">
+                            <div style="height: 40px;" class="font-small border-bottom">NOT EVALUATED</div>
+                            <div class="fw-bold">NE</div>
+                        </div>
+                    </div>`}
+
+                    ${data.status_konservasi=="dd"? 
+                    `<div class="col-6 col-md-2">
+                        <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
+                            <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
+                                <div class="font-small">DATA DEFICIENT</div>
+                                <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
+                            </div>
+                            <div class="hstack gap-2 justify-content-center">
+                                <div class="fw-bold">DD</div>
+                                <div class="fw-small">${data.status_konservasi_tahun}</div>
+                            </div>
+                        </div>
+                    </div>`:
+                    `<div class="col-3 col-md">
+                        <div class="rounded-2 border p-1 text-center h-100" style="background: #999999; color: black">
+                            <div style="height: 40px;" class="font-small border-bottom">DATA DEFICIENT</div>
+                            <div class="fw-bold">DD</div>
+                        </div>
+                    </div>`}
+
+                    ${data.status_konservasi=="lc"? 
+                    `<div class="col-6 col-md-2">
+                        <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
+                            <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
+                                <div class="font-small">LEAST CONCERN</div>
+                                <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
+                            </div>
+                            <div class="hstack gap-2 justify-content-center">
+                                <div class="fw-bold">LC</div>
+                                <div class="fw-small">${data.status_konservasi_tahun}</div>
+                            </div>
+                        </div>
+                    </div>`:
+                    `<div class="col-3 col-md">
+                        <div class="rounded-2 border p-1 text-center h-100" style="background: #cc3333; color: white">
+                            <div style="height: 40px;" class="font-small border-bottom">LEAST CONCERN</div>
+                            <div class="fw-bold">LC</div>
+                        </div>
+                    </div>`}
+
+                    ${data.status_konservasi=="nt"? 
+                    `<div class="col-6 col-md-2">
+                        <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
+                            <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
+                                <div class="font-small">NEAR THREATENED</div>
+                                <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
+                            </div>
+                            <div class="hstack gap-2 justify-content-center">
+                                <div class="fw-bold">NT</div>
+                                <div class="fw-small">${data.status_konservasi_tahun}</div>
+                            </div>
+                        </div>
+                    </div>`:
+                    `<div class="col-3 col-md">
+                        <div class="rounded-2 border p-1 text-center h-100" style="background: #cc6633; color: white">
+                            <div style="height: 40px;" class="font-small border-bottom">NEAR THREATENED</div>
+                            <div class="fw-bold">NT</div>
+                        </div>
+                    </div>`}
+
+                    ${data.status_konservasi=="vu"? 
+                    `<div class="col-6 col-md-2">
+                        <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
+                            <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
+                                <div class="font-small">VULNERABLE</div>
+                                <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
+                            </div>
+                            <div class="hstack gap-2 justify-content-center">
+                                <div class="fw-bold">VU</div>
+                                <div class="fw-small">${data.status_konservasi_tahun}</div>
+                            </div>
+                        </div>
+                    </div>`:
+                    `<div class="col-3 col-md">
+                        <div class="rounded-2 border p-1 text-center h-100" style="background: #cc9900; color: white">
+                            <div style="height: 40px;" class="font-small border-bottom">VULNERABLE</div>
+                            <div class="fw-bold">VU</div>
+                        </div>
+                    </div>`}
+
+                    ${data.status_konservasi=="en"? 
+                    `<div class="col-6 col-md-2">
+                        <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
+                            <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
+                                <div class="font-small">ENDANGERED</div>
+                                <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
+                            </div>
+                            <div class="hstack gap-2 justify-content-center">
+                                <div class="fw-bold">EN</div>
+                                <div class="fw-small">${data.status_konservasi_tahun}</div>
+                            </div>
+                        </div>
+                    </div>`:
+                    `<div class="col-3 col-md">
+                        <div class="rounded-2 border p-1 text-center h-100" style="background: #006666; color: white">
+                            <div style="height: 40px;" class="font-small border-bottom">ENDANGERED</div>
+                            <div class="fw-bold">EN</div>
+                        </div>
+                    </div>`}
+
+                    ${data.status_konservasi=="cr"? 
+                    `<div class="col-6 col-md-2">
+                        <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
+                            <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
+                                <div class="font-small">CRITICAL ENDANGERED</div>
+                                <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
+                            </div>
+                            <div class="hstack gap-2 justify-content-center">
+                                <div class="fw-bold">CR</div>
+                                <div class="fw-small">${data.status_konservasi_tahun}</div>
+                            </div>
+                        </div>
+                    </div>`:
+                    `<div class="col-3 col-md">
+                        <div class="rounded-2 border p-1 text-center h-100" style="background: #006666; color: white">
+                            <div style="height: 40px;" class="font-small border-bottom">CRITICAL ENDANGERED</div>
+                            <div class="fw-bold">CR</div>
+                        </div>
+                    </div>`}
+
+                    ${data.status_konservasi=="ew"? 
+                    `<div class="col-6 col-md-2">
+                        <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
+                            <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
+                                <div class="font-small">EXTINCT IN THE WILD</div>
+                                <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
+                            </div>
+                            <div class="hstack gap-2 justify-content-center">
+                                <div class="fw-bold">EW</div>
+                                <div class="fw-small">${data.status_konservasi_tahun}</div>
+                            </div>
+                        </div>
+                    </div>`:
+                    `<div class="col-3 col-md">
+                        <div class="rounded-2 border p-1 text-center h-100" style="background: black; color: white">
+                            <div style="height: 40px;" class="font-small border-bottom">EXTINCT IN THE WILD</div>
+                            <div class="fw-bold">EW</div>
+                        </div>
+                    </div>`}
+
+                    ${data.status_konservasi=="ex"? 
+                    `<div class="col-6 col-md-2">
+                        <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
+                            <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
+                                <div class="font-small">EXTINCT</div>
+                                <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
+                            </div>
+                            <div class="hstack gap-2 justify-content-center">
+                                <div class="fw-bold">EX</div>
+                                <div class="fw-small">${data.status_konservasi_tahun}</div>
+                            </div>
+                        </div>
+                    </div>`:
+                    `<div class="col-3 col-md">
+                        <div class="rounded-2 border p-1 text-center h-100" style="background: black; color: #cc3333">
+                            <div style="height: 40px;" class="font-small border-bottom">EXTINCT</div>
+                            <div class="fw-bold">EX</div>
+                        </div>
+                    </div>`}
+                </div>
             `)
             $(refTaksonomiSpesies).html(data.spesies)
             $(refTaksonomiKategori).html(data.kategori)

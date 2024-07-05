@@ -334,7 +334,6 @@
 
                         <td>{!!$ikan->komentar!!}</td>
                     </tr>
-
                 </table>
             </div>
         </div>
