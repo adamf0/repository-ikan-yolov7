@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 trait Utility
 {
@@ -59,7 +60,7 @@ trait Utility
     }
     public static function scanFolder($folder){
         $files = [];
-        $items = Storage::disk('public')->allFiles($folder);
+        $items = File::allFiles(Storage::disk('public'));
 
         foreach ($items as $item) {
             $files[] = $item;
