@@ -193,10 +193,32 @@
                                 </li> -->
                             </ul>
                         </li>
+                        @if (Session::get('level')=="user")
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{route('project.index')}}">
+                                <div class="hstack justify-content-between align-items-center">
+                                    <span>Project</span>
+                                    <span class="material-symbols-rounded d-block d-lg-none">
+                                        chevron_right
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{route('profile.index')}}">
+                                <div class="hstack justify-content-between align-items-center">
+                                    <span>Profile</span>
+                                    <span class="material-symbols-rounded d-block d-lg-none">
+                                        chevron_right
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                        @endif
                     </ul>
-                    @if (Session::get("userId"))
-                    <a class="nav-link mb-2 mb-lg-0 align-items-center" href="{{route('dashboard.index')}}">
-                        <div class="btn-custom-primary px-lg-4 mx-lg-3 w-100">DASHBOARD</div>
+                    @if (Session::get('level')=="user")
+                    <a class="nav-link mb-2 mb-lg-0 align-items-center" href="{{route('login.logout')}}">
+                        <div class="btn-custom-primary px-lg-4 mx-lg-3 w-100">LOGOUT</div>
                     </a>
                     @else
                     <a class="nav-link mb-2 mb-lg-0 align-items-center" href="{{route('login.index')}}">
@@ -209,7 +231,7 @@
     </nav>
 
     @yield('content')
-    
+
     <!-- Footer -->
     <section class="bg-primary text-light py-5">
         <div class="container">

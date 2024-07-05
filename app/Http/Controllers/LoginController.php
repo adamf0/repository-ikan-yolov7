@@ -22,7 +22,7 @@ class LoginController extends Controller
             Session::put("id",Auth::user()?->id);
             Session::put("nama",Auth::user()?->nama);
             Session::put("level","user");
-            return redirect()->route('dashboard.index');
+            return redirect()->route('home');
         }
 
         Session::flash(TypeNotif::Error->val(), "akses ditolak");

@@ -1,18 +1,6 @@
-@extends('template_admin')
+@extends('template')
 
-@section('page-title')
-<x-page-title title="Project">
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item">Project</li>
-            <li class="breadcrumb-item active">{{$project->judul}}</li>
-        </ol>
-    </nav>
-</x-page-title>
-@stop
-
-@section('content')
+@section('css')
 <style>
     ::-webkit-scrollbar {
         width: 5px;
@@ -228,362 +216,386 @@
         grid-column: 1/-1;
     }
 </style>
-<div id="spinner-body" class="pt-5">
-    <div class="spinner-border text-primary" role="status" style="position: absolute;top: 50%;">
-    </div>
-</div>
-
-<input type="file" id="fileInput" multiple style="display:none;">
-<div class="d-flex flex-column justify-content-between" style="min-height: calc(100vh - 11rem); gap: 2rem;">
-    <div class="flex-grow-2 layout-card">
-        <button class="card custom-card border border-dotted d-flex justify-content-center align-items-center" id="newUpload">
-            <i class="bi bi-plus-lg fs-1"></i>
-            <span>Upload</span>
-        </button>
-        <div class="card custom-card placeholder-glow card-loading">
-            <div class="placeholder" style="height: -webkit-fill-available;"></div>
-        </div>
-    </div>
-    <div>
-        <div class="pagination-loading placeholder-glow" style="display: none;">
-            <div class="placeholder col-2" style="min-height: 2rem;"></div>
-        </div>
-        <ul class="pagination">
-            <li class="page-item pagination-prev disabled">
-                <button type="button" class="page-link pagination-prev-button">Previous</button>
-            </li>
-            <li class="page-item active" aria-current="page">
-                <button type="button" class="page-link pagination-current" href="#">1</button>
-            </li>
-            <li class="page-item pagination-next disabled">
-                <button type="button" class="page-link pagination-next-button" href="#">Next</button>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="offcanvas offcanvas-end offcanvas w-100" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="false">
-    <div class="offcanvas-header">
-        &nbsp;
-        <h6 class="offcanvas-title fw-bold fs-2 d-block taksonomi_spesies" id="offcanvas">
-            <div class="placeholder-glow">
-                <span class="placeholder col-12"></span>
-            </div>
-        </h6>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div class="detail-info">
-            <div class="merge-colums slider_gambar">
-                <div class="placeholder-glow">
-                    <span class="placeholder col-12"></span>
-                </div>
-                <!-- <div class="carousel slide" id="carouselExampleCaptions" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner mx-auto">
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="bi bi-chevron-left fs-1 text-white"></span>
-                        </button>
-                        <div class="carousel-item active">
-                            <img src="http://localhost:8000/Thalassoma lunare/Thalassoma lunare.jpg" class="" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="http://localhost:8000/Thalassoma lunare/Thalassoma lunare.jpg" class="" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="http://localhost:8000/Thalassoma lunare/Thalassoma lunare.jpg" class="" alt="...">
-                        </div>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="bi bi-chevron-right fs-1 text-white"></span>
-                        </button>
-                    </div>
-                </div> -->
-            </div>
-            <div class="merge-colums status_konservasi">
-                <div class="placeholder-glow">
-                    <span class="placeholder col-12"></span>
-                </div>
-            </div>
-            <div class="">
-                <h6 class="d-block fs-3 text-primary">Taksonomi</h6>
-                <table class="table fs-6">
-                    <tr>
-                        <td>Kategori</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_kategori">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kingdom</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_kingdom">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fillum</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_fillum">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Super Kelas</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_superkelas">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kelas</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_kelas">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ordo</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_ordo">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Familia</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_familia">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Genus</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_genus">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nama Daerah</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_namadaerah">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Pengarang</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break taksonomi_pengarang">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="">
-                <h6 class="d-block fs-3 text-primary">Informasi Detail</h6>
-                <table class="table fs-6">
-                    <tr>
-                        <td>Kemunculan</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break info_kemunculan">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Panjang Maksimal</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break info_panjangmax">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Distribusi</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break info_distribusi">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Habitat</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break info_habitat">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Komentar</td>
-                        <td>:</td>
-                        <td class="ucfirst text-break info_komentar">
-                            <div class="placeholder-glow">
-                                <span class="placeholder col-12"></span>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="">
-                <h6 class="d-block fs-3 text-primary">Upaya Konservasi</h6>
-                <div class="fs-6 upaya_konservasi">
-                    <div class="placeholder-glow">
-                        <span class="placeholder col-12"></span>
-                    </div>
-                    <div class="placeholder-glow">
-                        <span class="placeholder col-12"></span>
-                    </div>
-                    <div class="placeholder-glow">
-                        <span class="placeholder col-12"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="">
-                <h6 class="d-block fs-3 text-primary">karakteristik Morfologi</h6>
-                <div class="fs-6 karakteristik">
-                    <div class="placeholder-glow">
-                        <span class="placeholder col-12"></span>
-                    </div>
-                    <div class="placeholder-glow">
-                        <span class="placeholder col-12"></span>
-                    </div>
-                    <div class="placeholder-glow">
-                        <span class="placeholder col-12"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="merge-colums">
-                <h6 class="d-block fs-3 text-primary">ID Genom</h6>
-                <div class="fs-6 text-justify text-break id_genom">
-                    <div class="placeholder-glow">
-                        <span class="placeholder col-12"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="merge-colums">
-                <button class="btn btn-warning btn-ubah-klasifikasi" type="button">Ubah Hasil Klasifikasi</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalHapus" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <form class="modal-content modalHapusContent" action="{{route('api.classproject.destroy',['id_project'=>'?'])}}" method="get">
-            <div class="modal-header">
-                <h5 class="modal-title modalHapusTitle fs-3 text-primary">Informasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                    <p class="fs-5">Anda yakin ingin hapus gambar ini?</p>
-                    <input type="hidden" name="referensi_hapus">
-                </div>
-            </div>
-            <div class="modal-footer d-grid mx-auto">
-                <button type="submit" class="btn btn-lg btn-danger">Ya, saya ingin hapus gambar ini</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="modal fade" id="modalUbahKlasifikasi" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <form class="modal-content modalUbahKlasifikasiContent" action="{{route('api.classproject.update')}}" method="post">
-            <input type="hidden" name="referensi_update" value=""/>
-            <div class="modal-header">
-                <h5 class="modal-title modalUbahKlasifikasiTitle fs-3 text-primary">Ubah Hasil Klasifikasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                    <label>Spesies Sebelum</label>
-                    <select class="form-control" id="spesies_sebelum" name="spesies_sebelum"></select>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                    <label>Spesies Sesudah</label>
-                    <select class="form-control" id="spesies_sesudah" name="spesies_sesudah"></select>
-                </div>
-            </div>
-            <div class="modal-footer d-grid mx-auto">
-                <button type="submit" class="btn btn-lg btn-success">Simpan perubahan</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="modal fade" id="modalTambahKlasifikasi" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <form class="modal-content modalTambahKlasifikasiContent" action="{{route('api.classproject.store')}}" method="post">
-            <input type="hidden" name="referensi_baru" value=""/>
-            <div class="modal-header">
-                <h5 class="modal-title modalTambahKlasifikasiTitle fs-3 text-primary">Tambah Hasil Klasifikasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                    <label>Nama Spesies</label>
-                    <select class="form-control" id="spesies_baru" name="spesies_baru"></select>
-                </div>
-            </div>
-            <div class="modal-footer d-grid mx-auto">
-                <button type="submit" class="btn btn-lg btn-success">Simpan perubahan</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="modal fade" id="modalHapusKlasifikasi" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <form class="modal-content modalHapusKlasifikasiContent" action="{{route('api.classproject.delete',['id_project'=>'x','id'=>'y'])}}" method="get">
-            <div class="modal-header">
-                <h5 class="modal-title modalHapusKlasifikasiTitle fs-3 text-primary">Informasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                    <p class="fs-5">Anda yakin ingin hapus hasil klasifikasi gambar ini?</p>
-                    <input type="hidden" name="referensi_hapus">
-                </div>
-            </div>
-            <div class="modal-footer d-grid mx-auto">
-                <button type="submit" class="btn btn-lg btn-danger">Ya, hapus hasil klasifikasi gambar ini</button>
-            </div>
-        </form>
-    </div>
-</div>
 @stop
 
-@push('scripts')
+@section('content')
+    <div id="spinner-body" class="pt-5">
+        <div class="spinner-border text-primary" role="status" style="position: absolute;top: 50%;">
+        </div>
+    </div>
+    <input type="file" id="fileInput" multiple style="display:none;">
+
+    <!-- Hero -->
+    <section class="bg-hero">
+        <div class="bg-overlay">
+            <div class="spacer-header"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <h1 style="text-shadow: 2px 2px 4px #010351;" class="text-white">Project </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+        </div>
+    </section>
+
+    <!-- Konten -->
+    <section class="bg-dark">
+        <div class="container py-5">
+
+            <div class="d-flex flex-column justify-content-between" style="min-height: calc(100vh - 11rem); gap: 2rem;">
+                <div class="flex-grow-2 layout-card">
+                    <button class="card custom-card border border-dotted d-flex justify-content-center align-items-center" id="newUpload">
+                        <i class="bi bi-plus-lg fs-1"></i>
+                        <span>Upload</span>
+                    </button>
+                    <div class="card custom-card placeholder-glow card-loading">
+                        <div class="placeholder" style="height: -webkit-fill-available;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="pagination-loading placeholder-glow" style="display: none;">
+                        <div class="placeholder col-2" style="min-height: 2rem;"></div>
+                    </div>
+                    <ul class="pagination">
+                        <li class="page-item pagination-prev disabled">
+                            <button type="button" class="page-link pagination-prev-button">Previous</button>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <button type="button" class="page-link pagination-current" href="#">1</button>
+                        </li>
+                        <li class="page-item pagination-next disabled">
+                            <button type="button" class="page-link pagination-next-button" href="#">Next</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="offcanvas offcanvas-end offcanvas w-100" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="false">
+                <div class="offcanvas-header">
+                    &nbsp;
+                    <h6 class="offcanvas-title fw-bold fs-2 d-block taksonomi_spesies" id="offcanvas">
+                        <div class="placeholder-glow">
+                            <span class="placeholder col-12"></span>
+                        </div>
+                    </h6>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="detail-info">
+                        <div class="merge-colums slider_gambar">
+                            <div class="placeholder-glow">
+                                <span class="placeholder col-12"></span>
+                            </div>
+                            <!-- <div class="carousel slide" id="carouselExampleCaptions" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner mx-auto">
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                        <span class="bi bi-chevron-left fs-1 text-white"></span>
+                                    </button>
+                                    <div class="carousel-item active">
+                                        <img src="http://localhost:8000/Thalassoma lunare/Thalassoma lunare.jpg" class="" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="http://localhost:8000/Thalassoma lunare/Thalassoma lunare.jpg" class="" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="http://localhost:8000/Thalassoma lunare/Thalassoma lunare.jpg" class="" alt="...">
+                                    </div>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                        <span class="bi bi-chevron-right fs-1 text-white"></span>
+                                    </button>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="merge-colums status_konservasi">
+                            <div class="placeholder-glow">
+                                <span class="placeholder col-12"></span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <h6 class="d-block fs-3 text-primary">Taksonomi</h6>
+                            <table class="table fs-6">
+                                <tr>
+                                    <td>Kategori</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_kategori">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Kingdom</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_kingdom">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fillum</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_fillum">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Super Kelas</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_superkelas">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Kelas</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_kelas">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ordo</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_ordo">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Familia</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_familia">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Genus</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_genus">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Nama Daerah</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_namadaerah">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Pengarang</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break taksonomi_pengarang">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="">
+                            <h6 class="d-block fs-3 text-primary">Informasi Detail</h6>
+                            <table class="table fs-6">
+                                <tr>
+                                    <td>Kemunculan</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break info_kemunculan">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Panjang Maksimal</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break info_panjangmax">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Distribusi</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break info_distribusi">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Habitat</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break info_habitat">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Komentar</td>
+                                    <td>:</td>
+                                    <td class="ucfirst text-break info_komentar">
+                                        <div class="placeholder-glow">
+                                            <span class="placeholder col-12"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="">
+                            <h6 class="d-block fs-3 text-primary">Upaya Konservasi</h6>
+                            <div class="fs-6 upaya_konservasi">
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-12"></span>
+                                </div>
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-12"></span>
+                                </div>
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-12"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <h6 class="d-block fs-3 text-primary">karakteristik Morfologi</h6>
+                            <div class="fs-6 karakteristik">
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-12"></span>
+                                </div>
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-12"></span>
+                                </div>
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-12"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="merge-colums">
+                            <h6 class="d-block fs-3 text-primary">ID Genom</h6>
+                            <div class="fs-6 text-justify text-break id_genom">
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-12"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="merge-colums">
+                            <button class="btn btn-warning btn-ubah-klasifikasi" type="button">Ubah Hasil Klasifikasi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalHapus" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <form class="modal-content modalHapusContent" action="{{route('api.classproject.destroy',['id_project'=>'?'])}}" method="get">
+                        <div class="modal-header">
+                            <h5 class="modal-title modalHapusTitle fs-3 text-primary">Informasi</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                                <p class="fs-5">Anda yakin ingin hapus gambar ini?</p>
+                                <input type="hidden" name="referensi_hapus">
+                            </div>
+                        </div>
+                        <div class="modal-footer d-grid mx-auto">
+                            <button type="submit" class="btn btn-lg btn-danger">Ya, saya ingin hapus gambar ini</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalUbahKlasifikasi" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <form class="modal-content modalUbahKlasifikasiContent" action="{{route('api.classproject.update')}}" method="post">
+                        <input type="hidden" name="referensi_update" value=""/>
+                        <div class="modal-header">
+                            <h5 class="modal-title modalUbahKlasifikasiTitle fs-3 text-primary">Ubah Hasil Klasifikasi</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                                <label>Spesies Sebelum</label>
+                                <select class="form-control" id="spesies_sebelum" name="spesies_sebelum"></select>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                                <label>Spesies Sesudah</label>
+                                <select class="form-control" id="spesies_sesudah" name="spesies_sesudah"></select>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-grid mx-auto">
+                            <button type="submit" class="btn btn-lg btn-success">Simpan perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalTambahKlasifikasi" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <form class="modal-content modalTambahKlasifikasiContent" action="{{route('api.classproject.store')}}" method="post">
+                        <input type="hidden" name="referensi_baru" value=""/>
+                        <div class="modal-header">
+                            <h5 class="modal-title modalTambahKlasifikasiTitle fs-3 text-primary">Tambah Hasil Klasifikasi</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                                <label>Nama Spesies</label>
+                                <select class="form-control" id="spesies_baru" name="spesies_baru"></select>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-grid mx-auto">
+                            <button type="submit" class="btn btn-lg btn-success">Simpan perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalHapusKlasifikasi" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <form class="modal-content modalHapusKlasifikasiContent" action="{{route('api.classproject.delete',['id_project'=>'x','id'=>'y'])}}" method="get">
+                        <div class="modal-header">
+                            <h5 class="modal-title modalHapusKlasifikasiTitle fs-3 text-primary">Informasi</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                                <p class="fs-5">Anda yakin ingin hapus hasil klasifikasi gambar ini?</p>
+                                <input type="hidden" name="referensi_hapus">
+                            </div>
+                        </div>
+                        <div class="modal-footer d-grid mx-auto">
+                            <button type="submit" class="btn btn-lg btn-danger">Ya, hapus hasil klasifikasi gambar ini</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+@stop
+
+@section('script')
 <script type="text/javascript" src="{{ \App\Helper\Utility::loadAsset('my.js') }}"></script>
 <script>
     $(document).ready(function() {
@@ -1363,4 +1375,4 @@
         })
     });
 </script>
-@endpush
+@stop

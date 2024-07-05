@@ -1,17 +1,6 @@
-@extends('template_admin')
+@extends('template')
 
-@section('page-title')
-<x-page-title title="Project">
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Project</li>
-        </ol>
-    </nav>
-</x-page-title>
-@stop
-
-@section('content')
+@section('css')
 <style>
     ::-webkit-scrollbar {
         width: 5px;
@@ -110,100 +99,125 @@
         border-color: var(--bs-primary) !important;
     }
 </style>
-
-<div class="d-flex flex-column justify-content-between" style="min-height: calc(100vh - 11rem); gap: 2rem;">
-    <div class="flex-grow-2 layout-card">
-        <button class="card custom-card border border-dotted d-flex justify-content-center align-items-center" id="newProject" style="overflow-y: hidden !important">
-            <i class="bi bi-plus-lg fs-1"></i>
-            <span>Buat Project</span>
-        </button>
-        <div class="card custom-card placeholder-glow card-loading">
-            <div class="placeholder" style="height: -webkit-fill-available;"></div>
-        </div>
-    </div>
-    <div>
-        <div class="pagination-loading placeholder-glow" style="display: none;">
-            <div class="placeholder col-2" style="min-height: 2rem;"></div>
-        </div>
-        <ul class="pagination">
-            <li class="page-item pagination-prev disabled">
-                <button type="button" class="page-link pagination-prev-button">Previous</button>
-            </li>
-            <li class="page-item active" aria-current="page">
-                <button type="button" class="page-link pagination-current" href="#">1</button>
-            </li>
-            <li class="page-item pagination-next disabled">
-                <button type="button" class="page-link pagination-next-button" href="#">Next</button>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <form class="modal-content modalContent" action="{{route('api.project.store')}}" method="post">
-            <div class="modal-header">
-                <h5 class="modal-title">Project Baru</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                    <label>Nama Project <small class="text-danger">*</small></label>
-                    <input type="text" class="form-control" name="nama" placeholder="Masukkan nama project...">
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                    <label>Deskripsi Project</label>
-                    <textarea class="form-control" name="deskripsi" rows="10" cols="30"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-end">
-                <button type="submit" class="btn btn-lg btn-success">Simpan</button>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="modal fade" id="modalHapus" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <form class="modal-content modalHapusContent" action="{{route('api.project.delete',['id'=>'?'])}}" method="get">
-            <div class="modal-header">
-                <h5 class="modal-title modalHapusTitle fs-3">Hapus </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                    <p class="fs-5">Anda yakin ingin hapus project ini?</p>
-                    <input type="hidden" name="referensi_hapus">
-                </div>
-            </div>
-            <div class="modal-footer d-grid mx-auto">
-                <button type="submit" class="btn btn-lg btn-danger">Ya, saya ingin menghapus project ini</button>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="modal fade" id="modalInvite" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-        <form class="modal-content modalInviteContent" action="{{route('api.project.invite')}}" method="post">
-            <div class="modal-header">
-                <h5 class="modal-title modalInviteTitle fs-4">Undang anggota project</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body row">
-                <input type="hidden" name="referensi_invite">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                    <label>Email</label>
-                    <select class="form-control" id="anggota" name="anggota[]" multiple="multiple"></select>
-                </div>
-            </div>
-            <div class="modal-footer d-grid mx-auto">
-                <button type="submit" class="btn btn-lg btn-success">Kirim</button>
-            </div>
-        </form>
-    </div>
-</div>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @stop
 
-@push('scripts')
+@section('content')
+    <!-- Hero -->
+    <section class="bg-hero">
+        <div class="bg-overlay">
+            <div class="spacer-header"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <h1 style="text-shadow: 2px 2px 4px #010351;" class="text-white">Project </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+        </div>
+    </section>
+
+    <!-- Konten -->
+    <section class="bg-dark">
+        <div class="container py-5">
+            <div class="d-flex flex-column justify-content-between" style="min-height: calc(100vh - 11rem); gap: 2rem;">
+                <div class="flex-grow-2 layout-card">
+                    <button class="card custom-card border border-dotted d-flex justify-content-center align-items-center" id="newProject" style="overflow-y: hidden !important">
+                        <i class="bi bi-plus-lg fs-1"></i>
+                        <span>Buat Project</span>
+                    </button>
+                    <div class="card custom-card placeholder-glow card-loading">
+                        <div class="placeholder" style="height: -webkit-fill-available;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="pagination-loading placeholder-glow" style="display: none;">
+                        <div class="placeholder col-2" style="min-height: 2rem;"></div>
+                    </div>
+                    <ul class="pagination">
+                        <li class="page-item pagination-prev disabled">
+                            <button type="button" class="page-link pagination-prev-button">Previous</button>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <button type="button" class="page-link pagination-current" href="#">1</button>
+                        </li>
+                        <li class="page-item pagination-next disabled">
+                            <button type="button" class="page-link pagination-next-button" href="#">Next</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <form class="modal-content modalContent" action="{{route('api.project.store')}}" method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Project Baru</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                                <label>Nama Project <small class="text-danger">*</small></label>
+                                <input type="text" class="form-control" name="nama" placeholder="Masukkan nama project...">
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                                <label>Deskripsi Project</label>
+                                <textarea class="form-control" name="deskripsi" rows="10" cols="30"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-end">
+                            <button type="submit" class="btn btn-lg btn-success">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalHapus" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <form class="modal-content modalHapusContent" action="{{route('api.project.delete',['id'=>'?'])}}" method="get">
+                        <div class="modal-header">
+                            <h5 class="modal-title modalHapusTitle fs-3">Hapus </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                                <p class="fs-5">Anda yakin ingin hapus project ini?</p>
+                                <input type="hidden" name="referensi_hapus">
+                            </div>
+                        </div>
+                        <div class="modal-footer d-grid mx-auto">
+                            <button type="submit" class="btn btn-lg btn-danger">Ya, saya ingin menghapus project ini</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalInvite" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <form class="modal-content modalInviteContent" action="{{route('api.project.invite')}}" method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title modalInviteTitle fs-4">Undang anggota project</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body row">
+                            <input type="hidden" name="referensi_invite">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                                <label>Email</label>
+                                <select class="form-control" id="anggota" name="anggota[]" multiple="multiple"></select>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-grid mx-auto">
+                            <button type="submit" class="btn btn-lg btn-success">Kirim</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+@stop
+
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript" src="{{ \App\Helper\Utility::loadAsset('my.js') }}"></script>
 <script>
     $(document).ready(function() {
@@ -259,7 +273,7 @@
                                     <div class="dropdown">
                                         `+(item.creator==`{{Auth::user()->id}}`? 
                                         `<button class="btn ${item.foto? 'text-white':'text-black'} fs-4" type="button" id="dropmenu${item.id}" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="bi bi-three-dots"></i>
+                                            ...
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropmenu${item.id}">
                                             <li><a class="dropdown-item action-delete" href="#" data-id="${item.id}" data-judul="${item.judul}">hapus</a></li>
@@ -486,4 +500,4 @@
         })
     });
 </script>
-@endpush
+@stop
