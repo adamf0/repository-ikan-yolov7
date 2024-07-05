@@ -117,11 +117,10 @@ Route::get('/tes',function(){
     { 
         if(!in_array($value, array(".",".."))) 
         { 
-            $path = public_path() . DIRECTORY_SEPARATOR;
-            if (is_dir($path)) 
+            if (is_dir(public_path() . DIRECTORY_SEPARATOR.$value)) 
             { 
                  $result[] = $value; 
-                 exec("mv ".($path. $value)." ".($path.strtolower($value)));
+                 exec("mv ".(public_path() . DIRECTORY_SEPARATOR.$value)." ".(public_path() . DIRECTORY_SEPARATOR.strtolower($value)));
             } 
         } 
    } 
