@@ -902,9 +902,45 @@
             $(refInfoDistribusi).html(data.distribusi)
             $(refInfoHabitat).html(data.habitat)
             $(refInfoKomentar).html(data.komentar)
-            $(refUpayaKonservasi).html(data.upaya_konservasi)
-            $(refKarakteristik).html(data.karakteristik_morfologi)
+            $(refUpayaKonservasi).html(`
+                <h5 class="text-heading mb-3">
+                    UPAYA KONSERVASI
+                </h5>
+                ${data.upaya_konservasi}
+            `)
+            $(refKarakteristik).html(`
+                <h5 class="text-heading mb-3">
+                    KARAKTERISTIK MORFOLOGI
+                </h5>
+                ${data.karakteristik_morfologi}
+            `)
             $(refIdGenom).html(data.id_genom)
+
+            ['karakteristik','upaya_konservasi'].forEach(function(item){
+                $(`.${item} ol li`).each(function(index) {
+                        const itemText = $(this).text();
+
+                        const hstackDiv = $('<div>').addClass('hstack gap-2 align-items-start');
+
+                        const numberDiv = $('<div>').addClass('d-block');
+
+                        const circleDiv = $('<div>').css({
+                            height: '24px',
+                            width: '24px',
+                            borderRadius: '50%'
+                        }).addClass('bg-secondary d-flex align-items-center justify-content-center text-dark fw-bold')
+                        .text(index + 1);
+
+                        numberDiv.append(circleDiv);
+                        hstackDiv.append(numberDiv);
+
+                        const textParagraph = $('<p>').text(itemText);
+
+                        hstackDiv.append(textParagraph);
+                        $(`.${item}`).append(hstackDiv);
+                });
+                $(`.${item} ol`).remove();
+            })
         }
         function loadDetail(id){
             let url = `{{ route('api.KatalogIkan.detail',['id'=>'?']) }}`
