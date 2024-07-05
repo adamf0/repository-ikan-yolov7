@@ -235,7 +235,7 @@
     <!-- Footer -->
     <section class="bg-primary text-light py-5">
         <div class="container">
-            <div class="row g-3">
+            <div class="row g-4">
                 <div class="col-12 col-md-3">
                     <h3>Fishiden</h3>
                     <p class="mb-0">
@@ -247,32 +247,28 @@
                 </div>
                 <div class="col-12 col-md-3">
                     <h5>Quick Link</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a class="text-primary link-underline link-underline-opacity-0 text-break" href="https://www.fishbase.se/">FishBase</a>
+                    <ul>
+                        <li>
+                            <a class="text-light text-decoration-none" href="https://www.fishbase.se/">FishBase</a>
                         </li>
-                        <li class="list-group-item">
-                            <a class="text-primary link-underline link-underline-opacity-0 text-break" href="https://www.iucnredlist.org/">The IUCN Red List of Threatened SpeciesTM</a>
+                        <li>
+                            <a class="text-light text-decoration-none" href="https://www.iucnredlist.org/">The IUCN Red List of Threatened SpeciesTM</a>
                         </li>
-                        <li class="list-group-item">
-                            <a class="text-primary link-underline link-underline-opacity-0 text-break" href="https://www.ncbi.nlm.nih.gov/">NCBI (National Center for Biotechnology Information)</a>
+                        <li>
+                            <a class="text-light text-decoration-none" href="https://www.ncbi.nlm.nih.gov/">NCBI (National Center for Biotechnology Information)</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-12 col-md-3">
                     <h5>Contact Us</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a class="text-primary link-underline link-underline-opacity-0 text-break" href="mailto:rifkimunandar13@gmail.com">
-                                Email: rifkimunandar13@gmail.com
-                            </a>
-                        </li>
-                        <!-- <li class="list-group-item">
-                            <a class="text-primary link-underline link-underline-opacity-0" href="tel:+6287847680155">
-                                Telp: +6287847680155
-                            </a>
-                        </li> -->
-                    </ul>
+                    <a href="" class="text-light text-decoration-none">
+                        <div class="hstack gap-2">
+                            <span class="material-symbols-rounded">
+                                mail
+                            </span>
+                            <span>rifkimunandar13@gmail.com</span>
+                        </div>
+                    </a>
                 </div>
             </div>
             <hr>
