@@ -60,7 +60,7 @@ trait Utility
     }
     public static function scanFolder($folder){
         $files = [];
-        $items = File::allFiles(storage_path('public'));
+        $items = File::allFiles(public_path());
 
         foreach ($items as $item) {
             $files[] = $item;
