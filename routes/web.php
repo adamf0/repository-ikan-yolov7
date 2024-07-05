@@ -120,7 +120,7 @@ Route::get('/tes',function(){
             if (is_dir(public_path() . DIRECTORY_SEPARATOR.$value)) 
             { 
                  $result[] = $value; 
-                 $command = sprintf("mv %s %s", (public_path() . DIRECTORY_SEPARATOR.$value), (public_path() . DIRECTORY_SEPARATOR.strtolower($value)));
+                 $command = sprintf('mv "%s" "%s"', (public_path() . DIRECTORY_SEPARATOR.$value), (public_path() . DIRECTORY_SEPARATOR.strtolower($value)));
                  shell_exec($command);
                  echo $command."<br>";
             } 
