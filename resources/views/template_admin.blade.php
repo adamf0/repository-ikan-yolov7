@@ -143,12 +143,6 @@
               <h6>{{\App\Helper\Utility::getName()}}</h6>
             </li>
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{route('profile.index')}}">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-              </a>
-            </li>
-            <li>
               <a class="dropdown-item d-flex align-items-center" href="{{route('login.logout')}}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
@@ -171,8 +165,6 @@
 
       <li class="nav-heading">Data Master</li>
       <x-sidebar-item-menu title="Katalog Ikan" icon="bi bi-card-checklist" link="{{route('katalog_ikan.index')}}" :active="\App\Helper\Utility::stateMenu(['katalog_ikan'],request())" />
-      @else
-      <x-sidebar-item-menu title="Project" icon="bi bi-kanban" link="{{route('project.index')}}" :active="\App\Helper\Utility::stateMenu(['project'],request())" />
       @endif
     </ul>
   </aside><!-- End Sidebar-->
