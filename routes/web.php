@@ -109,4 +109,10 @@ Route::get('/project',[ProjectController::class,"index"])->name('project.index')
 Route::get('/project/{id}',[ProjectController::class,"detail"])->name('project.detail');
 Route::get('/accept_project/{id_member}',[ProjectController::class,"verifyInvite"])->name('project.verifyInvite');
 
+Route::get('/tes',function(){
+    $files = \App\Helper\Utility::scanFiles("");
+    $duplicate = array_diff($files, array_unique($files));
+    dd($files, $duplicate);
+    // rename("/tmp/tmp_file.txt", "/home/user/login/docs/my_file.txt");
+});
 });
