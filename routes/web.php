@@ -109,4 +109,21 @@ Route::get('/project',[ProjectController::class,"index"])->name('project.index')
 Route::get('/project/{id}',[ProjectController::class,"detail"])->name('project.detail');
 Route::get('/accept_project/{id_member}',[ProjectController::class,"verifyInvite"])->name('project.verifyInvite');
 
+Route::get('/tes',function(){
+    $result = array(); 
+
+    $currentDirectory = scandir(public_path()); 
+    foreach ($currentDirectory as $key => $value) 
+    { 
+        if(!in_array($value, array(".",".."))) 
+        { 
+            if (is_dir(public_path() . DIRECTORY_SEPARATOR . $value)) 
+            { 
+                 $result[] = $value; 
+            } 
+        } 
+   } 
+   dd($result);
+    // rename("/tmp/tmp_file.txt", "/home/user/login/docs/my_file.txt");
+});
 });
