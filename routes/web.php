@@ -121,8 +121,8 @@ Route::get('/tes',function(){
             { 
                  $result[] = $value; 
                  $command = sprintf("mv %s %s", (public_path() . DIRECTORY_SEPARATOR.$value), (public_path() . DIRECTORY_SEPARATOR.strtolower($value)));
-                 exec($command);
-                 echo $command;
+                 shell_exec($command);
+                 echo $command."<br>";
             } 
         } 
    } 
