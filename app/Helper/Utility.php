@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 
 trait Utility
 {
@@ -55,17 +54,6 @@ trait Utility
 
         foreach ($items as $item) {
             $files[] = $item;
-        }
-        return $files;
-    }
-    public static function scanFolder($folder){
-        $files = [];
-        $items = File::allFiles(public_path());
-
-        foreach ($items as $item) {
-            if($item->isDir()){
-                $files[] = $item;
-            }
         }
         return $files;
     }

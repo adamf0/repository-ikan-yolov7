@@ -15,7 +15,7 @@ class SearchController extends Controller
         if ($ikan == null) {
             return redirect()->route("home");
         }
-        $files = \App\Helper\Utility::scanFiles($ikan->spesies);
+        $files = \App\Helper\Utility::scanFiles(strtolower($ikan->spesies));
         $randomFile = count($files) > 0 ? array_map(function($item){
             $item = \App\Helper\Utility::loadAsset(rawurlencode($item));
             return $item;
@@ -37,7 +37,7 @@ class SearchController extends Controller
                     $ikan->type = $r['type'];
                     $ikan->akurasi = $r['type'] == "edited" ? 0 : $r['akurasi'];
 
-                    $files = \App\Helper\Utility::scanFiles($ikan->spesies);
+                    $files = \App\Helper\Utility::scanFiles(strtolower($ikan->spesies));
                     $randomFile = count($files) > 0 ? array_map(function($item){
                         $item = \App\Helper\Utility::loadAsset(rawurlencode($item));
                         return $item;

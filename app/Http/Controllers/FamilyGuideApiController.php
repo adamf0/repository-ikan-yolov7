@@ -102,7 +102,7 @@ class FamilyGuideApiController extends Controller
             // dd($ikan->toSql());
 
             $ikanMap = $ikan->transform(function ($item) {
-                $files = \App\Helper\Utility::scanFiles($item->spesies);
+                $files = \App\Helper\Utility::scanFiles(strtolower($item->spesies));
                 $randomFile = count($files)>0? \App\Helper\Utility::loadAsset($files[array_rand($files)]) : \App\Helper\Utility::loadAsset('not_found.jpg');
                 // $randomFile = \App\Helper\Utility::loadAsset('not_found.jpg');
 

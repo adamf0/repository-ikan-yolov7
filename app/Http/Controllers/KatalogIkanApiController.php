@@ -40,7 +40,7 @@ class KatalogIkanApiController extends Controller
             $ikan->karakteristik_morfologi = htmlspecialchars_decode($ikan->karakteristik_morfologi);
             $ikan->komentar = htmlspecialchars_decode($ikan->komentar);
             
-            $files = \App\Helper\Utility::scanFiles($ikan->spesies);
+            $files = \App\Helper\Utility::scanFiles(strtolower($ikan->spesies));
             $ikan->list_foto = count($files)>0? array_map(function($file){
                 $file = \App\Helper\Utility::loadAsset($file);
                 return $file;
