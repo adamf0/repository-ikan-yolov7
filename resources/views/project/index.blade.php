@@ -228,7 +228,7 @@
                 <div class="btn-custom-primary px-lg-4 mx-lg-3 w-100">LOGIN</div>
             </a>
         </div>
-        <img class="img-fluid" src="assets/bg-project.png" alt="">
+        <img class="img-fluid" src="{{\App\Helper\Utility::loadAsset('assets/img/bg-project.png')}}" alt="">
     </div>
     @endif
 @stop
