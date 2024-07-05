@@ -220,7 +220,7 @@
                             <div class="row gy-3 mb-3">
                                 <div class="col-12 col-md-6">
                                     <div class="bg-glass p-3 rounded-3">
-                                        <h5 style="text-shadow: 2px 2px 4px #010351;" class="text-primary taksonomi_spesies  mb-3">
+                                        <h5 class="text-primary taksonomi_spesies  mb-3">
                                             <div class="placeholder-glow">
                                                 <span class="placeholder col-12"></span>
                                             </div>
@@ -931,31 +931,6 @@
                 success: function(response) {
                     const source = response?.data ?? {}
                     setupDetail(source)
-                    ['upaya_konservasi', 'karakteristik'].forEach(function(item) {
-                        $(`.${item} ol li`).each(function(index) {
-                            const itemText = $(this).text();
-
-                            const hstackDiv = $('<div>').addClass('hstack gap-2 align-items-start');
-
-                            const numberDiv = $('<div>').addClass('d-block');
-
-                            const circleDiv = $('<div>').css({
-                                height: '24px',
-                                width: '24px',
-                                borderRadius: '50%'
-                            }).addClass('bg-secondary d-flex align-items-center justify-content-center text-dark fw-bold')
-                            .text(index + 1);
-
-                            numberDiv.append(circleDiv);
-                            hstackDiv.append(numberDiv);
-
-                            const textParagraph = $('<p>').text(itemText);
-
-                            hstackDiv.append(textParagraph);
-                            $(item).append(hstackDiv);  // Corrected this line
-                        });
-                        $(`.${item} ol`).remove();
-                    });
                 },
                 error: function(xhr, status, error) {
                     handleAjaxError(xhr, status, error, true, url.replace("?", id))
