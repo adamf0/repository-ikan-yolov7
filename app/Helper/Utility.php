@@ -57,6 +57,15 @@ trait Utility
         }
         return $files;
     }
+    public static function scanFolder($folder){
+        $files = [];
+        $items = Storage::disk('public')->allFiles($folder);
+
+        foreach ($items as $item) {
+            $files[] = $item;
+        }
+        return $files;
+    }
     public static function deskripsiStatus($status){
         return match(strtolower($status)){
             "ex"=>[
