@@ -117,10 +117,11 @@ Route::get('/tes',function(){
     { 
         if(!in_array($value, array(".",".."))) 
         { 
-            if (is_dir(public_path() . DIRECTORY_SEPARATOR . $value)) 
+            $path = public_path() . DIRECTORY_SEPARATOR;
+            if (is_dir($path)) 
             { 
                  $result[] = $value; 
-                 rename($value, strtolower($value));
+                 rename($path. $value, $path.strtolower($value));
             } 
         } 
    } 
