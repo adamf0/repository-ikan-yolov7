@@ -121,7 +121,7 @@ Route::get('/tes',function(){
             if (is_dir($path)) 
             { 
                  $result[] = $value; 
-                 rename($path. $value, $path.strtolower($value));
+                 exec("mv ".($path. $value)." ".($path.strtolower($value)));
             } 
         } 
    } 
