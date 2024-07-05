@@ -224,7 +224,7 @@
             disertakan. Untuk memulai project silahkan untuk login
         </h5>
         <div class="text-center my-5">
-            <a class="nav-link mb-lg-0 align-items-center" href="#">
+            <a class="nav-link mb-lg-0 align-items-center" href="{{route('login.index')}}">
                 <div class="btn-custom-primary px-lg-4 mx-lg-3 w-100">LOGIN</div>
             </a>
         </div>
