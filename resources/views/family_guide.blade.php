@@ -105,7 +105,7 @@
         return `<div class="col">
                     <div class="bg-glass rounded-3 p-2 pb-3">
                         <img class="mb-3 rounded-2 img-fluid"
-                            src="${data.foto}" alt="${data.spesies}">
+                            src="${data.foto}" alt="${data.spesies}" loading="lazy">
 
                         <a href="${url.replace('?',data.spesies)}" class="stretched-link text-decoration-none text-light">
                             <div class="text-center">

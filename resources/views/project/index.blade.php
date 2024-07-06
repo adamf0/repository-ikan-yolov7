@@ -287,21 +287,25 @@
                     source.forEach(function(item) {
                         listProject += `
                             <div class="card custom-card card-item" style="cursor: pointer;">
-                                <div class="stacked">
-                                    <div class="dropdown">
-                                        `+(item.creator==`{{Auth::user()->id}}`? 
-                                        `<button class="btn ${item.foto? 'text-white':'text-black'} fs-4" type="button" id="dropmenu${item.id}" data-bs-toggle="dropdown" aria-expanded="false">
-                                            ...
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropmenu${item.id}">
-                                            <li><a class="dropdown-item action-delete" href="#" data-id="${item.id}" data-judul="${item.judul}">hapus</a></li>
-                                            <li><a class="dropdown-item action-invite" href="#" data-id="${item.id}" data-judul="${item.judul}">undang anggota</a></li>
-                                        </ul>`:
-                                        ``
-                                        )+`
-                                    </div>
-                                    <img src="${item.foto??`https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg`}" class="media" data-id="${item.id}">
+                                <div class="dropdown" style="position: absolute;right: 0;">
+                                    `+(item.creator==`{{Auth::user()->id}}`? 
+                                    `<button class="btn ${item.foto? 'text-white':'text-black'} fs-4" type="button" id="dropmenu${item.id}" data-bs-toggle="dropdown" aria-expanded="false">
+                                        ...
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropmenu${item.id}">
+                                        <li><a class="dropdown-item action-delete" href="#" data-id="${item.id}" data-judul="${item.judul}">
+                                        <i class="fas fa-trash-alt"></i>
+                                        hapus
+                                        </a></li>
+                                        <li><a class="dropdown-item action-invite" href="#" data-id="${item.id}" data-judul="${item.judul}">
+                                        <i class="fas fa-user-plus"></i>
+                                        undang anggota
+                                        </a></li>
+                                    </ul>`:
+                                    ``
+                                    )+`
                                 </div>
+                                <img src="${item.foto??`https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg`}" class="media" data-id="${item.id}">
                                 <div class="card-body">
                                     <h5 class="card-item-title fs-4 text-primary">${item.judul}</h5>
                                     <p class="card-text card-item-desc">${item.deskripsi??""}</p>

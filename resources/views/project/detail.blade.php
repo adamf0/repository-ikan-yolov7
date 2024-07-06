@@ -1025,8 +1025,14 @@
                                                 ...
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="shortmenu${item.id}${label.id}">
-                                                <li><a class="dropdown-item detail-klasifikasi" href="#" data-id="${item.id}" data-id_ikan="${label.id}">detail</a></li>
-                                                <li><a class="dropdown-item hapus-klasifikasi" href="#" data-id="${item.id}" data-id_ikan="${label.id}">hapus</a></li>
+                                                <li><a class="dropdown-item detail-klasifikasi" href="#" data-id="${item.id}" data-id_ikan="${label.id}">
+                                                <i class="fas fa-info-circle"></i>
+                                                detail
+                                                </a></li>
+                                                <li><a class="dropdown-item hapus-klasifikasi" href="#" data-id="${item.id}" data-id_ikan="${label.id}">
+                                                <i class="fas fa-trash-alt"></i>
+                                                hapus
+                                                </a></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -1039,17 +1045,18 @@
 
                         listProject += `
                             <div class="card custom-card card-item" data-id="${item.id}">
-                                <div class="stacked">
-                                    <div class="dropdown">
-                                        <button class="btn text-white fs-4" type="button" id="dropmenu${item.id}" data-bs-toggle="dropdown" aria-expanded="false">
-                                            ...
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropmenu${item.id}">
-                                            <li><a class="dropdown-item action-delete" href="#" data-id="${item.id}">hapus</a></li>
-                                        </ul>
-                                    </div>
-                                    <img src="${item.gambar_upload}" class="media">
-                                </div>                                
+                                <div class="dropdown" style="position: absolute;right: 0;">
+                                    <button class="btn text-white fs-4" type="button" id="dropmenu${item.id}" data-bs-toggle="dropdown" aria-expanded="false">
+                                        ...
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropmenu${item.id}">
+                                        <li><a class="dropdown-item action-delete" href="#" data-id="${item.id}">
+                                        <i class="fas fa-trash-alt"></i>
+                                        hapus
+                                        </a></li>
+                                    </ul>
+                                </div>
+                                <img src="${item.gambar_upload}" class="media">                              
                                 <div class="card-body" style="overflow-y: scroll;">
                                     ` + labelHtml + `
                                 </div>
