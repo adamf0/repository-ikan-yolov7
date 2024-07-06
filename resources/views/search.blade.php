@@ -364,11 +364,15 @@
 <script>
     $(document).ready(function(){
         ['karakteristik','upaya_konservasi'].forEach(function(item){
-            $(`.${item} ol li`).each(function(index) {
+            $(`.${item}`).find('ol').each(function(index) {
+                let liContent = ``
+
+                $(this).find('li').each(function(index) {
+                    const litree = $(this).text();
                     const itemText = $(this).text();
+                    const textParagraph = $('<p>').text(itemText);
 
                     const hstackDiv = $('<div>').addClass('hstack gap-2 align-items-start');
-
                     const numberDiv = $('<div>').addClass('d-block');
 
                     const circleDiv = $('<div>').css({
@@ -380,13 +384,11 @@
 
                     numberDiv.append(circleDiv);
                     hstackDiv.append(numberDiv);
-
-                    const textParagraph = $('<p>').text(itemText);
-
                     hstackDiv.append(textParagraph);
-                    $(`.${item}`).append(hstackDiv);
-            });
-            $(`.${item} ol`).remove();
+                    liContent += hstackDiv.prop('outerHTML')
+                })
+                $(`.${item}`).find('ol').replaceWith(liContent);
+            })
         })
         
         // Highcharts.chart('filogenetik', {

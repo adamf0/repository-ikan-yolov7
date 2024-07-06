@@ -219,7 +219,10 @@
         <div class="row gy-3 mb-3">
             <div class="col-12 col-md-6">
                 <div class="bg-glass p-3 rounded-3">
-                    <h5 style="text-shadow: 2px 2px 4px #010351;" class="text-white mb-3">{{$ikan->spesies}}</h5>
+                    <h5 style="text-shadow: 2px 2px 4px #010351;" class="text-white mb-3">
+                        {{$ikan->spesies}}<br>
+                        <small class="badge bg-primary" style="font-size: 0.8rem !important;">{{number_format($ikan->akurasi*100, 3)}}%</small>
+                    </h5>
                     <div class="text-center">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
@@ -373,11 +376,15 @@
 <script>
     $(document).ready(function(){
         ['karakteristik','upaya_konservasi'].forEach(function(item){
-            $(`.${item} ol li`).each(function(index) {
+            $(`.${item}`).find('ol').each(function(index) {
+                let liContent = ``
+
+                $(this).find('li').each(function(index) {
+                    const litree = $(this).text();
                     const itemText = $(this).text();
+                    const textParagraph = $('<p>').text(itemText);
 
                     const hstackDiv = $('<div>').addClass('hstack gap-2 align-items-start');
-
                     const numberDiv = $('<div>').addClass('d-block');
 
                     const circleDiv = $('<div>').css({
@@ -389,13 +396,11 @@
 
                     numberDiv.append(circleDiv);
                     hstackDiv.append(numberDiv);
-
-                    const textParagraph = $('<p>').text(itemText);
-
                     hstackDiv.append(textParagraph);
-                    $(`.${item}`).append(hstackDiv);
-            });
-            $(`.${item} ol`).remove();
+                    liContent += hstackDiv.prop('outerHTML')
+                })
+                $(`.${item}`).find('ol').replaceWith(liContent);
+            })
         })
         // Highcharts.chart('filogenetik', {
         //     credits: {
