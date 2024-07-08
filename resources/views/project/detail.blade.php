@@ -662,7 +662,7 @@
             let indicatorHtml = ``;
             data.list_foto.forEach(function(foto, index) {
                 fotoHtml += `<div class="${index==0? "carousel-item active":"carousel-item"}">
-                    <img src="${foto}" class="d-block img-fluid rounded-2 w-100" style="height: 600px"/>
+                    <img src="${foto}" class="d-block img-fluid rounded-2 w-100" style="height: 420px"/>
                 </div>`
                 indicatorHtml += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${index}" class="active" aria-current="true" aria-label="Slide ${index+1}"></button>`
             })
