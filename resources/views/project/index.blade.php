@@ -26,7 +26,7 @@
     .layout-card {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(min(250px, 50vmax), 1fr));
-        grid-auto-rows: 450px;
+        grid-auto-rows: 300px;
         gap: 1rem;
     }
 
@@ -35,34 +35,9 @@
         height: 100%;
         overflow-y: scroll;
     }
-
-    .stacked {
-        display: grid;
-        place-items: self-start;
-        isolation: isolate;
-        min-width: 10vmax;
-        width: 100%;
-    }
-
-    .stacked>* {
-        grid-column: 1/3;
-        grid-row: 1/3;
-    }
-
-    .stacked>.dropdown {
-        grid-column: 2 / 3;
-        grid-row: 1 / 3;
-    }
-
-    .stacked>.media {
+    .media {
         width: 100% !important;
-        z-index: -1;
-    }
-
-    .layout-card {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(min(250px, 50vmax), 1fr));
-        gap: 1rem;
+        object-fit: cover;
     }
 
     .custom-card {
@@ -79,24 +54,16 @@
         color: var(--bs-primary);
     }
 
-    .border:hover {
-        background-color: var(--bs-primary);
-        opacity: 0.6;
-        border-color: transparent !important;
-    }
-
-    .border:hover>i {
-        color: white;
-    }
-
-    .border:hover>span {
-        color: white !important;
-    }
-
     .border-dotted {
         border-style: dashed !important;
         border-width: .2rem !important;
         border-color: var(--bs-primary) !important;
+    }
+
+    .bg-glass {
+        background: transparent;
+        box-shadow: none;
+        border: none;
     }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -104,133 +71,146 @@
 @stop
 
 @section('content')
-    <!-- Hero -->
-    <section class="bg-hero">
-        <div class="bg-overlay">
-            <div class="spacer-header"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <h1 style="text-shadow: 2px 2px 4px #010351;" class="text-white">Project </h1>
-                    </div>
-                </div>
-            </div>
-            <div class="spacer"></div>
-        </div>
-    </section>
-
-    @if (Session::has('level') && Session::get('level')=="user")
-    <!-- Konten -->
-    <section class="bg-dark">
-        <div class="container py-5">
-            <div class="d-flex flex-column justify-content-between" style="min-height: calc(100vh - 11rem); gap: 2rem;">
-                <div class="flex-grow-2 layout-card">
-                    <button class="card custom-card border border-dotted d-flex justify-content-center align-items-center" id="newProject" style="overflow-y: hidden !important">
-                        <i class="bi bi-plus-lg fs-1"></i>
-                        <span>Buat Project</span>
-                    </button>
-                    <div class="card custom-card placeholder-glow card-loading">
-                        <div class="placeholder" style="height: -webkit-fill-available;"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="pagination-loading placeholder-glow" style="display: none;">
-                        <div class="placeholder col-2" style="min-height: 2rem;"></div>
-                    </div>
-                    <ul class="pagination">
-                        <li class="page-item pagination-prev disabled">
-                            <button type="button" class="page-link pagination-prev-button">Previous</button>
-                        </li>
-                        <li class="page-item active" aria-current="page">
-                            <button type="button" class="page-link pagination-current" href="#">1</button>
-                        </li>
-                        <li class="page-item pagination-next disabled">
-                            <button type="button" class="page-link pagination-next-button" href="#">Next</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-                <div class="modal-dialog">
-                    <form class="modal-content modalContent" action="{{route('api.project.store')}}" method="post">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Project Baru</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                                <label>Nama Project <small class="text-danger">*</small></label>
-                                <input type="text" class="form-control" name="nama" placeholder="Masukkan nama project...">
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                                <label>Deskripsi Project</label>
-                                <textarea class="form-control" name="deskripsi" rows="10" cols="30"></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-end">
-                            <button type="submit" class="btn btn-lg btn-success">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal fade" id="modalHapus" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-                <div class="modal-dialog">
-                    <form class="modal-content modalHapusContent" action="{{route('api.project.delete',['id'=>'?'])}}" method="get">
-                        <div class="modal-header">
-                            <h5 class="modal-title modalHapusTitle fs-3">Hapus </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                                <p class="fs-5">Anda yakin ingin hapus project ini?</p>
-                                <input type="hidden" name="referensi_hapus">
-                            </div>
-                        </div>
-                        <div class="modal-footer d-grid mx-auto">
-                            <button type="submit" class="btn btn-lg btn-danger">Ya, saya ingin menghapus project ini</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal fade" id="modalInvite" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-                <div class="modal-dialog">
-                    <form class="modal-content modalInviteContent" action="{{route('api.project.invite')}}" method="post">
-                        <div class="modal-header">
-                            <h5 class="modal-title modalInviteTitle fs-4">Undang anggota project</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body row">
-                            <input type="hidden" name="referensi_invite">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
-                                <label>Email</label>
-                                <select class="form-control" id="anggota" name="anggota[]" multiple="multiple"></select>
-                            </div>
-                        </div>
-                        <div class="modal-footer d-grid mx-auto">
-                            <button type="submit" class="btn btn-lg btn-success">Kirim</button>
-                        </div>
-                    </form>
+<!-- Hero -->
+<section class="bg-hero">
+    <div class="bg-overlay">
+        <div class="spacer-header"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <h1 style="text-shadow: 2px 2px 4px #010351;" class="text-white">Project </h1>
                 </div>
             </div>
         </div>
-    </section>
-    @elseif(!Session::has('level'))
-    <!-- Tampilkan Jika Belum Login -->
-    <div class="container py-5 text-light">
-        <h5>
-            Proyek koleksi memungkinkan Anda untuk mengumpulkan dan memvisualisasikan pengamatan menggunakan alat
-            pencarian fishiden. Segala sesuatu yang memenuhi parameter yang ditetapkan oleh proyek akan secara otomatis
-            disertakan. Untuk memulai project silahkan untuk login
-        </h5>
-        <div class="text-center my-5">
-            <a class="nav-link mb-lg-0 align-items-center" href="{{route('login.index')}}">
-                <div class="btn-custom-primary px-lg-4 mx-lg-3 w-100">LOGIN</div>
-            </a>
-        </div>
-        <img class="img-fluid" src="{{\App\Helper\Utility::loadAsset('assets/img/bg-project.png')}}" alt="">
+        <div class="spacer"></div>
     </div>
-    @endif
+</section>
+
+@if (Session::has('level') && Session::get('level')=="user")
+<!-- Konten -->
+<section class="bg-dark">
+    <div class="container d-flex flex-column gap-3 py-5">
+        <div class="row g-4 row-cols-1 row-cols-md-3 row-cols-lg-4 layout-card">
+            <!-- Upload -->
+            <div class="col w-100">
+                <div class="bg-glass rounded-4 p-3 h-100">
+                    <a href="#" class="text-decoration-none text-light" id="newProject">
+                        <div style="border-style: dashed;"
+                            class="rounded-3 h-100 d-flex align-items-center justify-content-center">
+                            <div class="text-center">
+                                <h5>Buat Project</h5>
+                                <span class="material-symbols-rounded fs-1">
+                                    add_circle
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Isi Konten -->
+            <div class="col placeholder-glow card-loading w-100">
+                <div class="bg-light placeholder rounded-4 p-2 w-100 h-100">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="pagination-loading placeholder-glow" style="display: none;">
+                <div class="placeholder col-2" style="min-height: 2rem;"></div>
+            </div>
+            <ul class="pagination">
+                <li class="page-item pagination-prev disabled">
+                    <button type="button" class="page-link pagination-prev-button">Previous</button>
+                </li>
+                <li class="page-item active" aria-current="page">
+                    <button type="button" class="page-link pagination-current" href="#">1</button>
+                </li>
+                <li class="page-item pagination-next disabled">
+                    <button type="button" class="page-link pagination-next-button" href="#">Next</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <form class="modal-content modalContent" action="{{route('api.project.store')}}" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title">Project Baru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                    <label>Nama Project <small class="text-danger">*</small></label>
+                    <input type="text" class="form-control" name="nama" placeholder="Masukkan nama project...">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                    <label>Deskripsi Project</label>
+                    <textarea class="form-control" name="deskripsi" rows="10" cols="30"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+                <button type="submit" class="btn btn-lg btn-success">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="modalHapus" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <form class="modal-content modalHapusContent" action="{{route('api.project.delete',['id'=>'?'])}}" method="get">
+            <div class="modal-header">
+                <h5 class="modal-title modalHapusTitle fs-3">Hapus </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                    <p class="fs-5">Anda yakin ingin hapus project ini?</p>
+                    <input type="hidden" name="referensi_hapus">
+                </div>
+            </div>
+            <div class="modal-footer d-grid mx-auto">
+                <button type="submit" class="btn btn-lg btn-danger">Ya, saya ingin menghapus project ini</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="modalInvite" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <form class="modal-content modalInviteContent" action="{{route('api.project.invite')}}" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title modalInviteTitle fs-4">Undang anggota project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+                <input type="hidden" name="referensi_invite">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 form-group">
+                    <label>Email</label>
+                    <select class="form-control" id="anggota" name="anggota[]" multiple="multiple"></select>
+                </div>
+            </div>
+            <div class="modal-footer d-grid mx-auto">
+                <button type="submit" class="btn btn-lg btn-success">Kirim</button>
+            </div>
+        </form>
+    </div>
+</div>
+@elseif(!Session::has('level'))
+<!-- Tampilkan Jika Belum Login -->
+<div class="container py-5 text-light">
+    <h5>
+        Proyek koleksi memungkinkan Anda untuk mengumpulkan dan memvisualisasikan pengamatan menggunakan alat
+        pencarian fishiden. Segala sesuatu yang memenuhi parameter yang ditetapkan oleh proyek akan secara otomatis
+        disertakan. Untuk memulai project silahkan untuk login
+    </h5>
+    <div class="text-center my-5">
+        <a class="nav-link mb-lg-0 align-items-center" href="{{route('login.index')}}">
+            <div class="btn-custom-primary px-lg-4 mx-lg-3 w-100">LOGIN</div>
+        </a>
+    </div>
+    <img class="img-fluid" src="{{\App\Helper\Utility::loadAsset('assets/img/bg-project.png')}}" alt="">
+</div>
+@endif
 @stop
 
 @section('script')
@@ -240,7 +220,7 @@
     $(document).ready(function() {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-        @if (Session::has('level') && Session::get('level')=="user")
+        @if(Session::has('level') && Session::get('level') == "user")
         const refNewProject = '#newProject';
         const refCardLoading = '.card-loading';
         const refCardItem = '.card-item';
@@ -280,38 +260,79 @@
                 dataType: 'json',
                 processData: false,
                 contentType: false,
+                beforeSend:function(){
+                    $(refLayoutCard).find('.col').each(function(index, item) {
+                        if (index >= 2) {
+                            console.log(item)
+                            $(item).remove();
+                        }
+                    });
+                },
                 success: function(response) {
                     $(refCardLoading).hide();
                     const source = response?.data?.source ?? []
                     let listProject = ``;
                     source.forEach(function(item) {
                         listProject += `
-                            <div class="card custom-card card-item" style="cursor: pointer;">
-                                <div class="dropdown" style="position: absolute;right: 0;">
-                                    `+(item.creator==`{{Auth::user()->id}}`? 
-                                    `<button class="btn ${item.foto? 'text-white':'text-black'} fs-4" type="button" id="dropmenu${item.id}" data-bs-toggle="dropdown" aria-expanded="false">
-                                        ...
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropmenu${item.id}">
-                                        <li><a class="dropdown-item action-delete" href="#" data-id="${item.id}" data-judul="${item.judul}">
-                                        <i class="fas fa-trash-alt"></i>
-                                        hapus
-                                        </a></li>
-                                        <li><a class="dropdown-item action-invite" href="#" data-id="${item.id}" data-judul="${item.judul}">
-                                        <i class="fas fa-user-plus"></i>
-                                        undang anggota
-                                        </a></li>
-                                    </ul>`:
-                                    ``
-                                    )+`
-                                </div>
-                                <img src="${item.foto??`https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg`}" class="media" data-id="${item.id}">
-                                <div class="card-body">
-                                    <h5 class="card-item-title fs-4 text-primary">${item.judul}</h5>
-                                    <p class="card-text card-item-desc">${item.deskripsi??""}</p>
+                        <div class="col w-100">
+                            <div class="bg-light rounded-4 p-2 h-100">
+                                <div class="rounded-3">
+                                    <img style="height: 160px;" class="img-fluid rounded-3 mb-1 media ${item.foto==null || item.foto==undefined? 'w-100':''}" src="${item.foto??`https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg`}" alt="gambar ${item.judul}" data-id="${item.id}" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';">
+                                    <div class="row g-2 justify-content-between my-1">
+                                        <div class="col" style="width: 13ch;overflow-wrap: break-word;">
+                                            <h5 class="fw-bold">${item.judul}</h5>
+                                            <p class="mb-0 mt-2" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">${item.deskripsi}</span></p>
+                                        </div>
+                                        <div class="col-auto dropstart">
+                                            <button type="button" class="btn btn-warning d-flex rounded-pill p-0 m-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span class="material-symbols-rounded">
+                                                    more_vert
+                                                </span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <a class="dropdown-item font-small action-delete" href="#" data-id="${item.id}" data-judul="${item.judul}">
+                                                        <div class="hstack justify-content-between align-items-center">
+                                                            <span>Hapus</span>
+                                                            <span class="material-symbols-rounded">
+                                                                delete
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item font-small action-invite" href="#" data-id="${item.id}" data-judul="${item.judul}">
+                                                        <div class="hstack justify-content-between align-items-center">
+                                                            <span>Undang Anggota</span>
+                                                            <span class="material-symbols-rounded">
+                                                                person
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item font-small media" href="#" data-id="${item.id}" data-judul="${item.judul}">
+                                                        <div class="hstack justify-content-between align-items-center">
+                                                            <span>Details</span>
+                                                            <span class="material-symbols-rounded">
+                                                                info
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        `
+                        </div>`
                     })
                     $(refLayoutCard).html($(refLayoutCard).html() + listProject);
                     $(refNewProject).click(function(e) {
