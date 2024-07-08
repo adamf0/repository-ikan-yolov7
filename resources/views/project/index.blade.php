@@ -308,7 +308,7 @@
                                                         <div class="hstack justify-content-between align-items-center">
                                                             <span>Undang Anggota</span>
                                                             <span class="material-symbols-rounded">
-                                                                person
+                                                                person_add
                                                             </span>
                                                         </div>
                                                     </a>
