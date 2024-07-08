@@ -23,85 +23,59 @@
         </div>
     </section>
 
-    <!-- Konten -->
-    <section class="bg-dark">
-        <div class="container py-5">
-            <div class="row gutters-sm">
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
-                                <img src="{{empty($profile->foto)? 'https://bootdey.com/img/Content/avatar/avatar7.png':\App\Helper\Utility::loadAsset('dokumen_foto/'.$profile->foto)}}" alt="Admin" class="rounded-circle" width="150">
-                                <div class="mt-3">
-                                    <h4>{{empty($profile->nama)? '-':$profile->nama}}</h4>
-                                    <p class="text-secondary mb-1">{{empty($profile->negara)? '-':$profile->negara}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-3">
-                        <div id="map"></div>
+    <!-- Data Profile -->
+    <div class="container py-5 text-light">
+        <div class="spacer"></div>
+        <hr>
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="d-flex justify-content-center mb-3">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; overflow: hidden;" class="shadow">
+                        <img style="width: 100%; height: 100%; object-fit: cover;"
+                            src="{{empty($profile->foto)? 'https://bootdey.com/img/Content/avatar/avatar7.png':\App\Helper\Utility::loadAsset('dokumen_foto/'.$profile->foto)}}" alt="" onerror="this.src='https://bootdey.com/img/Content/avatar/avatar7.png';">
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Nama Lengkap</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ $profile->nama }}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ $profile->email }}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Pekerjaan</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ $profile->pekerjaan }}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Instansi </h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ $profile->instansi }}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Bidang Keahlian</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{ $profile->bidang_keahlian }}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a class="btn btn-info" href="{{route('profile.edit')}}">Edit</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h5 style="text-shadow: 2px 2px 4px #010351;" class="text-white">{{empty($profile->nama)? '-':$profile->nama}}</h5>
+                <p>{{empty($profile->negara)? '-':$profile->negara}}</p>
+            </div>
+            <div class="col-12 col-md-6">
+                <table class="table text-light table-dark table-bordered table-striped table-hover">
+                    <tr>
+                        <td>Nama Lengkap</td>
+
+                        <td>{{ $profile->nama }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+
+                        <td>{{ $profile->email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pekerjaan</td>
+
+                        <td>{{ $profile->pekerjaan }}</td>
+                    </tr>
+                    <tr>
+                        <td>Instansi</td>
+
+                        <td>{{ $profile->instansi }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bidang Keahlian</td>
+
+                        <td>{{ $profile->bidang_keahlian }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><a class="btn btn-warning" href="{{route('profile.edit')}}">Edit</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-12 col-md-6">
+                <div id="map" width="100%" height="206" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></div>
             </div>
         </div>
-    </section>
+    </div>
+
 @stop
 
 @section('script')
