@@ -97,7 +97,8 @@
           </div>
 
           <div class="spacer-24"></div>
-          <button type="submit" class="btn-custom-primary w-100 mb-3">Daftar</button>
+          <button type="submit" class="btn-custom-primary w-100 mb-2">Daftar</button>
+          <a href="{{route('home')}}" class="btn-custom-primary w-100 mb-3">Batal</a>
           <div class="text-center">
             Sudah memiliki akun? <a class="text-primary fw-bold text-decoration-none" href="{{route('login.index')}}">Login</a>
           </div>
