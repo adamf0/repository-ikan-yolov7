@@ -457,9 +457,9 @@
                     <select class="form-control" id="spesies_baru" name="spesies_baru"></select>
                 </div>
             </div>
-            <div class="modal-footer d-grid mx-auto">
+            <div class="modal-footer d-flex justify-content-between">
                 <button type="submit" class="btn btn-success">Simpan perubahan</button>
-                <button type="submit" class="btn btn-danger btn-close" data-bs-dismiss="modal" aria-label="Close">Batal</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Batal</button>
             </div>
         </form>
     </div>
