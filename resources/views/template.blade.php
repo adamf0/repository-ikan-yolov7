@@ -33,7 +33,7 @@
 <body class="bg-dark">
 
     <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg" data-bs-theme="dark">
+    <nav class="navbar {{\App\Helper\Utility::stateMenu(['register'],request())? 'bg-primary':'fixed-top'}} navbar-expand-lg" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand" href="{{route('home')}}">
                 <span class="fw-bold">Fishiden</span>

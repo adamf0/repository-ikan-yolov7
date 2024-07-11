@@ -23,7 +23,7 @@
       <h1 class="text-primary text-login">Fishiden</h1>
     </div>
     <div style="min-height: 100vh;" class="bg-overlay-2 vstack align-items-center justify-content-center">
-      <div class="bg-glass w-50 p-3 p-md-4 rounded-3 text-white">
+      <div class="bg-glass w-50 my-4 p-3 p-md-4 rounded-3 text-white">
         <div class="text-center">
           <h3>Register</h3>
           {{ \App\Helper\Utility::showNotif() }}
@@ -103,9 +103,9 @@
           </div>
         </form>
       </div>
-      <div class="text-center mt-3 text-white">
+      <!-- <div class="text-center mt-3 text-white">
         <span>Copyright 2024 Fishiden</span>
-      </div>
+      </div> -->
     </div>
   </section>
 @stop
