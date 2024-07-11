@@ -66,6 +66,7 @@ Route::get('/sitemap.xml', function(){
 });
 
 Route::get('/project',[ProjectController::class,"index"])->name('project.index');
+Route::get('/list_negara',[NegaraSelect2Controller::class,"list"])->name('select2.negara.list');
 
 Route::middleware(ThrowSessionUI::class)->group(function () {
 
@@ -103,7 +104,6 @@ Route::get('/arsip_publikasi/edit/{id}',[ArsipPublikasiController::class,"edit"]
 Route::post('/arsip_publikasi/update',[ArsipPublikasiController::class,"update"])->name('arsip_publikasi.update');
 Route::get('/arsip_publikasi/delete/{id}',[ArsipPublikasiController::class,"delete"])->name('arsip_publikasi.delete');
 
-Route::get('/list_negara',[NegaraSelect2Controller::class,"list"])->name('select2.negara.list');
 Route::get('/list_user',[UserSelect2Controller::class,"list"])->name('select2.user.list');
 Route::get('/list_spesies',[KatalogIkanSelect2Controller::class,"list"])->name('select2.katalogikan.list');
 
