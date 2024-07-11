@@ -55,7 +55,7 @@
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-4 form-group">
                                                     <label>Password</label>
-                                                    <input type="password" class="form-control" name="password" placeholder="Masukkan password..." value="{{old('password')}}">
+                                                    <input type="password" class="form-control" name="password" placeholder="Masukkan password jika ingin ubah..." value="{{old('password')}}">
                                                     @error('password')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
