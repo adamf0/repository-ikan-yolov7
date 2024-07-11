@@ -3,7 +3,11 @@
 @section('css')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <style>
-    #map { min-height: 600px; }
+    .hidden {
+        display: none !important;
+    }
+    #map { min-height: 600px; z-index: 1; }
+    #map_placeholder { width:100%; min-height: 600px; background-color: rgb(182 182 182 / 50%); position: absolute; z-index: 2; top: 0px;}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
@@ -50,6 +54,13 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-4 form-group">
+                                                    <label>Password</label>
+                                                    <input type="password" class="form-control" name="password" placeholder="Masukkan password..." value="{{old('password')}}">
+                                                    @error('password')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-4 form-group">
                                                     <label>Email <span class="text-danger">*</span></label>
                                                     <input type="text" class="form-control" name="email" placeholder="Masukkan email..." value="{{old('email',$old->email)}}">
                                                     @error('email')
@@ -82,7 +93,12 @@
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-xxl-4 form-group">
                                                     <label>Lokasi <span class="text-danger">*</span></label>
                                                     <input type="hidden" name="lokasi" id="lokasi" value="{{$old->latitude}},{{$old->longitude}}">
-                                                    <div id="map"></div>
+                                                    <div style="position: relative;">
+                                                        <div id="map"></div>
+                                                        <div id="map_placeholder" class="d-flex justify-content-center align-items-center">
+                                                            <p class="text-primary">Klik disini untuk merubah titik koordinat</p>
+                                                        </div>
+                                                    </div>
                                                     @error('lokasi')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -96,6 +112,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <button type="submit" class="btn btn-primary">Simpan</button>
+                                            <a href="{{route('profile.index')}}" class="btn btn-danger">Batal</a>
                                         </div>
                                     </form>
                                 </div>
@@ -116,6 +133,9 @@
         $(document).ready(function () {
             var map = L.map('map').setView([-6.200000, 106.816666], 5); // Set the view to a specific location and zoom level
 
+            $('#map_placeholder').on('click',function(){
+                $('#map_placeholder').addClass('hidden');
+            })
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
             @if(!empty($old->latitude) && !empty($old->longitude))
                 L.marker([`{{$old->latitude}}`,`{{$old->longitude}}`]).addTo(map);

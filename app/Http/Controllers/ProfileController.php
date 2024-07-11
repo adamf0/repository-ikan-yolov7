@@ -6,6 +6,7 @@ use App\Helper\TypeNotif;
 use App\Models\User;
 use App\Rules\LocationValidator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
@@ -52,6 +53,9 @@ class ProfileController extends Controller
 
             $user->nama             = $request->nama;
             $user->email            = $request->email;
+            if($request->has('password')){
+                $user->password     = Hash::make($request->password);
+            }
             $user->pekerjaan        = $request->pekerjaan;
             $user->instansi         = $request->instansi; //
             $user->negara           = $request->negara;
