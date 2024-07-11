@@ -11,7 +11,7 @@ class KatalogIkanSelect2Controller extends Controller
 {
     public function list(Request $request){
         try {
-            $list = Ikan::select('id','spesies')->get();
+            $list = Ikan::select('id','spesies')->orderBy('spesies','asc')->get();
 
             return $list->transform(fn($item)=>[
                 "id"=>$item->id,
