@@ -458,7 +458,8 @@
                 </div>
             </div>
             <div class="modal-footer d-grid mx-auto">
-                <button type="submit" class="btn btn-lg btn-success">Simpan perubahan</button>
+                <button type="submit" class="btn btn-success">Simpan perubahan</button>
+                <button type="submit" class="btn btn-danger btn-close" data-bs-dismiss="modal" aria-label="Close">Batal</button>
             </div>
         </form>
     </div>
