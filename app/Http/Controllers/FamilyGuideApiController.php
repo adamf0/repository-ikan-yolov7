@@ -76,25 +76,25 @@ class FamilyGuideApiController extends Controller
                 $ikan = Ikan::all();
             } else{
                 $ikan = DB::table("ikan");
-                if($request->fillum!=null){
+                if(!in_array($request->fillum, ["null",null])){
                     $ikan = $ikan->where('fillum',$request->fillum);        
                 }
-                if($request->super_kelas!=null){
+                if(!in_array($request->super_kelas, ["null",null])){
                     $ikan = $ikan->where('super_kelas',$request->super_kelas);        
                 }
-                if($request->kelas!=null){
+                if(!in_array($request->kelas, ["null",null])){
                     $ikan = $ikan->where('kelas',$request->kelas);        
                 }
-                if($request->ordo!=null){
+                if(!in_array($request->ordo, ["null",null])){
                     $ikan = $ikan->where('ordo',$request->ordo);        
                 }
-                if($request->famili!=null){
+                if(!in_array($request->famili, ["null",null])){
                     $ikan = $ikan->where('famili',$request->famili);        
                 }
-                if($request->genus!=null){
+                if(!in_array($request->genus, ["null",null])){
                     $ikan = $ikan->where('genus',$request->genus);        
                 }
-                if($request->spesies!=null){
+                if(!in_array($request->spesies, ["null",null])){
                     $ikan = $ikan->where('spesies',$request->spesies);        
                 } 
                 $ikan = $ikan->get();
