@@ -162,7 +162,7 @@ class DashboardController extends Controller
             }
             
             //grafik 3
-            $matrix = []; //DB::select('CALL generate_heap_project_matrix()');
+            $matrix = DB::select('CALL generate_heap_project_matrix()');
             $matrix = count($matrix)==0? []:(array) $matrix[0];
             if (array_key_exists('id', $matrix)) {
                 unset($matrix['id']);
