@@ -91,8 +91,8 @@ class DashboardController extends Controller
                     "value" => $userLengkap->count(),
                 ];
             }
-            $userNegara = $userLengkap->pluck("negara");
-            $userPekerjaan = $userLengkap->pluck("pekerjaan");
+            $userNegara = $userLengkap->pluck("negara")->unique();
+            $userPekerjaan = $userLengkap->pluck("pekerjaan")->unique();
             foreach ($userNegara as $negara) {
                 $list2[] = [
                     "id" => $negara . "L",
@@ -128,8 +128,8 @@ class DashboardController extends Controller
                 "name" => "tidak lengkap"
             ];
 
-            $userNegara = $userTidakLengkap->pluck("negara");
-            $userPekerjaan = $userTidakLengkap->pluck("pekerjaan");
+            $userNegara = $userTidakLengkap->pluck("negara")->unique();
+            $userPekerjaan = $userTidakLengkap->pluck("pekerjaan")->unique();
             foreach ($userNegara as $negara) {
                 $idKey = !empty($negara) ? $negara : "tanpa_negara";
                 if ( array_search($idKey, array_column($list2, 'id'))==false ) {
@@ -162,7 +162,7 @@ class DashboardController extends Controller
             }
             
             //grafik 3
-            $matrix = DB::select('CALL generate_heap_project_matrix()');
+            $matrix = []; //DB::select('CALL generate_heap_project_matrix()');
             $matrix = count($matrix)==0? []:(array) $matrix[0];
             if (array_key_exists('id', $matrix)) {
                 unset($matrix['id']);
