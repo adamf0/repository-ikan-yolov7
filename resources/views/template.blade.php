@@ -133,7 +133,7 @@
                                 <li>
                                     <a class="dropdown-item font-small" href="{{route('news')}}">
                                         <div class="hstack justify-content-between align-items-center">
-                                            <span>New Archive</span>
+                                            <span>News Archive</span>
                                             <span class="material-symbols-rounded">
                                                 chevron_right
                                             </span>
