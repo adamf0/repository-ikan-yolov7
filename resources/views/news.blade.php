@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <h1 style="text-shadow: 2px 2px 4px #010351;" class="text-white">New Archive</h1>
+                        <h1 style="text-shadow: 2px 2px 4px #010351;" class="text-white">News Archive</h1>
                     </div>
                 </div>
             </div>
