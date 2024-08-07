@@ -28,7 +28,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 origins = [
-    "http://www.fishiden.com",  # Allow requests from this origin
+    "*",  # Allow requests from this origin
 ]
 
 app.add_middleware(
