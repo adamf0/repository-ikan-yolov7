@@ -35,14 +35,14 @@
                                 <img src="{{ \App\Helper\Utility::loadAsset('assets/img/ilustrasi_berita.png') }}" alt="">
                             </div>
                         </div>
-                        <div class="col" @if(!$n->scrapping) style="height: 400px; overflow-y: scroll;" @endif>
+                        <div class="col" @if(empty($n->url)) style="height: 400px; overflow-y: scroll;" @endif>
                             <div class="vstack">
                                 <!-- <span class="font-small">06/05/24</span> -->
-                                <a href="{{$n->scrapping? $n->url:route('news.detail',['id'=>$n->id])}}" class="text-decoration-none" target="_blank">
+                                <a href="{{empty($n->url)? $n->url:route('news.detail',['id'=>$n->id])}}" class="text-decoration-none" target="_blank">
                                     <h5 class="fw-bold">{{$n->judul}}</h5>
                                 </a>
                                 <p class="mb-0">
-                                    @if ($n->scrapping==0)
+                                    @if (empty($n->url))
                                         {!! $n->kontent_deskripsi !!}
                                     @else
                                         {!! $n->deskripsi !!}
