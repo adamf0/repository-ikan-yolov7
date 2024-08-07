@@ -38,7 +38,7 @@
                         <div class="col" @if(empty($n->url)) style="height: 400px; overflow-y: scroll;" @endif>
                             <div class="vstack">
                                 <!-- <span class="font-small">06/05/24</span> -->
-                                <a href="{{empty($n->url)? $n->url:route('news.detail',['id'=>$n->id])}}" class="text-decoration-none" target="_blank">
+                                <a href="{{!empty($n->url)? $n->url:route('news.detail',['id'=>$n->id])}}" class="text-decoration-none" target="_blank">
                                     <h5 class="fw-bold">{{$n->judul}}</h5>
                                 </a>
                                 <p class="mb-0">
