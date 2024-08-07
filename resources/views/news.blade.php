@@ -32,7 +32,7 @@
                     <div class="row gy-3">
                         <div class="col-sm-12 col-md-auto">
                             <div class="image-container rounded-2">
-                                <img src="https://www.seagrant.wisc.edu/wp-content/uploads/2024/06/lamont3-250x250.jpg" alt="">
+                                <img src="{{ \App\Helper\Utility::loadAsset('assets/img/ilustrasi_berita.png') }}" alt="">
                             </div>
                         </div>
                         <div class="col">
