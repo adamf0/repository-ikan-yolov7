@@ -90,7 +90,7 @@ def yolo_inference(request: Request, body: ScrappingRequest):
         response = requests.get(f"https://www.google.com/search?q={query}", headers=headers)
 
         soup = BeautifulSoup(response.content, "html.parser")
-        print(f"response: {soup.select(".g")}")
+        print(f"response: {soup}")
         organic_results = []
 
         for el in soup.select(".g"):
