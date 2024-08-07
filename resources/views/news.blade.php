@@ -35,8 +35,8 @@
                                 <img src="{{ \App\Helper\Utility::loadAsset('assets/img/ilustrasi_berita.png') }}" alt="">
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="vstack" @if(!$n->scrapping) style="max-height: 400px" @endif>
+                        <div class="col" @if(!$n->scrapping) style="height: 400px; overflow-y: scroll;" @endif>
+                            <div class="vstack">
                                 <!-- <span class="font-small">06/05/24</span> -->
                                 <a href="{{$n->scrapping? $n->url:route('news.detail',['id'=>$n->id])}}" class="text-decoration-none" target="_blank">
                                     <h5 class="fw-bold">{{$n->judul}}</h5>
