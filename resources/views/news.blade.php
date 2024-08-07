@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="vstack">
+                            <div class="vstack" @if(!$n->scrapping) style="max-height: 400px" @endif>
                                 <!-- <span class="font-small">06/05/24</span> -->
                                 <a href="{{$n->scrapping? $n->url:route('news.detail',['id'=>$n->id])}}" class="text-decoration-none" target="_blank">
                                     <h5 class="fw-bold">{{$n->judul}}</h5>
