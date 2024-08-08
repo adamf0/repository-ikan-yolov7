@@ -172,6 +172,7 @@ def yolo_inference(request: Request, body: ScrappingRequest):
         print(f"search_url: {search_url}")
 
         driver.get(search_url)
+        print(f"driver: {driver}")
 
         results = []
         result_divs = driver.find_elements(By.CSS_SELECTOR, "div.g")
