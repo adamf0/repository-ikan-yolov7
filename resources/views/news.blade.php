@@ -5,6 +5,13 @@
 @media (max-width: 995px) {
     .image-container{
         height: 100px !important;
+        width: -webkit-fill-available;
+    }
+    .vstack{
+        font-size: clamp(.6rem, .6rem + 1vmax, 1.2rem);
+    }
+    .vstack>h5{
+        font-size: clamp(.7rem, .7rem + 1.1vmax, 1.5rem);
     }
 }
 </style>
