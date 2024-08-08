@@ -16,8 +16,10 @@ import requests
 from bs4 import BeautifulSoup
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -161,7 +163,8 @@ def yolo_inference(request: Request, body: ScrappingRequest):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument(f"user-agent={random.choice(user_agents)}")
 
-    driver = webdriver.Chrome(options=chrome_options)
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     resp = ResponseScrappingModel()
     try: 
