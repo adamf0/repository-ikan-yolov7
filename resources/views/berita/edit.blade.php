@@ -39,6 +39,10 @@
                                             </div>
                                         </div>
                                         <div class="col-12 form-group">
+                                            <label>Kategori</label>
+                                            <input type="text" class="form-control" name="kategori" placeholder="Masukkan kategori..." value="{{old('kategori',$old->kategori)}}">
+                                        </div>
+                                        <div class="col-12 form-group">
                                             <label>Judul</label>
                                             <input type="text" class="form-control" name="judul" placeholder="Masukkan judul..." value="{{old('judul',$old->judul)}}">
                                         </div>

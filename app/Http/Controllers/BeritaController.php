@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class BeritaController extends Controller
 {
     public $rule = [
+        "kategori"  => "required",
         "judul"     => "required",
         "deskripsi" => "required",
         "scrapping" => "required",
@@ -38,6 +39,7 @@ class BeritaController extends Controller
 
             $berita             = new Berita();
             $berita->url        = $request->url??""; 
+            $berita->kategori   = $request->kategori??""; 
             $berita->judul      = $request->judul??""; 
             $berita->deskripsi  = $request->deskripsi??""; 
             $berita->save();
@@ -56,7 +58,8 @@ class BeritaController extends Controller
             } 
 
             $berita             = Berita::findOrFail($request->id);
-            $berita->url        = $request->url??""; 
+            $berita->url        = $request->url??"";
+            $berita->kategori   = $request->kategori??""; 
             $berita->judul      = $request->judul??""; 
             $berita->deskripsi  = $request->deskripsi??""; 
             $berita->save();

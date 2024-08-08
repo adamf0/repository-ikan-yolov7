@@ -27,6 +27,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Aksi</th>
+                                        <th>Kategori</th>
                                         <th>Judul</th>
                                         <th>Deskripsi</th>
                                     </tr>
@@ -74,6 +75,13 @@
                 {
                     data: 'action', 
                     name: 'action'
+                },
+                {
+                    data: 'kategori',
+                    name: 'kategori',
+                    render: function ( data, type, row, meta ) {
+                        return data;
+                    }
                 },
                 {
                     data: 'judul_url_scrapping',
