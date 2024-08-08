@@ -169,6 +169,7 @@ def yolo_inference(request: Request):
         search_query = "cafe in new york"
         base_url = "https://www.google.com/search?q="
         search_url = base_url + search_query.replace(" ", "+")
+        print(f"search_url: {search_url}")
 
         driver.get(search_url)
 
@@ -189,7 +190,7 @@ def yolo_inference(request: Request):
                 })
                 results.append(f"{title};{link};{description}")
 
-        driver.quit()
+        # driver.quit()
         resp.body = results
 
     except Exception as E:
