@@ -17,7 +17,6 @@ from bs4 import BeautifulSoup
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
 @asynccontextmanager
@@ -162,8 +161,7 @@ def yolo_inference(request: Request, body: ScrappingRequest):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument(f"user-agent={random.choice(user_agents)}")
 
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
 
     resp = ResponseScrappingModel()
     try: 
