@@ -159,44 +159,44 @@ def yolo_inference(request: Request, body: ScrappingRequest):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument(f"user-agent={random.choice(user_agents)}")
 
-    DRIVER_PATH = '/usr/local/bin/chromedriver'
-    # driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
-    driver = webdriver.Chrome(options=chrome_options)
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     resp = ResponseScrappingModel()
     try: 
-        search_query = "cafe in new york"
-        base_url = "https://www.google.com/search?q="
-        search_url = base_url + body.url.replace(" ", "+")
-        print(f"search_url: {search_url}")
+        search_query = body.url.replace(" ", "+")
+        search_url = f"https://www.google.com/search?q={search_query}"
+        print(f"Search URL: {search_url}")
 
         driver.get(search_url)
-        print(f"driver: {driver}")
+        print(f"Driver opened URL")
 
         results = []
         result_divs = driver.find_elements(By.CSS_SELECTOR, "div.g")
-        print(f"result_divs: {result_divs}")
+        print(f"Result divs found: {len(result_divs)}")
 
         for result_div in result_divs:
-            print(f"result_divs: {result_div}")
             anchor = result_div.find_elements(By.CSS_SELECTOR, "a")
             if anchor:
                 link = anchor[0].get_attribute("href")
-                title = result_div.find_element(By.CSS_SELECTOR, "h3").text
-                description_element = result_div.find_element(By.XPATH, "//div[@data-sncf='2']")
+                title_element = result_div.find_element(By.CSS_SELECTOR, "h3")
+                title = title_element.text if title_element else ""
+                description_element = result_div.find_element(By.CSS_SELECTOR, "div.VwiC3b")
                 description = description_element.text if description_element else "-"
                 results.append({
                     "title": title,
                     "link": link,
                     "description": description,
                 })
-                results.append(f"{title};{link};{description}")
+                print(f"Appended result: {title}; {link}; {description}")
 
-        # driver.quit()
+        driver.quit()
         resp.body = results
 
     except Exception as E:
+        driver.quit()
         resp.message = str(E)
         resp.status_code = 501
     
