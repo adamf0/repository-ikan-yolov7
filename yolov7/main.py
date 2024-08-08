@@ -88,7 +88,7 @@ DRIVER_PATH = '/usr/local/bin/chromedriver'
 # driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
 driver = webdriver.Chrome(options=chrome_options)
 
-@app.post("/test")
+@app.get("/test")
 def test(request: Request, body: ScrappingRequest):
     resp = ResponseScrappingModel()
     try: 
