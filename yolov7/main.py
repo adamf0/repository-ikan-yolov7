@@ -15,9 +15,9 @@ from schemas import InferenceRequest, ResponseModel, SchemaResult, ScrappingRequ
 import requests
 from bs4 import BeautifulSoup
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.chrome.options import Options
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -79,50 +79,50 @@ def yolo_inference(request: Request, body: InferenceRequest):
         resp.status_code = 501
     return resp
 
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+# chrome_options = Options()
+# chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--no-sandbox")
+# chrome_options.add_argument("--disable-dev-shm-usage")
 
-DRIVER_PATH = '/usr/local/bin/chromedriver'
-# driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
-driver = webdriver.Chrome(options=chrome_options)
+# DRIVER_PATH = '/usr/local/bin/chromedriver'
+# # driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
+# driver = webdriver.Chrome(options=chrome_options)
 
-@app.post("/test")
-def test(request: Request, body: ScrappingRequest):
-    resp = ResponseScrappingModel()
-    try: 
-        search_query = "cafe in new york"
-        base_url = "https://www.google.com/search?q="
-        search_url = base_url + search_query.replace(" ", "+")
+# @app.post("/test")
+# def test(request: Request, body: ScrappingRequest):
+#     resp = ResponseScrappingModel()
+#     try: 
+#         search_query = "cafe in new york"
+#         base_url = "https://www.google.com/search?q="
+#         search_url = base_url + search_query.replace(" ", "+")
 
-        driver.get(search_url)
+#         driver.get(search_url)
 
-        results = []
-        result_divs = driver.find_elements(By.CSS_SELECTOR, "div.g")
+#         results = []
+#         result_divs = driver.find_elements(By.CSS_SELECTOR, "div.g")
 
-        for result_div in result_divs:
-            anchor = result_div.find_elements(By.CSS_SELECTOR, "a")
-            if anchor:
-                link = anchor[0].get_attribute("href")
-                title = result_div.find_element(By.CSS_SELECTOR, "h3").text
-                description_element = result_div.find_element(By.XPATH, "//div[@data-sncf='2']")
-                description = description_element.text if description_element else "-"
-                results.append({
-                    "title": title,
-                    "link": link,
-                    "description": description,
-                })
-                results.append(f"{title};{link};{description}")
+#         for result_div in result_divs:
+#             anchor = result_div.find_elements(By.CSS_SELECTOR, "a")
+#             if anchor:
+#                 link = anchor[0].get_attribute("href")
+#                 title = result_div.find_element(By.CSS_SELECTOR, "h3").text
+#                 description_element = result_div.find_element(By.XPATH, "//div[@data-sncf='2']")
+#                 description = description_element.text if description_element else "-"
+#                 results.append({
+#                     "title": title,
+#                     "link": link,
+#                     "description": description,
+#                 })
+#                 results.append(f"{title};{link};{description}")
 
-        driver.quit()
-        resp.body = results
+#         driver.quit()
+#         resp.body = results
 
-    except Exception as E:
-        resp.message = str(E)
-        resp.status_code = 501
+#     except Exception as E:
+#         resp.message = str(E)
+#         resp.status_code = 501
     
-    return resp
+#     return resp
 
 user_agents = [
     # Windows
