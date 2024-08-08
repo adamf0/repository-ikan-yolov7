@@ -15,9 +15,9 @@ from schemas import InferenceRequest, ResponseModel, SchemaResult, ScrappingRequ
 import requests
 from bs4 import BeautifulSoup
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.chrome.options import Options
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -116,87 +116,87 @@ user_agents = [
     "Mozilla/5.0 (Linux; Android 9; SM-T830) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.181 Safari/537.36"
 ]
 # https://medium.com/@darshankhandelwal12/scrape-google-with-python-2023-86cda73ffb16
-# @app.post("/scrapping_google")
-# def yolo_inference(request: Request, body: ScrappingRequest):
-#     resp = ResponseScrappingModel()
-#     try:
-#         headers = {
-#             "User-Agent": random.choice(user_agents)
-#         }
-#         query = body.url
-#         print(f"https://www.google.com/search?q={query}")
-#         response = requests.get(f"https://www.google.com/search?q={query}", headers=headers)
-
-#         soup = BeautifulSoup(response.content, "html.parser")
-#         print(f"response: {soup}")
-#         organic_results = []
-
-#         for el in soup.select(".g"):
-#             title_el = el.select_one("h3")
-#             link_el = el.select_one("a")
-#             desc_el = el.select_one(".VwiC3b")
-
-#             if link_el is not None and query in link_el["href"]:
-#                 organic_results.append({
-#                     "title": title_el.text if title_el is not None else "",
-#                     "link": link_el["href"],
-#                     "description": desc_el.text if desc_el is not None else "",
-#                 })
-
-#             print(f"Organic Results: {organic_results}")
-            
-#         resp.body = organic_results
-
-#     except Exception as E:
-#         resp.message = str(E)
-#         resp.status_code = 501
-    
-#     return resp
-
 @app.post("/scrapping_google")
 def yolo_inference(request: Request, body: ScrappingRequest):
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument(f"user-agent={random.choice(user_agents)}")
-
-    driver = webdriver.Chrome(options=chrome_options)
-
     resp = ResponseScrappingModel()
-    try: 
-        search_query = body.url.replace(" ", "+")
-        search_url = f"https://www.google.com/search?q={search_query}"
-        print(f"Search URL: {search_url}")
+    try:
+        headers = {
+            "User-Agent": random.choice(user_agents)
+        }
+        query = body.url
+        print(f"https://www.google.com/search?q={query}")
+        response = requests.get(f"https://www.google.com/search?q={query}", headers=headers)
 
-        driver.get(search_url)
-        print(f"Driver opened URL")
+        soup = BeautifulSoup(response.content, "html.parser")
+        print(f"response: {soup}")
+        organic_results = []
 
-        results = []
-        result_divs = driver.find_elements(By.CSS_SELECTOR, ".g")
-        print(f"Result divs found: {len(result_divs)}")
+        for el in soup.select(".g"):
+            title_el = el.select_one("h3")
+            link_el = el.select_one("a")
+            desc_el = el.select_one(".VwiC3b")
 
-        for result_div in result_divs:
-            anchor = result_div.find_elements(By.CSS_SELECTOR, "a")
-            if anchor:
-                # link = anchor[0].get_attribute("href")
-                title_element = result_div.find_element(By.CSS_SELECTOR, "h3")
-                title = title_element.text if title_element else ""
-                # description_element = result_div.find_element(By.CSS_SELECTOR, "div.VwiC3b")
-                # description = description_element.text if description_element else "-"
-                results.append({
-                    "title": title,
-                    "link": "-",
-                    "description": "-",
+            if link_el is not None and query in link_el["href"]:
+                organic_results.append({
+                    "title": title_el.text if title_el is not None else "",
+                    "link": link_el["href"],
+                    "description": desc_el.text if desc_el is not None else "",
                 })
-                print(f"Appended result: {title}; {link}; {description}")
 
-        driver.quit()
-        resp.body = results
+            print(f"Organic Results: {organic_results}")
+            
+        resp.body = organic_results
 
     except Exception as E:
-        driver.quit()
         resp.message = str(E)
         resp.status_code = 501
     
     return resp
+
+# @app.post("/scrapping_google")
+# def yolo_inference(request: Request, body: ScrappingRequest):
+#     chrome_options = Options()
+#     chrome_options.add_argument("--headless")
+#     chrome_options.add_argument("--no-sandbox")
+#     chrome_options.add_argument("--disable-dev-shm-usage")
+#     chrome_options.add_argument(f"user-agent={random.choice(user_agents)}")
+
+#     driver = webdriver.Chrome(options=chrome_options)
+
+#     resp = ResponseScrappingModel()
+#     try: 
+#         search_query = body.url.replace(" ", "+")
+#         search_url = f"https://www.google.com/search?q={search_query}"
+#         print(f"Search URL: {search_url}")
+
+#         driver.get(search_url)
+#         print(f"Driver opened URL")
+
+#         results = []
+#         result_divs = driver.find_elements(By.CSS_SELECTOR, ".g")
+#         print(f"Result divs found: {len(result_divs)}")
+
+#         for result_div in result_divs:
+#             anchor = result_div.find_elements(By.CSS_SELECTOR, "a")
+#             if anchor:
+#                 # link = anchor[0].get_attribute("href")
+#                 title_element = result_div.find_element(By.CSS_SELECTOR, "h3")
+#                 title = title_element.text if title_element else ""
+#                 # description_element = result_div.find_element(By.CSS_SELECTOR, "div.VwiC3b")
+#                 # description = description_element.text if description_element else "-"
+#                 results.append({
+#                     "title": title,
+#                     "link": "-",
+#                     "description": "-",
+#                 })
+#                 print(f"Appended result: {title}; {link}; {description}")
+
+#         driver.quit()
+#         resp.body = results
+
+#     except Exception as E:
+#         driver.quit()
+#         resp.message = str(E)
+#         resp.status_code = 501
+    
+#     return resp
