@@ -116,54 +116,54 @@ user_agents = [
     "Mozilla/5.0 (Linux; Android 9; SM-T830) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.181 Safari/537.36"
 ]
 # https://medium.com/@darshankhandelwal12/scrape-google-with-python-2023-86cda73ffb16
+# @app.post("/scrapping_google")
+# def yolo_inference(request: Request, body: ScrappingRequest):
+#     resp = ResponseScrappingModel()
+#     try:
+#         headers = {
+#             "User-Agent": random.choice(user_agents)
+#         }
+#         query = body.url
+#         print(f"https://www.google.com/search?q={query}")
+#         response = requests.get(f"https://www.google.com/search?q={query}", headers=headers)
+
+#         soup = BeautifulSoup(response.content, "html.parser")
+#         print(f"response: {soup}")
+#         organic_results = []
+
+#         for el in soup.select(".g"):
+#             title_el = el.select_one("h3")
+#             link_el = el.select_one("a")
+#             desc_el = el.select_one(".VwiC3b")
+
+#             if link_el is not None and query in link_el["href"]:
+#                 organic_results.append({
+#                     "title": title_el.text if title_el is not None else "",
+#                     "link": link_el["href"],
+#                     "description": desc_el.text if desc_el is not None else "",
+#                 })
+
+#             print(f"Organic Results: {organic_results}")
+            
+#         resp.body = organic_results
+
+#     except Exception as E:
+#         resp.message = str(E)
+#         resp.status_code = 501
+    
+#     return resp
+
 @app.post("/scrapping_google")
 def yolo_inference(request: Request, body: ScrappingRequest):
-    resp = ResponseScrappingModel()
-    try:
-        headers = {
-            "User-Agent": random.choice(user_agents)
-        }
-        query = body.url
-        print(f"https://www.google.com/search?q={query}")
-        response = requests.get(f"https://www.google.com/search?q={query}", headers=headers)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
-        soup = BeautifulSoup(response.content, "html.parser")
-        print(f"response: {soup}")
-        organic_results = []
+    DRIVER_PATH = '/usr/local/bin/chromedriver'
+    # driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
 
-        for el in soup.select(".g"):
-            title_el = el.select_one("h3")
-            link_el = el.select_one("a")
-            desc_el = el.select_one(".VwiC3b")
-
-            if link_el is not None and query in link_el["href"]:
-                organic_results.append({
-                    "title": title_el.text if title_el is not None else "",
-                    "link": link_el["href"],
-                    "description": desc_el.text if desc_el is not None else "",
-                })
-
-            print(f"Organic Results: {organic_results}")
-            
-        resp.body = organic_results
-
-    except Exception as E:
-        resp.message = str(E)
-        resp.status_code = 501
-    
-    return resp
-
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
-
-DRIVER_PATH = '/usr/local/bin/chromedriver'
-# driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
-driver = webdriver.Chrome(options=chrome_options)
-
-@app.post("/selenium")
-def yolo_inference(request: Request, body: ScrappingRequest):
     resp = ResponseScrappingModel()
     try: 
         search_query = "cafe in new york"
