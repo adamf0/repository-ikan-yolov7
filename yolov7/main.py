@@ -168,15 +168,17 @@ def yolo_inference(request: Request, body: ScrappingRequest):
     try: 
         search_query = "cafe in new york"
         base_url = "https://www.google.com/search?q="
-        search_url = base_url + search_query.replace(" ", "+")
+        search_url = base_url + body.url.replace(" ", "+")
         print(f"search_url: {search_url}")
 
         driver.get(search_url)
 
         results = []
         result_divs = driver.find_elements(By.CSS_SELECTOR, "div.g")
+        print(f"result_divs: {result_divs}")
 
         for result_div in result_divs:
+            print(f"result_divs: {result_div}")
             anchor = result_div.find_elements(By.CSS_SELECTOR, "a")
             if anchor:
                 link = anchor[0].get_attribute("href")
