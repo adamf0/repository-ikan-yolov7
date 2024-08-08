@@ -89,7 +89,7 @@ DRIVER_PATH = '/usr/local/bin/chromedriver'
 driver = webdriver.Chrome(options=chrome_options)
 
 @app.get("/test")
-def test(request: Request, body: ScrappingRequest):
+def test(request: Request):
     resp = ResponseScrappingModel()
     try: 
         search_query = "cafe in new york"
