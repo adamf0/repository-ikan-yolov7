@@ -173,21 +173,21 @@ def yolo_inference(request: Request, body: ScrappingRequest):
         print(f"Driver opened URL")
 
         results = []
-        result_divs = driver.find_elements(By.CSS_SELECTOR, "div.g")
+        result_divs = driver.find_elements(By.CSS_SELECTOR, ".g")
         print(f"Result divs found: {len(result_divs)}")
 
         for result_div in result_divs:
             anchor = result_div.find_elements(By.CSS_SELECTOR, "a")
             if anchor:
-                link = anchor[0].get_attribute("href")
+                # link = anchor[0].get_attribute("href")
                 title_element = result_div.find_element(By.CSS_SELECTOR, "h3")
                 title = title_element.text if title_element else ""
-                description_element = result_div.find_element(By.CSS_SELECTOR, "div.VwiC3b")
-                description = description_element.text if description_element else "-"
+                # description_element = result_div.find_element(By.CSS_SELECTOR, "div.VwiC3b")
+                # description = description_element.text if description_element else "-"
                 results.append({
                     "title": title,
-                    "link": link,
-                    "description": description,
+                    "link": "-",
+                    "description": "-",
                 })
                 print(f"Appended result: {title}; {link}; {description}")
 
