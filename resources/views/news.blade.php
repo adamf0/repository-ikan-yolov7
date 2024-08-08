@@ -2,7 +2,11 @@
 
 @section('css')
 <style>
-
+@media (max-width: 995px) {
+    .image-container{
+        height: 100px !important;
+    }
+}
 </style>
 @stop
 
@@ -31,7 +35,7 @@
     <div class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-2">
         @foreach ($items as $item)
         <div class="col">
-            <div class="card-news bg-light rounded-3 p-2" style="max-height: 215px;">
+            <a href="{{!empty($item->url)? $item->url:route('news.detail',['id'=>$item->id])}}" target="_blank" class="text-decoration-none card-news bg-light rounded-3 p-2" style="max-height: 215px;">
                 <div class="row gy-3">
                     <div class="col-sm-12 col-md-auto">
                         <div class="image-container rounded-2">
@@ -41,9 +45,7 @@
                     <div class="col" @if(empty($item->url)) style="height: 215px; overflow-y: hidden;" @endif>
                         <div class="vstack">
                             <!-- <span class="font-small">06/05/24</span> -->
-                            <a href="{{!empty($item->url)? $item->url:route('news.detail',['id'=>$item->id])}}" class="text-decoration-none" target="_blank">
-                                <h5 class="fw-bold">{{$item->judul}}</h5>
-                            </a>
+                            <h5 class="fw-bold">{{$item->judul}}</h5>
                             <p class="mb-0">
                                 @if (empty($item->url))
                                 {!! $item->kontent_deskripsi !!}
@@ -54,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         @endforeach
     </div>
