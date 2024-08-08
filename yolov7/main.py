@@ -85,7 +85,8 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
 DRIVER_PATH = '/usr/local/bin/chromedriver'
-driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
+# driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
+driver = webdriver.Chrome(options=chrome_options)
 
 @app.post("/test")
 def test(request: Request, body: ScrappingRequest):
