@@ -14,6 +14,11 @@
         font-size: clamp(.7rem, .7rem + 1.1vmax, 1.5rem);
     }
 }
+@media (max-width: 767px) {
+    .vstack{
+        height: 100px;
+    }
+}
 </style>
 @stop
 
