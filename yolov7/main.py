@@ -12,10 +12,12 @@ import numpy as np
 from fastapi import Request
 # from app.routers._inference import draw_annotations
 from schemas import InferenceRequest, ResponseModel, SchemaResult, ScrappingRequest, ResponseScrappingModel
-
 import requests
 from bs4 import BeautifulSoup
 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -77,6 +79,50 @@ def yolo_inference(request: Request, body: InferenceRequest):
         resp.status_code = 501
     return resp
 
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+DRIVER_PATH = '/usr/local/bin/chromedriver'
+driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
+
+@app.post("/test")
+def test(request: Request, body: ScrappingRequest):
+    resp = ResponseScrappingModel()
+    try: 
+        search_query = "cafe in new york"
+        base_url = "https://www.google.com/search?q="
+        search_url = base_url + search_query.replace(" ", "+")
+
+        driver.get(search_url)
+
+        results = []
+        result_divs = driver.find_elements(By.CSS_SELECTOR, "div.g")
+
+        for result_div in result_divs:
+            anchor = result_div.find_elements(By.CSS_SELECTOR, "a")
+            if anchor:
+                link = anchor[0].get_attribute("href")
+                title = result_div.find_element(By.CSS_SELECTOR, "h3").text
+                description_element = result_div.find_element(By.XPATH, "//div[@data-sncf='2']")
+                description = description_element.text if description_element else "-"
+                results.append({
+                    "title": title,
+                    "link": link,
+                    "description": description,
+                })
+                results.append(f"{title};{link};{description}")
+
+        driver.quit()
+        resp.body = results
+
+    except Exception as E:
+        resp.message = str(E)
+        resp.status_code = 501
+    
+    return resp
+
 user_agents = [
     # Windows
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
@@ -115,7 +161,7 @@ user_agents = [
 ]
 # https://medium.com/@darshankhandelwal12/scrape-google-with-python-2023-86cda73ffb16
 @app.post("/scrapping_google")
-def yolo_inference(request: Request, body: ScrappingRequest):
+def scrapping_google(request: Request, body: ScrappingRequest):
     resp = ResponseScrappingModel()
     try:
         headers = {
