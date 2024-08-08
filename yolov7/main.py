@@ -162,8 +162,8 @@ DRIVER_PATH = '/usr/local/bin/chromedriver'
 # driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
 driver = webdriver.Chrome(options=chrome_options)
 
-@app.get("/test")
-def yolo_inference(request: Request):
+@app.post("/selenium")
+def yolo_inference(request: Request, body: ScrappingRequest):
     resp = ResponseScrappingModel()
     try: 
         search_query = "cafe in new york"
