@@ -6,7 +6,7 @@
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('video.index') }}">Video</a></li>
-            <li class="breadcrumb-item active">Edit</li>
+            <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>
     </x-page-title>
