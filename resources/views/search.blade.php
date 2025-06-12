@@ -2,7 +2,13 @@
  
 @section('css')
 <style>
-
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
 @stop
 
@@ -27,7 +33,7 @@
             @else
             <div class="col-3 col-md">
                 <div class="rounded-2 border p-1 text-center h-100" style="background: #666666">
-                    <div style="height: 40px;" class="font-small border-bottom">NOT EVALUATED</div>
+                    <div style="height: 40px;" class="font-small border-bottom line-clamp-2">NOT EVALUATED</div>
                     <div class="fw-bold">NE</div>
                 </div>
             </div>
@@ -49,7 +55,7 @@
             @else
             <div class="col-3 col-md">
                 <div class="rounded-2 border p-1 text-center h-100" style="background: #999999; color: black">
-                    <div style="height: 40px;" class="font-small border-bottom">DATA DEFICIENT</div>
+                    <div style="height: 40px;" class="font-small border-bottom line-clamp-2">DATA DEFICIENT</div>
                     <div class="fw-bold">DD</div>
                 </div>
             </div>
@@ -59,7 +65,7 @@
             <div class="col-6 col-md-2">
                 <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
                     <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
-                        <div class="font-small">LEAST CONCERN</div>
+                        <div class="font-small line-clamp-2">LEAST CONCERN</div>
                         <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
                     </div>
                     <div class="hstack gap-2 justify-content-center">
@@ -71,7 +77,7 @@
             @else
             <div class="col-3 col-md">
                 <div class="rounded-2 border p-1 text-center h-100" style="background: #cc3333; color: white">
-                    <div style="height: 40px;" class="font-small border-bottom">LEAST CONCERN</div>
+                    <div style="height: 40px;" class="font-small border-bottom line-clamp-2">LEAST CONCERN</div>
                     <div class="fw-bold">LC</div>
                 </div>
             </div>
@@ -81,7 +87,7 @@
             <div class="col-6 col-md-2">
                 <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
                     <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
-                        <div class="font-small">NEAR THREATENED</div>
+                        <div class="font-small line-clamp-2">NEAR THREATENED</div>
                         <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
                     </div>
                     <div class="hstack gap-2 justify-content-center">
@@ -93,7 +99,7 @@
             @else
             <div class="col-3 col-md">
                 <div class="rounded-2 border p-1 text-center h-100" style="background: #cc6633; color: white">
-                    <div style="height: 40px;" class="font-small border-bottom">NEAR THREATENED</div>
+                    <div style="height: 40px;" class="font-small border-bottom line-clamp-2">NEAR THREATENED</div>
                     <div class="fw-bold">NT</div>
                 </div>
             </div>
@@ -103,7 +109,7 @@
             <div class="col-6 col-md-2">
                 <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
                     <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
-                        <div class="font-small">VULNERABLE</div>
+                        <div class="font-small line-clamp-2">VULNERABLE</div>
                         <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
                     </div>
                     <div class="hstack gap-2 justify-content-center">
@@ -115,7 +121,7 @@
             @else
             <div class="col-3 col-md">
                 <div class="rounded-2 border p-1 text-center h-100" style="background: #cc9900; color: white">
-                    <div style="height: 40px;" class="font-small border-bottom">VULNERABLE</div>
+                    <div style="height: 40px;" class="font-small border-bottom line-clamp-2">VULNERABLE</div>
                     <div class="fw-bold">VU</div>
                 </div>
             </div>
@@ -125,7 +131,7 @@
             <div class="col-6 col-md-2">
                 <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
                     <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
-                        <div class="font-small">ENDANGERED</div>
+                        <div class="font-small line-clamp-2">ENDANGERED</div>
                         <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
                     </div>
                     <div class="hstack gap-2 justify-content-center">
@@ -137,7 +143,7 @@
             @else
             <div class="col-3 col-md">
                 <div class="rounded-2 border p-1 text-center h-100" style="background: #006666; color: white">
-                    <div style="height: 40px;" class="font-small border-bottom">ENDANGERED</div>
+                    <div style="height: 40px;" class="font-small border-bottom line-clamp-2">ENDANGERED</div>
                     <div class="fw-bold">EN</div>
                 </div>
             </div>
@@ -147,7 +153,7 @@
             <div class="col-6 col-md-2">
                 <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
                     <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
-                        <div class="font-small">CRITICAL ENDANGERED</div>
+                        <div class="font-small line-clamp-2">CRITICAL ENDANGERED</div>
                         <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
                     </div>
                     <div class="hstack gap-2 justify-content-center">
@@ -159,7 +165,7 @@
             @else
             <div class="col-3 col-md">
                 <div class="rounded-2 border p-1 text-center h-100" style="background: #006666; color: white">
-                    <div style="height: 40px;" class="font-small border-bottom">CRITICAL ENDANGERED</div>
+                    <div style="height: 40px;" class="font-small border-bottom line-clamp-2">CRITICAL ENDANGERED</div>
                     <div class="fw-bold">CR</div>
                 </div>
             </div>
@@ -169,7 +175,7 @@
             <div class="col-6 col-md-2">
                 <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
                     <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
-                        <div class="font-small">EXTINCT IN THE WILD</div>
+                        <div class="font-small line-clamp-2">EXTINCT IN THE WILD</div>
                         <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
                     </div>
                     <div class="hstack gap-2 justify-content-center">
@@ -181,7 +187,7 @@
             @else
             <div class="col-3 col-md">
                 <div class="rounded-2 border p-1 text-center h-100" style="background: black;">
-                    <div style="height: 40px;" class="font-small border-bottom">EXTINCT IN THE WILD</div>
+                    <div style="height: 40px;" class="font-small border-bottom line-clamp-2">EXTINCT IN THE WILD</div>
                     <div class="fw-bold">EW</div>
                 </div>
             </div>
@@ -191,7 +197,7 @@
             <div class="col-6 col-md-2">
                 <div class="rounded-2 border bg-light text-dark p-1 text-center h-100 position-relative">
                     <div style="height: 40px;" class="hstack border-bottom border-dark justify-content-between">
-                        <div class="font-small">EXTINCT</div>
+                        <div class="font-small line-clamp-2">EXTINCT</div>
                         <img width="32" height="32" src="http://www.fishiden.com/red%20list.png" alt="">
                     </div>
                     <div class="hstack gap-2 justify-content-center">
@@ -203,7 +209,7 @@
             @else
             <div class="col-3 col-md">
                 <div class="rounded-2 border p-1 text-center h-100" style="background: black; color: #cc3333">
-                    <div style="height: 40px;" class="font-small border-bottom">EXTINCT</div>
+                    <div style="height: 40px;" class="font-small border-bottom line-clamp-2">EXTINCT</div>
                     <div class="fw-bold">EX</div>
                 </div>
             </div>
@@ -223,7 +229,7 @@
                             <div class="carousel-inner">
                                 @foreach ($ikan->foto as $foto)
                                 <div class="carousel-item @if($loop->first) active @endif">
-                                    <img src="{{$foto}}" class="d-block img-fluid rounded-2 w-100" style="aspect-ratio: 16 / 9; object-fit: cover;">
+                                    <img src="{{$foto}}" class="d-block img-fluid rounded-2 w-100" style="aspect-ratio: 16 / 9;">
                                 </div>
                                 @endforeach
                             </div>
