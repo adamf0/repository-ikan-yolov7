@@ -223,7 +223,7 @@
                             <div class="carousel-inner">
                                 @foreach ($ikan->foto as $foto)
                                 <div class="carousel-item @if($loop->first) active @endif">
-                                    <img src="{{$foto}}" class="d-block img-fluid rounded-2 w-100" style="height: 600px">
+                                    <img src="{{$foto}}" class="d-block img-fluid rounded-2 w-100" style="">
                                 </div>
                                 @endforeach
                             </div>
