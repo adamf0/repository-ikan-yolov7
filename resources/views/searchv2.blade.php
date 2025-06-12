@@ -2,15 +2,6 @@
  
 @section('css')
 <style>
-    .img_custom {
-        height: 150px;
-    }
-
-    @media (min-width: 768px) {
-    .img_custom {
-        height: 300px; /* setara dengan col-md-4 */
-    }
-    }
 </style>
 @stop
 
@@ -226,7 +217,7 @@
             @endif
         </div>
         <div class="row gy-3 mb-3">
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
                 <div class="bg-glass p-3 rounded-3">
                     <h5 style="text-shadow: 2px 2px 4px #010351;" class="text-white mb-3">
                         {{$ikan->spesies}}<br>
@@ -242,7 +233,7 @@
                             <div class="carousel-inner">
                                 @foreach ($ikan->foto as $foto)
                                 <div class="carousel-item @if($loop->first) active @endif">
-                                    <img src="{{$foto}}" class="d-block img-fluid rounded-2 w-100 img_custom" >
+                                    <img src="{{$foto}}" class="d-block img-fluid rounded-2 w-100" style="height: 600px">
                                 </div>
                                 @endforeach
                             </div>
@@ -258,7 +249,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-6">
                 <h5 class="text-heading">
                     TAKSONOMI
                 </h5>
