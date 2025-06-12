@@ -229,7 +229,7 @@
                             <div class="carousel-inner">
                                 @foreach ($ikan->foto as $foto)
                                 <div class="carousel-item @if($loop->first) active @endif">
-                                    <img src="{{$foto}}" class="d-block img-fluid rounded-2 w-100" style="aspect-ratio: 16 / 9;">
+                                    <img src="{{$foto}}" class="d-block img-fluid rounded-2 w-100" style="aspect-ratio: 16 / 9; object-fit: contain;">
                                 </div>
                                 @endforeach
                             </div>
