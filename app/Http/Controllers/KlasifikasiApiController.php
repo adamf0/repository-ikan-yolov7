@@ -30,7 +30,6 @@ class KlasifikasiApiController extends Controller
                 }
 
                 $responseData = $response->json()["body"];
-                dd($responseData);
                 // $datas = [];
                 // foreach($responseData["annotation"] as $item){
                 //     if(!array_key_exists($item["name"],$datas)){
