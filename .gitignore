@@ -1,3 +1,14 @@
 vendor
 .env
 note
+*.json
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.tar.gz
+*.gz
+*.zip
+*.sql
+public/Prediksi/*
