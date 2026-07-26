@@ -62,21 +62,27 @@ class ClassificationProjectApiController extends Controller
 
         try {
             if ($request->has('image')) { //base64
-                // $image = $request->file('image');
-                // $base64Image = base64_encode(file_get_contents($image->getPathName()));
-                foreach($request->get('image') as $image){
-                    // $pattern = '/^data:image\/([a-zA-Z]*);base64,/';
-                    // $base64String = preg_replace($pattern, '', $image);
-                    $base64String = $image;
+                $images = $request->get('image');
+                if (!is_array($images)) {
+                    $images = [$images];
+                }
+                foreach($images as $image){
+                    if (is_array($image)) {
+                        $image = $image[0] ?? '';
+                    }
+                    $pattern = '/^data:image\/[a-zA-Z0-9\+\/=]+;base64,/';
+                    $base64String = preg_replace($pattern, '', $image);
                     
-                    $url = env("YOLO_URL","localhost")."/classfication";
+                    $url = env("YOLO_URL", "https://www.fishiden.com/api2")."/classfication";
                     $response = Http::withHeaders([
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
                     ])->post($url,["image"=>$base64String]);
     
                     if (!$response->successful()) {
-                        throw new Exception($response->json()['error']);
+                        $resJson = $response->json();
+                        $errMsg = is_array($resJson) && isset($resJson['error']) ? $resJson['error'] : (is_array($resJson) && isset($resJson['message']) ? $resJson['message'] : 'Gagal terhubung ke service klasifikasi YOLO (HTTP '.$response->status().')');
+                        throw new Exception($errMsg);
                     }
     
                     $responseData = $response->json()["body"];
@@ -85,10 +91,6 @@ class ClassificationProjectApiController extends Controller
                     foreach($responseData["annotation"] as $item){
                         if(!array_key_exists($item["name"],$datas)){
                             $ikan = Ikan::where('spesies','like', '%'.$item["name"].'%')->firstOrFail();
-                            // $directoryPath = 'public/'.$item["name"];
-                            // $files = Storage::files($directoryPath);
-                            // $files = \App\Helper\Utility::scanFiles($item["name"]);
-                            // $randomFile = count($files)>0? \App\Helper\Utility::loadAsset($files[array_rand($files)]) : \App\Helper\Utility::loadAsset('not_found.jpg');
                             
                             $key = array_search($ikan->id, array_column($list_predic, 'id_ikan'));
                             if($key !== false){
@@ -103,9 +105,9 @@ class ClassificationProjectApiController extends Controller
                     };
                     $fileName = $request->id_project."_".uniqid().".png";
                     $savePath = public_path(sprintf("Prediksi/%s", $fileName));
-                    file_put_contents($savePath, base64_decode($image));
+                    file_put_contents($savePath, base64_decode($base64String));
                     
-                    $datas["predic"] = array_values(array_unique($list_predic));
+                    $datas["predic"] = array_values($list_predic);
                     $datas["image"] = $fileName;
     
                     $classProject = new ClassificationProject();
