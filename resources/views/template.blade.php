@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fishiden</title>
+    <link rel="icon" href="{{ \App\Helper\Utility::loadAsset('assets/img/logo.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ \App\Helper\Utility::loadAsset('assets/img/logo.png') }}" type="image/png">
+    <meta content='Klasifikasi Ikan; Kecerdasan Buatan; AI; Image Processing; Object Detection; Ikan Laut dan Ikan Tawar; Perairan Indonesia;' name='Keywords' />
+    <meta content='Situs klasifikasi ikan berbasis kecerdasan buatan ini memudahkan Anda mengenali semua ikan laut dan tawar di perairan Indonesia.' name='deskripsi' />
+
     <link preload href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

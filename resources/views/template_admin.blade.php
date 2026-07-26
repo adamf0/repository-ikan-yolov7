@@ -9,6 +9,8 @@
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
   <title>Fishiden</title>
+  <link rel="icon" href="{{ \App\Helper\Utility::loadAsset('assets/img/logo.png') }}" type="image/png">
+  <link rel="shortcut icon" href="{{ \App\Helper\Utility::loadAsset('assets/img/logo.png') }}" type="image/png">
   <link href="{{ \App\Helper\Utility::loadAsset('assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ \App\Helper\Utility::loadAsset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   <link href="{{ \App\Helper\Utility::loadAsset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
