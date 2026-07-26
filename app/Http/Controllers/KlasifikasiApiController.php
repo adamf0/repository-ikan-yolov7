@@ -19,69 +19,24 @@ class KlasifikasiApiController extends Controller
                 $image = $request->file('image');
                 $base64Image = base64_encode(file_get_contents($image->getPathName()));
                 
-                $url = env("YOLO_URL", "localhost") . "/classfication";
+                $url = env("YOLO_URL", "https://www.fishiden.com/api2") . "/classfication";
                 $response = Http::withHeaders([
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                 ])->post($url, ["image" => $base64Image]);
 
                 if (!$response->successful()) {
-                    throw new Exception($response->json()['error']);
+                    $resJson = $response->json();
+                    $errMsg = is_array($resJson) && isset($resJson['error']) ? $resJson['error'] : (is_array($resJson) && isset($resJson['message']) ? $resJson['message'] : 'Gagal terhubung ke service klasifikasi YOLO (HTTP '.$response->status().')');
+                    throw new Exception($errMsg);
                 }
 
                 $responseData = $response->json()["body"];
-                // $datas = [];
-                // foreach($responseData["annotation"] as $item){
-                //     if(!array_key_exists($item["name"],$datas)){
-                //         $ikan = Ikan::where('spesies','like', '%'.$item["name"].'%')->firstOrFail();
-                //         // $directoryPath = 'public/'.$item["name"];
-                //         // $files = Storage::files($directoryPath);
-                //         $files = \App\Helper\Utility::scanFiles($item["name"]);
-                //         $randomFile = count($files)>0? \App\Helper\Utility::loadAsset($files[array_rand($files)]) : \App\Helper\Utility::loadAsset('not_found.jpg');
-
-                //         $datas[$item["name"]] = [
-                //             "habitat"                   => $ikan->habitat,
-                //             "foto"                      => $randomFile,
-                //             "kategori"                  => $ikan->kategori,
-                //             "kingdom"                   => $ikan->kingdom,
-                //             "fillum"                    => $ikan->fillum,
-                //             "super_kelas"               => $ikan->super_kelas,
-                //             "kelas"                     => $ikan->kelas,
-                //             "ordo"                      => $ikan->ordo,
-                //             "famili"                    => $ikan->famili,
-                //             "genus"                     => $ikan->genus,
-                //             "spesies"                   => $ikan->spesies,
-                //             "nama_daerah"               => $ikan->nama_daerah,
-                //             "pengarang"                 => $ikan->pengarang,
-                //             "karakteristik_morfologi"   => htmlspecialchars_decode($ikan->karakteristik_morfologi),
-                //             "kemunculan"                => $ikan->kemunculan,
-                //             "panjang_maksimal"          => $ikan->panjang_maksimal,
-                //             "status_konservasi"         => $ikan->status_konservasi,
-                //             "status_konservasi_tahun"   => $ikan->status_konservasi_tahun,
-                //             "id_genom"                  => $ikan->id_genom,
-                //             "upaya_konservasi"          => htmlspecialchars_decode($ikan->upaya_konservasi),
-                //             "distribusi"                => $ikan->distribusi,
-                //             "komentar"                   => htmlspecialchars_decode($ikan->komentar),
-                //             "kotak_prediksi"            =>[
-                //                 "confidence"=>$item["confidence"],
-                //                 "xmax"=>$item["xmax"],
-                //                 "xmin"=>$item["xmin"],
-                //                 "ymax"=>$item["ymax"],
-                //                 "ymin"=>$item["ymin"],
-                //             ]
-                //         ];
-                //     }
-                // };
-                // $datas["image"] = $responseData["img_result"];
                 $datas = [];
                 $list_predic = [];
                 foreach ($responseData["annotation"] as $item) {
                     if (!array_key_exists($item["name"], $datas)) {
                         $ikan = Ikan::where('spesies', 'like', '%' . $item["name"] . '%')->firstOrFail();
-                        // $directoryPath = 'public/'.$item["name"];
-                        // $files = Storage::files($directoryPath);
-                        // $files = \App\Helper\Utility::scanFiles($item["name"]);
-                        // $randomFile = count($files)>0? \App\Helper\Utility::loadAsset($files[array_rand($files)]) : \App\Helper\Utility::loadAsset('not_found.jpg');
 
                         $key = array_search($ikan->id, array_column($list_predic, 'id_ikan'));
                         if ($key !== false) {
@@ -95,10 +50,9 @@ class KlasifikasiApiController extends Controller
                     }
                 };
                 $fileName = ($request->ip() ?? Uuid::uuid4()->toString()) . "_" . uniqid() . ".png";
-                $savePath = public_path(sprintf("Prediksi/%s", $fileName));
                 $image->move(public_path('Prediksi'), $fileName);
 
-                $datas["predic"] = array_values(array_unique($list_predic));
+                $datas["predic"] = array_values($list_predic);
                 $datas["image"] = $fileName;
 
                 $key = ($request->ip() ?? Uuid::uuid4()->toString()) . "-" . date("Ymdhis");
